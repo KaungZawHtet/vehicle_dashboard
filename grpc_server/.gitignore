@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/cmake,c++,vcpkg
-# Edit at https://www.toptal.com/developers/gitignore?templates=cmake,c++,vcpkg
+# Created by https://www.toptal.com/developers/gitignore/api/c++,cmake,ninja
+# Edit at https://www.toptal.com/developers/gitignore?templates=c++,cmake,ninja
 
 ### C++ ###
 # Prerequisites
@@ -52,10 +52,15 @@ _deps
 # External projects
 *-prefix/
 
-### vcpkg ###
-# Vcpkg
+### Ninja ###
+.ninja_deps
+.ninja_log
 
-## Manifest Mode
-vcpkg_installed/
+# End of https://www.toptal.com/developers/gitignore/api/c++,cmake,ninja
 
-# End of https://www.toptal.com/developers/gitignore/api/cmake,c++,vcpkg
+
+build/
+build-debug/
+build-release/
+release-build/
+debug-build/
