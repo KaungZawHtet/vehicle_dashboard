@@ -7,9 +7,9 @@ find_package(gRPC REQUIRED)
 
 # Protobuf stuff
 set(PROTO_PATH ${CMAKE_CURRENT_SOURCE_DIR}/protos)
-set(PROTOS ${PROTO_PATH}/helloworld.proto)
+set(PROTOS ${PROTO_PATH}/ping.proto)
 
-set(PROTO_GENERATED_DIR "${CMAKE_CURRENT_SOURCE_DIR}/generated")
+set(PROTO_GENERATED_DIR "${CMAKE_CURRENT_SOURCE_DIR}/protos_generated")
 file(MAKE_DIRECTORY ${PROTO_GENERATED_DIR})
 
 # cmake modules

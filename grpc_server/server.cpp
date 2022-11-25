@@ -3,15 +3,15 @@
 #include <string>
 
 #include <grpc++/grpc++.h>
-#include "helloworld.grpc.pb.h"
+#include "ping.grpc.pb.h"
 
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
-using helloworld::Greeter;
-using helloworld::HelloReply;
-using helloworld::HelloRequest;
+using vehicle::Greeter;
+using vehicle::HelloReply;
+using vehicle::HelloRequest;
 
 // Logic and data behind the server's behavior.
 class GreeterServiceImpl final : public Greeter::Service

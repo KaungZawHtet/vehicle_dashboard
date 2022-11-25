@@ -5,14 +5,14 @@
 #include <string>
 
 #include <grpc++/grpc++.h>
-#include "helloworld.grpc.pb.h"
+#include "ping.grpc.pb.h"
 
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
-using helloworld::Greeter;
-using helloworld::HelloReply;
-using helloworld::HelloRequest;
+using vehicle::Greeter;
+using vehicle::HelloReply;
+using vehicle::HelloRequest;
 
 class GreeterClient
 {

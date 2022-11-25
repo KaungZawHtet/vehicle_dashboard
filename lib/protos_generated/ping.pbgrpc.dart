@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: helloworld.proto
+//  source: ping.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
@@ -10,12 +10,12 @@ import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:grpc/service_api.dart' as $grpc;
-import 'helloworld.pb.dart' as $0;
-export 'helloworld.pb.dart';
+import 'ping.pb.dart' as $0;
+export 'ping.pb.dart';
 
 class GreeterClient extends $grpc.Client {
   static final _$sayHello = $grpc.ClientMethod<$0.HelloRequest, $0.HelloReply>(
-      '/helloworld.Greeter/SayHello',
+      '/vehicle.Greeter/SayHello',
       ($0.HelloRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.HelloReply.fromBuffer(value));
 
@@ -31,7 +31,7 @@ class GreeterClient extends $grpc.Client {
 }
 
 abstract class GreeterServiceBase extends $grpc.Service {
-  $core.String get $name => 'helloworld.Greeter';
+  $core.String get $name => 'vehicle.Greeter';
 
   GreeterServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.HelloRequest, $0.HelloReply>(

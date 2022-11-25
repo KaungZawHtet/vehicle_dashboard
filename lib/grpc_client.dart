@@ -1,5 +1,6 @@
-import 'package:vehicle_dashboard/generated/helloworld.pbgrpc.dart';
+
 import 'package:grpc/grpc.dart';
+import 'package:vehicle_dashboard/protos_generated/ping.pbgrpc.dart';
 
 class GrpcClient {
     late final GreeterClient stub;
