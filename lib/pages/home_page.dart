@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_dashboard/pages/home_page/dashboard_window.dart';
+import 'package:vehicle_dashboard/pages/home_page/fuel_window.dart';
+import 'package:vehicle_dashboard/pages/home_page/records_window.dart';
 import 'package:vehicle_dashboard/utilities/grpc_client.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,30 +15,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+  final List<Widget> _widgetOptions = <Widget>[
+    const DashboardWindow(),
+    const FuelWindow(),
+    const RecordsWindow(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text("hello"),
-          ],
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          print(await widget.grpcClient.getMessage("Kzh"));
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-
+        body: SafeArea(child: _widgetOptions.elementAt(_selectedIndex)),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            //! print(await widget.grpcClient.getMessage("Kzh"));
+          },
+          tooltip: 'Increment',
+          child: const Icon(Icons.add),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -51,8 +57,8 @@ class _HomePageState extends State<HomePage> {
               label: 'Records',
             ),
           ],
-        )
-
-    );
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+        ));
   }
 }
