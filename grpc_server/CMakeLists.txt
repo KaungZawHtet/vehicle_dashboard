@@ -7,7 +7,7 @@ find_package(gRPC REQUIRED)
 
 # Protobuf stuff
 set(PROTO_PATH ${CMAKE_CURRENT_SOURCE_DIR}/protos)
-set(PROTOS ${PROTO_PATH}/ping.proto)
+set(PROTOS ${PROTO_PATH}/vehicle.proto)
 
 set(PROTO_GENERATED_DIR "${CMAKE_CURRENT_SOURCE_DIR}/protos_generated")
 file(MAKE_DIRECTORY ${PROTO_GENERATED_DIR})
@@ -28,25 +28,27 @@ set(PROTO_GENERATED_FILES
     ${GRPC_HDRS})
 
 
-# Building server
-add_executable(grpc_server
-    server.cpp
-    ${PROTO_GENERATED_FILES})
+file(GLOB VEHICLE_LIB_CPP_FILES
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/*.h"
+)
+add_library(vehicle_lib ${VEHICLE_LIB_CPP_FILES} ${PROTO_GENERATED_FILES})
 
-target_link_libraries(grpc_server
+target_include_directories(vehicle_lib PUBLIC ${PROTO_GENERATED_DIR})
+
+target_link_libraries(vehicle_lib
     gRPC::grpc++_reflection
     protobuf::libprotobuf)
 
-target_include_directories(grpc_server PUBLIC ${PROTO_GENERATED_DIR})
 
-# target_link_libraries(grpc_server PRIVATE hw_grpc_proto gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
-# Building client
-add_executable(grpc_client
-    client.cpp
+
+add_executable(vehicle_server
+    vehicle_server.cpp
     ${PROTO_GENERATED_FILES})
 
-target_link_libraries(grpc_client
+target_link_libraries(vehicle_server vehicle_lib
     gRPC::grpc++_reflection
     protobuf::libprotobuf)
 
-target_include_directories(grpc_client PUBLIC ${PROTO_GENERATED_DIR})
+
+target_include_directories(vehicle_server PUBLIC ${PROTO_GENERATED_DIR})

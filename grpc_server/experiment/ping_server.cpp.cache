@@ -1,3 +1,5 @@
+// This is testing whether GRPC C++ works on server
+
 #include <iostream>
 #include <memory>
 #include <string>
