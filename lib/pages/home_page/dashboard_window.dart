@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
+import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/drive_panel.dart';
+import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/fuel_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/rpm_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/speed_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/temperature_indicator.dart';
 
 import '../../protos_generated/vehicle.pb.dart';
 
@@ -13,7 +18,7 @@ class DashboardWindow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    grpcClient = VehicleClient();
+    grpcClient = Provider.of<VehicleClient>(context);
 
     return SingleChildScrollView(
       child: Column(
@@ -23,82 +28,19 @@ class DashboardWindow extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const ScaleRadialGauge(
-                maxValue: 8,
-                actualValue: 1,
-                // Optional Parameters
-                minValue: 0,
-                size: 220,
-                title: Text("RPM"),
-                titlePosition: TitlePosition.top,
-                pointerColor: Colors.blue,
-                needleColor: Colors.blue,
-                decimalPlaces: 0,
-                isAnimate: true,
-                animationDuration: 2000,
-                unit:
-                    TextSpan(text: 'x1000rpm', style: TextStyle(fontSize: 10)),
-              ),
+              RpmIndicator(),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const ScaleRadialGauge(
-                    maxValue: 47,
-                    actualValue: 10,
-                    // Optional Parameters
-                    minValue: 0,
-                    size: 140,
-                    title: Text("Fuel"),
-                    titlePosition: TitlePosition.top,
-                    pointerColor: Colors.blue,
-                    needleColor: Colors.blue,
-                    decimalPlaces: 0,
-                    isAnimate: true,
-                    animationDuration: 2000,
-                    unit:
-                        TextSpan(text: 'Litre', style: TextStyle(fontSize: 10)),
-                  ),
-                  Row(
-                    children: [
-                      const Icon(color: Colors.red, Icons.thermostat),
-                      FutureBuilder<int>(
-                          future: grpcClient.getTemperature("Default"),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              print("helloe");
-
-                              return Text('${snapshot.data}`C',
-                                  style: const TextStyle(color: Colors.red));
-                            }
-
-                            return Container();
-                          }),
-                    ],
-                  )
+                  FuelIndicator(),
+                  TemperatureIndicator(grpcClient: grpcClient)
                 ],
               ),
-              const ScaleRadialGauge(
-                maxValue: 240,
-                actualValue: 70,
-                // Optional Parameters
-                minValue: 0,
-                size: 220,
-                title: Text("Speedometer"),
-
-                titlePosition: TitlePosition.top,
-                pointerColor: Colors.blue,
-                needleColor: Colors.blue,
-                decimalPlaces: 0,
-                isAnimate: true,
-                animationDuration: 2000,
-                unit: TextSpan(text: 'Km/h', style: TextStyle(fontSize: 10)),
-              ),
-              Column(
-                children: [],
-              )
+              SpeedIndicator(),
             ],
           ),
           const Divider(),
+          DrivePanel()
         ],
       ),
     );

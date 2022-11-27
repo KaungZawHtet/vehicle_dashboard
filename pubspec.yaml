@@ -44,6 +44,8 @@ dependencies:
   at_gauges: ^1.0.1
   percent_indicator: ^4.2.2
   window_manager: ^0.2.7
+  animated_button: ^0.2.0
+  material_design_icons_flutter: ^6.0.7096
 
 
 dev_dependencies:

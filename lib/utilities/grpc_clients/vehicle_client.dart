@@ -18,15 +18,15 @@ class VehicleClient {
     stub = DataExchangerClient(channel);
   }
 // TODO: bug here. Need to fix the function;
-  Stream<String> watchNumberDataFlow() async* {
+  Stream<int> watchNumberDataFlow() async* {
     try {
       DisplayDataRequest request = DisplayDataRequest()..request = true;
 
 
 
-      /* await for (var numberDataReply in stub.getNumberData(request)) {
-        yield '1';
-      } */
+       await for (var numberDataReply in stub.getNumberDataFlow(request)) {
+        yield numberDataReply.temperature;
+      }
     } catch (e) {
       print('Caught error: $e');
     }
