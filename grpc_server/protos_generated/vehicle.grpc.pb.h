@@ -35,14 +35,21 @@ class DataExchanger final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    std::unique_ptr< ::grpc::ClientReaderInterface< ::vehicle::NumberDataReply>> GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request) {
-      return std::unique_ptr< ::grpc::ClientReaderInterface< ::vehicle::NumberDataReply>>(GetNumberDataRaw(context, request));
+    std::unique_ptr< ::grpc::ClientReaderInterface< ::vehicle::NumberDataReply>> GetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReaderInterface< ::vehicle::NumberDataReply>>(GetNumberDataFlowRaw(context, request));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>> AsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>>(AsyncGetNumberDataRaw(context, request, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>> AsyncGetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>>(AsyncGetNumberDataFlowRaw(context, request, cq, tag));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>> PrepareAsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>>(PrepareAsyncGetNumberDataRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>> PrepareAsyncGetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>>(PrepareAsyncGetNumberDataFlowRaw(context, request, cq));
+    }
+    virtual ::grpc::Status GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::vehicle::NumberDataReply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>> AsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>>(AsyncGetNumberDataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>> PrepareAsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>>(PrepareAsyncGetNumberDataRaw(context, request, cq));
     }
     virtual ::grpc::Status GetBooleanData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::vehicle::BooleanDataReply* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::BooleanDataReply>> AsyncGetBooleanData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
@@ -61,7 +68,9 @@ class DataExchanger final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::grpc::ClientReadReactor< ::vehicle::NumberDataReply>* reactor) = 0;
+      virtual void GetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::grpc::ClientReadReactor< ::vehicle::NumberDataReply>* reactor) = 0;
+      virtual void GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::NumberDataReply* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::NumberDataReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetBooleanData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::BooleanDataReply* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetBooleanData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::BooleanDataReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void InformSeatBeltIsUsed(::grpc::ClientContext* context, const ::vehicle::SeatBeltUsage* request, ::vehicle::SeatBeltUsage* response, std::function<void(::grpc::Status)>) = 0;
@@ -71,9 +80,11 @@ class DataExchanger final {
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientReaderInterface< ::vehicle::NumberDataReply>* GetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>* AsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>* PrepareAsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderInterface< ::vehicle::NumberDataReply>* GetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>* AsyncGetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>* PrepareAsyncGetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>* AsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>* PrepareAsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::BooleanDataReply>* AsyncGetBooleanDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::BooleanDataReply>* PrepareAsyncGetBooleanDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::SeatBeltUsage>* AsyncInformSeatBeltIsUsedRaw(::grpc::ClientContext* context, const ::vehicle::SeatBeltUsage& request, ::grpc::CompletionQueue* cq) = 0;
@@ -82,14 +93,21 @@ class DataExchanger final {
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    std::unique_ptr< ::grpc::ClientReader< ::vehicle::NumberDataReply>> GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request) {
-      return std::unique_ptr< ::grpc::ClientReader< ::vehicle::NumberDataReply>>(GetNumberDataRaw(context, request));
+    std::unique_ptr< ::grpc::ClientReader< ::vehicle::NumberDataReply>> GetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReader< ::vehicle::NumberDataReply>>(GetNumberDataFlowRaw(context, request));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>> AsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>>(AsyncGetNumberDataRaw(context, request, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>> AsyncGetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>>(AsyncGetNumberDataFlowRaw(context, request, cq, tag));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>> PrepareAsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>>(PrepareAsyncGetNumberDataRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>> PrepareAsyncGetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>>(PrepareAsyncGetNumberDataFlowRaw(context, request, cq));
+    }
+    ::grpc::Status GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::vehicle::NumberDataReply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>> AsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>>(AsyncGetNumberDataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>> PrepareAsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>>(PrepareAsyncGetNumberDataRaw(context, request, cq));
     }
     ::grpc::Status GetBooleanData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::vehicle::BooleanDataReply* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::BooleanDataReply>> AsyncGetBooleanData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
@@ -108,7 +126,9 @@ class DataExchanger final {
     class async final :
       public StubInterface::async_interface {
      public:
-      void GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::grpc::ClientReadReactor< ::vehicle::NumberDataReply>* reactor) override;
+      void GetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::grpc::ClientReadReactor< ::vehicle::NumberDataReply>* reactor) override;
+      void GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::NumberDataReply* response, std::function<void(::grpc::Status)>) override;
+      void GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::NumberDataReply* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetBooleanData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::BooleanDataReply* response, std::function<void(::grpc::Status)>) override;
       void GetBooleanData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::BooleanDataReply* response, ::grpc::ClientUnaryReactor* reactor) override;
       void InformSeatBeltIsUsed(::grpc::ClientContext* context, const ::vehicle::SeatBeltUsage* request, ::vehicle::SeatBeltUsage* response, std::function<void(::grpc::Status)>) override;
@@ -124,13 +144,16 @@ class DataExchanger final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientReader< ::vehicle::NumberDataReply>* GetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request) override;
-    ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>* AsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
-    ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>* PrepareAsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReader< ::vehicle::NumberDataReply>* GetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request) override;
+    ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>* AsyncGetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>* PrepareAsyncGetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>* AsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>* PrepareAsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vehicle::BooleanDataReply>* AsyncGetBooleanDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vehicle::BooleanDataReply>* PrepareAsyncGetBooleanDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vehicle::SeatBeltUsage>* AsyncInformSeatBeltIsUsedRaw(::grpc::ClientContext* context, const ::vehicle::SeatBeltUsage& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vehicle::SeatBeltUsage>* PrepareAsyncInformSeatBeltIsUsedRaw(::grpc::ClientContext* context, const ::vehicle::SeatBeltUsage& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_GetNumberDataFlow_;
     const ::grpc::internal::RpcMethod rpcmethod_GetNumberData_;
     const ::grpc::internal::RpcMethod rpcmethod_GetBooleanData_;
     const ::grpc::internal::RpcMethod rpcmethod_InformSeatBeltIsUsed_;
@@ -141,9 +164,30 @@ class DataExchanger final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status GetNumberData(::grpc::ServerContext* context, const ::vehicle::DisplayDataRequest* request, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* writer);
+    virtual ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* context, const ::vehicle::DisplayDataRequest* request, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* writer);
+    virtual ::grpc::Status GetNumberData(::grpc::ServerContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::NumberDataReply* response);
     virtual ::grpc::Status GetBooleanData(::grpc::ServerContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::BooleanDataReply* response);
     virtual ::grpc::Status InformSeatBeltIsUsed(::grpc::ServerContext* context, const ::vehicle::SeatBeltUsage* request, ::vehicle::SeatBeltUsage* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetNumberDataFlow : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetNumberDataFlow() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_GetNumberDataFlow() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetNumberDataFlow(::grpc::ServerContext* context, ::vehicle::DisplayDataRequest* request, ::grpc::ServerAsyncWriter< ::vehicle::NumberDataReply>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
+    }
   };
   template <class BaseClass>
   class WithAsyncMethod_GetNumberData : public BaseClass {
@@ -151,18 +195,18 @@ class DataExchanger final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetNumberData() {
-      ::grpc::Service::MarkMethodAsync(0);
+      ::grpc::Service::MarkMethodAsync(1);
     }
     ~WithAsyncMethod_GetNumberData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetNumberData(::grpc::ServerContext* context, ::vehicle::DisplayDataRequest* request, ::grpc::ServerAsyncWriter< ::vehicle::NumberDataReply>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
+    void RequestGetNumberData(::grpc::ServerContext* context, ::vehicle::DisplayDataRequest* request, ::grpc::ServerAsyncResponseWriter< ::vehicle::NumberDataReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -171,7 +215,7 @@ class DataExchanger final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetBooleanData() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_GetBooleanData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -182,7 +226,7 @@ class DataExchanger final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetBooleanData(::grpc::ServerContext* context, ::vehicle::DisplayDataRequest* request, ::grpc::ServerAsyncResponseWriter< ::vehicle::BooleanDataReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -191,7 +235,7 @@ class DataExchanger final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_InformSeatBeltIsUsed() {
-      ::grpc::Service::MarkMethodAsync(2);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_InformSeatBeltIsUsed() override {
       BaseClassMustBeDerivedFromService(this);
@@ -202,31 +246,58 @@ class DataExchanger final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestInformSeatBeltIsUsed(::grpc::ServerContext* context, ::vehicle::SeatBeltUsage* request, ::grpc::ServerAsyncResponseWriter< ::vehicle::SeatBeltUsage>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetNumberData<WithAsyncMethod_GetBooleanData<WithAsyncMethod_InformSeatBeltIsUsed<Service > > > AsyncService;
+  typedef WithAsyncMethod_GetNumberDataFlow<WithAsyncMethod_GetNumberData<WithAsyncMethod_GetBooleanData<WithAsyncMethod_InformSeatBeltIsUsed<Service > > > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_GetNumberDataFlow : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetNumberDataFlow() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::vehicle::DisplayDataRequest, ::vehicle::NumberDataReply>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::vehicle::DisplayDataRequest* request) { return this->GetNumberDataFlow(context, request); }));
+    }
+    ~WithCallbackMethod_GetNumberDataFlow() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerWriteReactor< ::vehicle::NumberDataReply>* GetNumberDataFlow(
+      ::grpc::CallbackServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/)  { return nullptr; }
+  };
   template <class BaseClass>
   class WithCallbackMethod_GetNumberData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetNumberData() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackServerStreamingHandler< ::vehicle::DisplayDataRequest, ::vehicle::NumberDataReply>(
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::vehicle::DisplayDataRequest, ::vehicle::NumberDataReply>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::vehicle::DisplayDataRequest* request) { return this->GetNumberData(context, request); }));
+                   ::grpc::CallbackServerContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::NumberDataReply* response) { return this->GetNumberData(context, request, response); }));}
+    void SetMessageAllocatorFor_GetNumberData(
+        ::grpc::MessageAllocator< ::vehicle::DisplayDataRequest, ::vehicle::NumberDataReply>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::vehicle::DisplayDataRequest, ::vehicle::NumberDataReply>*>(handler)
+              ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_GetNumberData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerWriteReactor< ::vehicle::NumberDataReply>* GetNumberData(
-      ::grpc::CallbackServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* GetNumberData(
+      ::grpc::CallbackServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::vehicle::NumberDataReply* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_GetBooleanData : public BaseClass {
@@ -234,13 +305,13 @@ class DataExchanger final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetBooleanData() {
-      ::grpc::Service::MarkMethodCallback(1,
+      ::grpc::Service::MarkMethodCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::vehicle::DisplayDataRequest, ::vehicle::BooleanDataReply>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::BooleanDataReply* response) { return this->GetBooleanData(context, request, response); }));}
     void SetMessageAllocatorFor_GetBooleanData(
         ::grpc::MessageAllocator< ::vehicle::DisplayDataRequest, ::vehicle::BooleanDataReply>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::vehicle::DisplayDataRequest, ::vehicle::BooleanDataReply>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -261,13 +332,13 @@ class DataExchanger final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_InformSeatBeltIsUsed() {
-      ::grpc::Service::MarkMethodCallback(2,
+      ::grpc::Service::MarkMethodCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::vehicle::SeatBeltUsage, ::vehicle::SeatBeltUsage>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::vehicle::SeatBeltUsage* request, ::vehicle::SeatBeltUsage* response) { return this->InformSeatBeltIsUsed(context, request, response); }));}
     void SetMessageAllocatorFor_InformSeatBeltIsUsed(
         ::grpc::MessageAllocator< ::vehicle::SeatBeltUsage, ::vehicle::SeatBeltUsage>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::vehicle::SeatBeltUsage, ::vehicle::SeatBeltUsage>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -282,21 +353,38 @@ class DataExchanger final {
     virtual ::grpc::ServerUnaryReactor* InformSeatBeltIsUsed(
       ::grpc::CallbackServerContext* /*context*/, const ::vehicle::SeatBeltUsage* /*request*/, ::vehicle::SeatBeltUsage* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetNumberData<WithCallbackMethod_GetBooleanData<WithCallbackMethod_InformSeatBeltIsUsed<Service > > > CallbackService;
+  typedef WithCallbackMethod_GetNumberDataFlow<WithCallbackMethod_GetNumberData<WithCallbackMethod_GetBooleanData<WithCallbackMethod_InformSeatBeltIsUsed<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_GetNumberDataFlow : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetNumberDataFlow() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_GetNumberDataFlow() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
   template <class BaseClass>
   class WithGenericMethod_GetNumberData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetNumberData() {
-      ::grpc::Service::MarkMethodGeneric(0);
+      ::grpc::Service::MarkMethodGeneric(1);
     }
     ~WithGenericMethod_GetNumberData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -307,7 +395,7 @@ class DataExchanger final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetBooleanData() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_GetBooleanData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -324,7 +412,7 @@ class DataExchanger final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_InformSeatBeltIsUsed() {
-      ::grpc::Service::MarkMethodGeneric(2);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_InformSeatBeltIsUsed() override {
       BaseClassMustBeDerivedFromService(this);
@@ -336,23 +424,43 @@ class DataExchanger final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetNumberDataFlow : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetNumberDataFlow() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_GetNumberDataFlow() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetNumberDataFlow(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_GetNumberData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetNumberData() {
-      ::grpc::Service::MarkMethodRaw(0);
+      ::grpc::Service::MarkMethodRaw(1);
     }
     ~WithRawMethod_GetNumberData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetNumberData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
+    void RequestGetNumberData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -361,7 +469,7 @@ class DataExchanger final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetBooleanData() {
-      ::grpc::Service::MarkMethodRaw(1);
+      ::grpc::Service::MarkMethodRaw(2);
     }
     ~WithRawMethod_GetBooleanData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -372,7 +480,7 @@ class DataExchanger final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetBooleanData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -381,7 +489,7 @@ class DataExchanger final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_InformSeatBeltIsUsed() {
-      ::grpc::Service::MarkMethodRaw(2);
+      ::grpc::Service::MarkMethodRaw(3);
     }
     ~WithRawMethod_InformSeatBeltIsUsed() override {
       BaseClassMustBeDerivedFromService(this);
@@ -392,8 +500,30 @@ class DataExchanger final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestInformSeatBeltIsUsed(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetNumberDataFlow : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetNumberDataFlow() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->GetNumberDataFlow(context, request); }));
+    }
+    ~WithRawCallbackMethod_GetNumberDataFlow() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* GetNumberDataFlow(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithRawCallbackMethod_GetNumberData : public BaseClass {
@@ -401,21 +531,21 @@ class DataExchanger final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetNumberData() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->GetNumberData(context, request); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetNumberData(context, request, response); }));
     }
     ~WithRawCallbackMethod_GetNumberData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* GetNumberData(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* GetNumberData(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithRawCallbackMethod_GetBooleanData : public BaseClass {
@@ -423,7 +553,7 @@ class DataExchanger final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetBooleanData() {
-      ::grpc::Service::MarkMethodRawCallback(1,
+      ::grpc::Service::MarkMethodRawCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetBooleanData(context, request, response); }));
@@ -445,7 +575,7 @@ class DataExchanger final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_InformSeatBeltIsUsed() {
-      ::grpc::Service::MarkMethodRawCallback(2,
+      ::grpc::Service::MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InformSeatBeltIsUsed(context, request, response); }));
@@ -462,12 +592,39 @@ class DataExchanger final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetNumberData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetNumberData() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::vehicle::DisplayDataRequest, ::vehicle::NumberDataReply>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::vehicle::DisplayDataRequest, ::vehicle::NumberDataReply>* streamer) {
+                       return this->StreamedGetNumberData(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetNumberData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetNumberData(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::vehicle::DisplayDataRequest,::vehicle::NumberDataReply>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetBooleanData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetBooleanData() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::vehicle::DisplayDataRequest, ::vehicle::BooleanDataReply>(
             [this](::grpc::ServerContext* context,
@@ -494,7 +651,7 @@ class DataExchanger final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_InformSeatBeltIsUsed() {
-      ::grpc::Service::MarkMethodStreamed(2,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::vehicle::SeatBeltUsage, ::vehicle::SeatBeltUsage>(
             [this](::grpc::ServerContext* context,
@@ -515,36 +672,36 @@ class DataExchanger final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedInformSeatBeltIsUsed(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::vehicle::SeatBeltUsage,::vehicle::SeatBeltUsage>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetBooleanData<WithStreamedUnaryMethod_InformSeatBeltIsUsed<Service > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetNumberData<WithStreamedUnaryMethod_GetBooleanData<WithStreamedUnaryMethod_InformSeatBeltIsUsed<Service > > > StreamedUnaryService;
   template <class BaseClass>
-  class WithSplitStreamingMethod_GetNumberData : public BaseClass {
+  class WithSplitStreamingMethod_GetNumberDataFlow : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithSplitStreamingMethod_GetNumberData() {
+    WithSplitStreamingMethod_GetNumberDataFlow() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::vehicle::DisplayDataRequest, ::vehicle::NumberDataReply>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerSplitStreamer<
                      ::vehicle::DisplayDataRequest, ::vehicle::NumberDataReply>* streamer) {
-                       return this->StreamedGetNumberData(context,
+                       return this->StreamedGetNumberDataFlow(context,
                          streamer);
                   }));
     }
-    ~WithSplitStreamingMethod_GetNumberData() override {
+    ~WithSplitStreamingMethod_GetNumberDataFlow() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+    ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* /*context*/, const ::vehicle::DisplayDataRequest* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with split streamed
-    virtual ::grpc::Status StreamedGetNumberData(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::vehicle::DisplayDataRequest,::vehicle::NumberDataReply>* server_split_streamer) = 0;
+    virtual ::grpc::Status StreamedGetNumberDataFlow(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::vehicle::DisplayDataRequest,::vehicle::NumberDataReply>* server_split_streamer) = 0;
   };
-  typedef WithSplitStreamingMethod_GetNumberData<Service > SplitStreamedService;
-  typedef WithSplitStreamingMethod_GetNumberData<WithStreamedUnaryMethod_GetBooleanData<WithStreamedUnaryMethod_InformSeatBeltIsUsed<Service > > > StreamedService;
+  typedef WithSplitStreamingMethod_GetNumberDataFlow<Service > SplitStreamedService;
+  typedef WithSplitStreamingMethod_GetNumberDataFlow<WithStreamedUnaryMethod_GetNumberData<WithStreamedUnaryMethod_GetBooleanData<WithStreamedUnaryMethod_InformSeatBeltIsUsed<Service > > > > StreamedService;
 };
 
 }  // namespace vehicle

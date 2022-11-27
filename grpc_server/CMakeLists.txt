@@ -52,3 +52,4 @@ target_link_libraries(vehicle_server vehicle_lib
 
 
 target_include_directories(vehicle_server PUBLIC ${PROTO_GENERATED_DIR})
+

@@ -22,6 +22,7 @@
 namespace vehicle {
 
 static const char* DataExchanger_method_names[] = {
+  "/vehicle.DataExchanger/GetNumberDataFlow",
   "/vehicle.DataExchanger/GetNumberData",
   "/vehicle.DataExchanger/GetBooleanData",
   "/vehicle.DataExchanger/InformSeatBeltIsUsed",
@@ -34,25 +35,49 @@ std::unique_ptr< DataExchanger::Stub> DataExchanger::NewStub(const std::shared_p
 }
 
 DataExchanger::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_GetNumberData_(DataExchanger_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_GetBooleanData_(DataExchanger_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_InformSeatBeltIsUsed_(DataExchanger_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_GetNumberDataFlow_(DataExchanger_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_GetNumberData_(DataExchanger_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetBooleanData_(DataExchanger_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InformSeatBeltIsUsed_(DataExchanger_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::ClientReader< ::vehicle::NumberDataReply>* DataExchanger::Stub::GetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request) {
-  return ::grpc::internal::ClientReaderFactory< ::vehicle::NumberDataReply>::Create(channel_.get(), rpcmethod_GetNumberData_, context, request);
+::grpc::ClientReader< ::vehicle::NumberDataReply>* DataExchanger::Stub::GetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request) {
+  return ::grpc::internal::ClientReaderFactory< ::vehicle::NumberDataReply>::Create(channel_.get(), rpcmethod_GetNumberDataFlow_, context, request);
 }
 
-void DataExchanger::Stub::async::GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::grpc::ClientReadReactor< ::vehicle::NumberDataReply>* reactor) {
-  ::grpc::internal::ClientCallbackReaderFactory< ::vehicle::NumberDataReply>::Create(stub_->channel_.get(), stub_->rpcmethod_GetNumberData_, context, request, reactor);
+void DataExchanger::Stub::async::GetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::grpc::ClientReadReactor< ::vehicle::NumberDataReply>* reactor) {
+  ::grpc::internal::ClientCallbackReaderFactory< ::vehicle::NumberDataReply>::Create(stub_->channel_.get(), stub_->rpcmethod_GetNumberDataFlow_, context, request, reactor);
 }
 
-::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>* DataExchanger::Stub::AsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::vehicle::NumberDataReply>::Create(channel_.get(), cq, rpcmethod_GetNumberData_, context, request, true, tag);
+::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>* DataExchanger::Stub::AsyncGetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::vehicle::NumberDataReply>::Create(channel_.get(), cq, rpcmethod_GetNumberDataFlow_, context, request, true, tag);
 }
 
-::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>* DataExchanger::Stub::PrepareAsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::vehicle::NumberDataReply>::Create(channel_.get(), cq, rpcmethod_GetNumberData_, context, request, false, nullptr);
+::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>* DataExchanger::Stub::PrepareAsyncGetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::vehicle::NumberDataReply>::Create(channel_.get(), cq, rpcmethod_GetNumberDataFlow_, context, request, false, nullptr);
+}
+
+::grpc::Status DataExchanger::Stub::GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::vehicle::NumberDataReply* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::vehicle::DisplayDataRequest, ::vehicle::NumberDataReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetNumberData_, context, request, response);
+}
+
+void DataExchanger::Stub::async::GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::NumberDataReply* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::vehicle::DisplayDataRequest, ::vehicle::NumberDataReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetNumberData_, context, request, response, std::move(f));
+}
+
+void DataExchanger::Stub::async::GetNumberData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::NumberDataReply* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetNumberData_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>* DataExchanger::Stub::PrepareAsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::vehicle::NumberDataReply, ::vehicle::DisplayDataRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetNumberData_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>* DataExchanger::Stub::AsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetNumberDataRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status DataExchanger::Stub::GetBooleanData(::grpc::ClientContext* context, const ::vehicle::DisplayDataRequest& request, ::vehicle::BooleanDataReply* response) {
@@ -110,10 +135,20 @@ DataExchanger::Service::Service() {
              ::grpc::ServerContext* ctx,
              const ::vehicle::DisplayDataRequest* req,
              ::grpc::ServerWriter<::vehicle::NumberDataReply>* writer) {
-               return service->GetNumberData(ctx, req, writer);
+               return service->GetNumberDataFlow(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DataExchanger_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataExchanger::Service, ::vehicle::DisplayDataRequest, ::vehicle::NumberDataReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataExchanger::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::vehicle::DisplayDataRequest* req,
+             ::vehicle::NumberDataReply* resp) {
+               return service->GetNumberData(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataExchanger_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataExchanger::Service, ::vehicle::DisplayDataRequest, ::vehicle::BooleanDataReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataExchanger::Service* service,
@@ -123,7 +158,7 @@ DataExchanger::Service::Service() {
                return service->GetBooleanData(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataExchanger_method_names[2],
+      DataExchanger_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataExchanger::Service, ::vehicle::SeatBeltUsage, ::vehicle::SeatBeltUsage, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataExchanger::Service* service,
@@ -137,10 +172,17 @@ DataExchanger::Service::Service() {
 DataExchanger::Service::~Service() {
 }
 
-::grpc::Status DataExchanger::Service::GetNumberData(::grpc::ServerContext* context, const ::vehicle::DisplayDataRequest* request, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* writer) {
+::grpc::Status DataExchanger::Service::GetNumberDataFlow(::grpc::ServerContext* context, const ::vehicle::DisplayDataRequest* request, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* writer) {
   (void) context;
   (void) request;
   (void) writer;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataExchanger::Service::GetNumberData(::grpc::ServerContext* context, const ::vehicle::DisplayDataRequest* request, ::vehicle::NumberDataReply* response) {
+  (void) context;
+  (void) request;
+  (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

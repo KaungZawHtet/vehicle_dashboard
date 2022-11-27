@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:vehicle_dashboard/pages/home_page/dashboard_window.dart';
 import 'package:vehicle_dashboard/pages/home_page/fuel_window.dart';
 import 'package:vehicle_dashboard/pages/home_page/records_window.dart';
-import 'package:vehicle_dashboard/utilities/grpc_client.dart';
+import 'package:vehicle_dashboard/utilities/grpc_clients/ping_client.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key, required this.title});
 
   final String title;
-  var grpcClient = GrpcClient();
+  var grpcClient = PingClient();
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -17,9 +17,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget>[
-    const DashboardWindow(),
-    const FuelWindow(),
-    const RecordsWindow(),
+     DashboardWindow(),
+     FuelWindow(),
+     RecordsWindow(),
   ];
 
   void _onItemTapped(int index) {

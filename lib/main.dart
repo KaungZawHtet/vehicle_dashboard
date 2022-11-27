@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vehicle_dashboard/my_app.dart';
-import 'package:vehicle_dashboard/utilities/grpc_client.dart';
+import 'package:vehicle_dashboard/protos_generated/vehicle.pbgrpc.dart';
+import 'package:vehicle_dashboard/utilities/grpc_clients/ping_client.dart';
+import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
 import 'package:window_manager/window_manager.dart';
 
 
@@ -26,7 +28,7 @@ void main() async {
   });
 
   runApp( MultiProvider(providers: [
-    Provider<GrpcClient>.value(value: GrpcClient()),
+    Provider<VehicleClient>.value(value: VehicleClient()),
 
   ],
   child: const MyApp()));

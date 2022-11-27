@@ -59,6 +59,7 @@ _deps
 # End of https://www.toptal.com/developers/gitignore/api/c++,cmake,ninja
 
 
+experiment/
 build/
 build-debug/
 build-release/

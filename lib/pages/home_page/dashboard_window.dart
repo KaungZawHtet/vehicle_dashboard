@@ -1,12 +1,20 @@
 import 'package:at_gauges/at_gauges.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+
+import 'package:provider/provider.dart';
+import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
+
+import '../../protos_generated/vehicle.pb.dart';
 
 class DashboardWindow extends StatelessWidget {
-  const DashboardWindow({super.key});
+  DashboardWindow({super.key});
+
+  late VehicleClient grpcClient;
 
   @override
   Widget build(BuildContext context) {
+    grpcClient = VehicleClient();
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,14 +36,13 @@ class DashboardWindow extends StatelessWidget {
                 decimalPlaces: 0,
                 isAnimate: true,
                 animationDuration: 2000,
-                unit: TextSpan(text: 'x1000rpm', style: TextStyle(fontSize: 10)),
+                unit:
+                    TextSpan(text: 'x1000rpm', style: TextStyle(fontSize: 10)),
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-
-                children:  [
-
-                     const ScaleRadialGauge(
+                children: [
+                  const ScaleRadialGauge(
                     maxValue: 47,
                     actualValue: 10,
                     // Optional Parameters
@@ -52,17 +59,22 @@ class DashboardWindow extends StatelessWidget {
                         TextSpan(text: 'Litre', style: TextStyle(fontSize: 10)),
                   ),
                   Row(
-                    children: const [
-                      Icon(
-                        color : Colors.red,
-                        Icons.thermostat),
+                    children: [
+                      const Icon(color: Colors.red, Icons.thermostat),
+                      FutureBuilder<int>(
+                          future: grpcClient.getTemperature("Default"),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              print("helloe");
 
+                              return Text('${snapshot.data}`C',
+                                  style: const TextStyle(color: Colors.red));
+                            }
 
-                      Text('43`C',
-                      style: TextStyle(color: Colors.red)),
+                            return Container();
+                          }),
                     ],
                   )
-
                 ],
               ),
               const ScaleRadialGauge(
@@ -86,8 +98,6 @@ class DashboardWindow extends StatelessWidget {
               )
             ],
           ),
-
-
           const Divider(),
         ],
       ),

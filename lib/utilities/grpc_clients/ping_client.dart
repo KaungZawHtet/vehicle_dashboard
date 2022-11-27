@@ -2,9 +2,10 @@
 import 'package:grpc/grpc.dart';
 import 'package:vehicle_dashboard/protos_generated/ping.pbgrpc.dart';
 
-class GrpcClient {
+
+class PingClient {
     late final GreeterClient stub;
-  GrpcClient() {
+  PingClient() {
     final channel = ClientChannel(
       '0.0.0.0',
       port: 8888,
@@ -28,6 +29,8 @@ class GrpcClient {
       return 'Caught error: $e';
     }
   }
+
+
 
 
 }

@@ -139,18 +139,20 @@ const char descriptor_table_protodef_vehicle_2eproto[] PROTOBUF_SECTION_VARIABLE
   " \001(\005\022\023\n\013temperature\030\004 \001(\005\"U\n\020BooleanData"
   "Reply\022\024\n\014isEngineGood\030\001 \001(\010\022\023\n\013isBreakGo"
   "od\030\002 \001(\010\022\026\n\016isSeatBeltUsed\030\003 \001(\010\"\'\n\rSeat"
-  "BeltUsage\022\026\n\016IsSeatBeltUsed\030\001 \001(\0102\361\001\n\rDa"
-  "taExchanger\022J\n\rGetNumberData\022\033.vehicle.D"
+  "BeltUsage\022\026\n\016IsSeatBeltUsed\030\001 \001(\0102\277\002\n\rDa"
+  "taExchanger\022N\n\021GetNumberDataFlow\022\033.vehic"
+  "le.DisplayDataRequest\032\030.vehicle.NumberDa"
+  "taReply\"\0000\001\022H\n\rGetNumberData\022\033.vehicle.D"
   "isplayDataRequest\032\030.vehicle.NumberDataRe"
-  "ply\"\0000\001\022J\n\016GetBooleanData\022\033.vehicle.Disp"
-  "layDataRequest\032\031.vehicle.BooleanDataRepl"
-  "y\"\000\022H\n\024InformSeatBeltIsUsed\022\026.vehicle.Se"
-  "atBeltUsage\032\026.vehicle.SeatBeltUsage\"\000B\006\242"
-  "\002\003HLWb\006proto3"
+  "ply\"\000\022J\n\016GetBooleanData\022\033.vehicle.Displa"
+  "yDataRequest\032\031.vehicle.BooleanDataReply\""
+  "\000\022H\n\024InformSeatBeltIsUsed\022\026.vehicle.Seat"
+  "BeltUsage\032\026.vehicle.SeatBeltUsage\"\000B\006\242\002\003"
+  "HLWb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_vehicle_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_vehicle_2eproto = {
-    false, false, 533, descriptor_table_protodef_vehicle_2eproto,
+    false, false, 611, descriptor_table_protodef_vehicle_2eproto,
     "vehicle.proto",
     &descriptor_table_vehicle_2eproto_once, nullptr, 0, 4,
     schemas, file_default_instances, TableStruct_vehicle_2eproto::offsets,
