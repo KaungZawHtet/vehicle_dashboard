@@ -26,11 +26,11 @@ class VehicleClient {
         request,
         options: CallOptions(compression: const GzipCodec()),
       );
-        print(response.distance);
-      print(response.fuel);
-      print(response.rpm);
-      print(response.speed);
-      print(response.temperature);
+        print('distance : ${response.distance}');
+      print('fuel : ${response.fuel}');
+      print('rpm : ${response.rpm}');
+      print('speed : ${response.speed}');
+      print('temperatuure : ${response.temperature}');
       print("==============");
 
       yield response;

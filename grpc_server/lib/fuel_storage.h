@@ -9,6 +9,7 @@ private:
 public:
     double getTotalFuel();
     void calculateFuel(double);
+    void fillFuel(double);
 
 };
 

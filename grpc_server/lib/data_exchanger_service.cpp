@@ -63,7 +63,7 @@ Status DataExchangerServiceImpl::GetNumberDataFlow(ServerContext *context, const
 }
 
 static Engine engine;
-static FuelStorage fuelStoreage;
+
 Status DataExchangerServiceImpl::GetNumberData(ServerContext *context, const SpeedAction *request, NumberDataReply *response)
 {
 
@@ -93,14 +93,13 @@ Status DataExchangerServiceImpl::GetNumberData(ServerContext *context, const Spe
         break;
     }
 
-    fuelStoreage.calculateFuel(engine.getRpm());
 
 
     response->set_temperature(engine.getTemperature());
     response->set_rpm(engine.getRpm());
     response->set_speed(engine.getSpeed());
     response->set_distance(engine.getDistance());
-    response->set_fuel(fuelStoreage.getTotalFuel());
+    response->set_fuel(engine.getFuel());
 
 
 

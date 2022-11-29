@@ -21,3 +21,8 @@ void FuelStorage::calculateFuel(double rpm)
     else if ( rpm >= 8)
         this->total_fuel -= 5;
 }
+
+void FuelStorage::fillFuel(double fuel)
+{
+    this->total_fuel += fuel;
+}

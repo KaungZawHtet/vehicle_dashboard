@@ -13,14 +13,14 @@ class RpmIndicator extends StatelessWidget {
       // Optional Parameters
       minValue: 0,
       size: 220,
-      title: Text("RPM"),
+      title: const Text("RPM"),
       titlePosition: TitlePosition.top,
       pointerColor: Colors.blue,
       needleColor: Colors.blue,
       decimalPlaces: 0,
       isAnimate: true,
       animationDuration: 2000,
-      unit: TextSpan(text: 'x1000rpm', style: TextStyle(fontSize: 10)),
+      unit: const TextSpan(text: 'x1000rpm', style: TextStyle(fontSize: 10)),
     );
   }
 }

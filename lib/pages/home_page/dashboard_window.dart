@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
+import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/distance_indicator.dart';
 import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/drive_panel.dart';
 import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/fuel_indicator.dart';
 import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/rpm_indicator.dart';
@@ -28,51 +29,47 @@ class DashboardWindow extends StatelessWidget {
         children: [
           const SizedBox(height: 10),
           StreamBuilder<NumberDataReply>(
+              initialData: NumberDataReply(fuel: 40),
               stream: Provider.of<StreamController<SpeedType>>(context)
                   .stream
                   .asyncExpand(
                       (event) => grpcClient.watchNumberDataFlow(event)),
               builder: (context, snapshot) {
-
-
-                  double temperature = 0;
-                  double fuel = 0;
-                  double rpm = 0;
-                  double speed = 0;
-
-
+                double temperature = 0;
+                double fuel = 0;
+                double rpm = 0;
+                double speed = 0;
+                double distance = 0;
 
                 if (snapshot.hasData) {
                   temperature = snapshot.data!.temperature;
-                    fuel = snapshot.data!.fuel;
-                      rpm = snapshot.data!.rpm;
-                       speed = snapshot.data!.speed;
-                }
-               else {
-
+                  fuel = snapshot.data!.fuel;
+                  rpm = snapshot.data!.rpm;
+                  speed = snapshot.data!.speed;
+                  distance = snapshot.data!.distance;
+                } else {
                   temperature = 0;
-                    fuel = 0;
-                      rpm = 0;
-                      speed = 0;
+                  fuel = 0;
+                  rpm = 0;
+                  speed = 0;
                 }
 
-
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      RpmIndicator(rpm: rpm),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                           FuelIndicator(fuel: fuel),
-                          TemperatureIndicator(temperature: temperature)
-                        ],
-                      ),
-                      SpeedIndicator(speed: speed),
-                    ],
-                  );
-
-
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RpmIndicator(rpm: rpm),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        FuelIndicator(fuel: fuel),
+                        TemperatureIndicator(temperature: temperature),
+                        const SizedBox(height: 20),
+                        DistanceIndicator(distance: distance)
+                      ],
+                    ),
+                    SpeedIndicator(speed: speed),
+                  ],
+                );
               }),
           const Divider(),
           const DrivePanel()
