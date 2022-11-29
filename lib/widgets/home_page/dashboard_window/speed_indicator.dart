@@ -2,19 +2,20 @@ import 'package:at_gauges/at_gauges.dart';
 import 'package:flutter/material.dart';
 
 class SpeedIndicator extends StatelessWidget {
+    final double speed;
   const SpeedIndicator({
-    Key? key,
+    Key? key,required this.speed
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const ScaleRadialGauge(
+    return  ScaleRadialGauge(
       maxValue: 240,
-      actualValue: 70,
+      actualValue: speed,
       // Optional Parameters
       minValue: 0,
       size: 220,
-      title: Text("Speedometer"),
+      title: const Text("Speedometer"),
 
       titlePosition: TitlePosition.top,
       pointerColor: Colors.blue,
@@ -22,7 +23,7 @@ class SpeedIndicator extends StatelessWidget {
       decimalPlaces: 0,
       isAnimate: true,
       animationDuration: 2000,
-      unit: TextSpan(text: 'Km/h', style: TextStyle(fontSize: 10)),
+      unit: const TextSpan(text: 'Km/h', style: TextStyle(fontSize: 10)),
     );
   }
 }

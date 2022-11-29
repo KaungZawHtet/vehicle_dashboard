@@ -8,48 +8,60 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
-@$core.Deprecated('Use displayDataRequestDescriptor instead')
-const DisplayDataRequest$json = const {
-  '1': 'DisplayDataRequest',
+@$core.Deprecated('Use speedTypeDescriptor instead')
+const SpeedType$json = const {
+  '1': 'SpeedType',
   '2': const [
-    const {'1': 'request', '3': 1, '4': 1, '5': 8, '10': 'request'},
+    const {'1': 'LEVER_UP', '2': 0},
+    const {'1': 'PRESERVE', '2': 1},
+    const {'1': 'SLOW', '2': 2},
+    const {'1': 'STOP', '2': 3},
   ],
 };
 
-/// Descriptor for `DisplayDataRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List displayDataRequestDescriptor = $convert.base64Decode('ChJEaXNwbGF5RGF0YVJlcXVlc3QSGAoHcmVxdWVzdBgBIAEoCFIHcmVxdWVzdA==');
+/// Descriptor for `SpeedType`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List speedTypeDescriptor = $convert.base64Decode('CglTcGVlZFR5cGUSDAoITEVWRVJfVVAQABIMCghQUkVTRVJWRRABEggKBFNMT1cQAhIICgRTVE9QEAM=');
+@$core.Deprecated('Use pingDescriptor instead')
+const Ping$json = const {
+  '1': 'Ping',
+  '2': const [
+    const {'1': 'binary', '3': 1, '4': 1, '5': 8, '10': 'binary'},
+  ],
+};
+
+/// Descriptor for `Ping`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List pingDescriptor = $convert.base64Decode('CgRQaW5nEhYKBmJpbmFyeRgBIAEoCFIGYmluYXJ5');
+@$core.Deprecated('Use fuelAmountDescriptor instead')
+const FuelAmount$json = const {
+  '1': 'FuelAmount',
+  '2': const [
+    const {'1': 'fuel', '3': 1, '4': 1, '5': 1, '10': 'fuel'},
+  ],
+};
+
+/// Descriptor for `FuelAmount`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List fuelAmountDescriptor = $convert.base64Decode('CgpGdWVsQW1vdW50EhIKBGZ1ZWwYASABKAFSBGZ1ZWw=');
+@$core.Deprecated('Use speedActionDescriptor instead')
+const SpeedAction$json = const {
+  '1': 'SpeedAction',
+  '2': const [
+    const {'1': 'speedType', '3': 1, '4': 1, '5': 14, '6': '.vehicle.SpeedType', '10': 'speedType'},
+  ],
+};
+
+/// Descriptor for `SpeedAction`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List speedActionDescriptor = $convert.base64Decode('CgtTcGVlZEFjdGlvbhIwCglzcGVlZFR5cGUYASABKA4yEi52ZWhpY2xlLlNwZWVkVHlwZVIJc3BlZWRUeXBl');
 @$core.Deprecated('Use numberDataReplyDescriptor instead')
 const NumberDataReply$json = const {
   '1': 'NumberDataReply',
   '2': const [
-    const {'1': 'rpm', '3': 1, '4': 1, '5': 5, '10': 'rpm'},
-    const {'1': 'speed', '3': 2, '4': 1, '5': 5, '10': 'speed'},
-    const {'1': 'fuel', '3': 3, '4': 1, '5': 5, '10': 'fuel'},
-    const {'1': 'temperature', '3': 4, '4': 1, '5': 5, '10': 'temperature'},
+    const {'1': 'rpm', '3': 1, '4': 1, '5': 1, '10': 'rpm'},
+    const {'1': 'speed', '3': 2, '4': 1, '5': 1, '10': 'speed'},
+    const {'1': 'fuel', '3': 3, '4': 1, '5': 1, '10': 'fuel'},
+    const {'1': 'temperature', '3': 4, '4': 1, '5': 1, '10': 'temperature'},
+    const {'1': 'distance', '3': 5, '4': 1, '5': 1, '10': 'distance'},
   ],
 };
 
 /// Descriptor for `NumberDataReply`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List numberDataReplyDescriptor = $convert.base64Decode('Cg9OdW1iZXJEYXRhUmVwbHkSEAoDcnBtGAEgASgFUgNycG0SFAoFc3BlZWQYAiABKAVSBXNwZWVkEhIKBGZ1ZWwYAyABKAVSBGZ1ZWwSIAoLdGVtcGVyYXR1cmUYBCABKAVSC3RlbXBlcmF0dXJl');
-@$core.Deprecated('Use booleanDataReplyDescriptor instead')
-const BooleanDataReply$json = const {
-  '1': 'BooleanDataReply',
-  '2': const [
-    const {'1': 'isEngineGood', '3': 1, '4': 1, '5': 8, '10': 'isEngineGood'},
-    const {'1': 'isBreakGood', '3': 2, '4': 1, '5': 8, '10': 'isBreakGood'},
-    const {'1': 'isSeatBeltUsed', '3': 3, '4': 1, '5': 8, '10': 'isSeatBeltUsed'},
-  ],
-};
-
-/// Descriptor for `BooleanDataReply`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List booleanDataReplyDescriptor = $convert.base64Decode('ChBCb29sZWFuRGF0YVJlcGx5EiIKDGlzRW5naW5lR29vZBgBIAEoCFIMaXNFbmdpbmVHb29kEiAKC2lzQnJlYWtHb29kGAIgASgIUgtpc0JyZWFrR29vZBImCg5pc1NlYXRCZWx0VXNlZBgDIAEoCFIOaXNTZWF0QmVsdFVzZWQ=');
-@$core.Deprecated('Use seatBeltUsageDescriptor instead')
-const SeatBeltUsage$json = const {
-  '1': 'SeatBeltUsage',
-  '2': const [
-    const {'1': 'IsSeatBeltUsed', '3': 1, '4': 1, '5': 8, '10': 'IsSeatBeltUsed'},
-  ],
-};
-
-/// Descriptor for `SeatBeltUsage`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List seatBeltUsageDescriptor = $convert.base64Decode('Cg1TZWF0QmVsdFVzYWdlEiYKDklzU2VhdEJlbHRVc2VkGAEgASgIUg5Jc1NlYXRCZWx0VXNlZA==');
+final $typed_data.Uint8List numberDataReplyDescriptor = $convert.base64Decode('Cg9OdW1iZXJEYXRhUmVwbHkSEAoDcnBtGAEgASgBUgNycG0SFAoFc3BlZWQYAiABKAFSBXNwZWVkEhIKBGZ1ZWwYAyABKAFSBGZ1ZWwSIAoLdGVtcGVyYXR1cmUYBCABKAFSC3RlbXBlcmF0dXJlEhoKCGRpc3RhbmNlGAUgASgBUghkaXN0YW5jZQ==');

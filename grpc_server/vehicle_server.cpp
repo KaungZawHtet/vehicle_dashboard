@@ -14,7 +14,7 @@ void RunServer()
     std::string server_address("0.0.0.0:8888");
     DataExchangerServiceImpl service;
 
-    
+
 
     ServerBuilder builder;
     // Listen on the given address without any authentication mechanism.
@@ -33,6 +33,7 @@ void RunServer()
 
 int main(int argc, char const *argv[])
 {
+    std::cout<< "Test Calculations : "<<std::endl;
     RunServer();
     return 0;
 }

@@ -9,68 +9,168 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class DisplayDataRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'DisplayDataRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'vehicle'), createEmptyInstance: create)
-    ..aOB(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'request')
+import 'vehicle.pbenum.dart';
+
+export 'vehicle.pbenum.dart';
+
+class Ping extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Ping', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'vehicle'), createEmptyInstance: create)
+    ..aOB(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'binary')
     ..hasRequiredFields = false
   ;
 
-  DisplayDataRequest._() : super();
-  factory DisplayDataRequest({
-    $core.bool? request,
+  Ping._() : super();
+  factory Ping({
+    $core.bool? binary,
   }) {
     final _result = create();
-    if (request != null) {
-      _result.request = request;
+    if (binary != null) {
+      _result.binary = binary;
     }
     return _result;
   }
-  factory DisplayDataRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory DisplayDataRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory Ping.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Ping.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  DisplayDataRequest clone() => DisplayDataRequest()..mergeFromMessage(this);
+  Ping clone() => Ping()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  DisplayDataRequest copyWith(void Function(DisplayDataRequest) updates) => super.copyWith((message) => updates(message as DisplayDataRequest)) as DisplayDataRequest; // ignore: deprecated_member_use
+  Ping copyWith(void Function(Ping) updates) => super.copyWith((message) => updates(message as Ping)) as Ping; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static DisplayDataRequest create() => DisplayDataRequest._();
-  DisplayDataRequest createEmptyInstance() => create();
-  static $pb.PbList<DisplayDataRequest> createRepeated() => $pb.PbList<DisplayDataRequest>();
+  static Ping create() => Ping._();
+  Ping createEmptyInstance() => create();
+  static $pb.PbList<Ping> createRepeated() => $pb.PbList<Ping>();
   @$core.pragma('dart2js:noInline')
-  static DisplayDataRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DisplayDataRequest>(create);
-  static DisplayDataRequest? _defaultInstance;
+  static Ping getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Ping>(create);
+  static Ping? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.bool get request => $_getBF(0);
+  $core.bool get binary => $_getBF(0);
   @$pb.TagNumber(1)
-  set request($core.bool v) { $_setBool(0, v); }
+  set binary($core.bool v) { $_setBool(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasRequest() => $_has(0);
+  $core.bool hasBinary() => $_has(0);
   @$pb.TagNumber(1)
-  void clearRequest() => clearField(1);
+  void clearBinary() => clearField(1);
+}
+
+class FuelAmount extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'FuelAmount', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'vehicle'), createEmptyInstance: create)
+    ..a<$core.double>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fuel', $pb.PbFieldType.OD)
+    ..hasRequiredFields = false
+  ;
+
+  FuelAmount._() : super();
+  factory FuelAmount({
+    $core.double? fuel,
+  }) {
+    final _result = create();
+    if (fuel != null) {
+      _result.fuel = fuel;
+    }
+    return _result;
+  }
+  factory FuelAmount.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory FuelAmount.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  FuelAmount clone() => FuelAmount()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  FuelAmount copyWith(void Function(FuelAmount) updates) => super.copyWith((message) => updates(message as FuelAmount)) as FuelAmount; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static FuelAmount create() => FuelAmount._();
+  FuelAmount createEmptyInstance() => create();
+  static $pb.PbList<FuelAmount> createRepeated() => $pb.PbList<FuelAmount>();
+  @$core.pragma('dart2js:noInline')
+  static FuelAmount getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FuelAmount>(create);
+  static FuelAmount? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.double get fuel => $_getN(0);
+  @$pb.TagNumber(1)
+  set fuel($core.double v) { $_setDouble(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasFuel() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearFuel() => clearField(1);
+}
+
+class SpeedAction extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SpeedAction', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'vehicle'), createEmptyInstance: create)
+    ..e<SpeedType>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'speedType', $pb.PbFieldType.OE, protoName: 'speedType', defaultOrMaker: SpeedType.LEVER_UP, valueOf: SpeedType.valueOf, enumValues: SpeedType.values)
+    ..hasRequiredFields = false
+  ;
+
+  SpeedAction._() : super();
+  factory SpeedAction({
+    SpeedType? speedType,
+  }) {
+    final _result = create();
+    if (speedType != null) {
+      _result.speedType = speedType;
+    }
+    return _result;
+  }
+  factory SpeedAction.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SpeedAction.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  SpeedAction clone() => SpeedAction()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  SpeedAction copyWith(void Function(SpeedAction) updates) => super.copyWith((message) => updates(message as SpeedAction)) as SpeedAction; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SpeedAction create() => SpeedAction._();
+  SpeedAction createEmptyInstance() => create();
+  static $pb.PbList<SpeedAction> createRepeated() => $pb.PbList<SpeedAction>();
+  @$core.pragma('dart2js:noInline')
+  static SpeedAction getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SpeedAction>(create);
+  static SpeedAction? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  SpeedType get speedType => $_getN(0);
+  @$pb.TagNumber(1)
+  set speedType(SpeedType v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasSpeedType() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSpeedType() => clearField(1);
 }
 
 class NumberDataReply extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'NumberDataReply', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'vehicle'), createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rpm', $pb.PbFieldType.O3)
-    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'speed', $pb.PbFieldType.O3)
-    ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fuel', $pb.PbFieldType.O3)
-    ..a<$core.int>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'temperature', $pb.PbFieldType.O3)
+    ..a<$core.double>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rpm', $pb.PbFieldType.OD)
+    ..a<$core.double>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'speed', $pb.PbFieldType.OD)
+    ..a<$core.double>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fuel', $pb.PbFieldType.OD)
+    ..a<$core.double>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'temperature', $pb.PbFieldType.OD)
+    ..a<$core.double>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'distance', $pb.PbFieldType.OD)
     ..hasRequiredFields = false
   ;
 
   NumberDataReply._() : super();
   factory NumberDataReply({
-    $core.int? rpm,
-    $core.int? speed,
-    $core.int? fuel,
-    $core.int? temperature,
+    $core.double? rpm,
+    $core.double? speed,
+    $core.double? fuel,
+    $core.double? temperature,
+    $core.double? distance,
   }) {
     final _result = create();
     if (rpm != null) {
@@ -84,6 +184,9 @@ class NumberDataReply extends $pb.GeneratedMessage {
     }
     if (temperature != null) {
       _result.temperature = temperature;
+    }
+    if (distance != null) {
+      _result.distance = distance;
     }
     return _result;
   }
@@ -109,161 +212,48 @@ class NumberDataReply extends $pb.GeneratedMessage {
   static NumberDataReply? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get rpm => $_getIZ(0);
+  $core.double get rpm => $_getN(0);
   @$pb.TagNumber(1)
-  set rpm($core.int v) { $_setSignedInt32(0, v); }
+  set rpm($core.double v) { $_setDouble(0, v); }
   @$pb.TagNumber(1)
   $core.bool hasRpm() => $_has(0);
   @$pb.TagNumber(1)
   void clearRpm() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get speed => $_getIZ(1);
+  $core.double get speed => $_getN(1);
   @$pb.TagNumber(2)
-  set speed($core.int v) { $_setSignedInt32(1, v); }
+  set speed($core.double v) { $_setDouble(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasSpeed() => $_has(1);
   @$pb.TagNumber(2)
   void clearSpeed() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.int get fuel => $_getIZ(2);
+  $core.double get fuel => $_getN(2);
   @$pb.TagNumber(3)
-  set fuel($core.int v) { $_setSignedInt32(2, v); }
+  set fuel($core.double v) { $_setDouble(2, v); }
   @$pb.TagNumber(3)
   $core.bool hasFuel() => $_has(2);
   @$pb.TagNumber(3)
   void clearFuel() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.int get temperature => $_getIZ(3);
+  $core.double get temperature => $_getN(3);
   @$pb.TagNumber(4)
-  set temperature($core.int v) { $_setSignedInt32(3, v); }
+  set temperature($core.double v) { $_setDouble(3, v); }
   @$pb.TagNumber(4)
   $core.bool hasTemperature() => $_has(3);
   @$pb.TagNumber(4)
   void clearTemperature() => clearField(4);
-}
 
-class BooleanDataReply extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'BooleanDataReply', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'vehicle'), createEmptyInstance: create)
-    ..aOB(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isEngineGood', protoName: 'isEngineGood')
-    ..aOB(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isBreakGood', protoName: 'isBreakGood')
-    ..aOB(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isSeatBeltUsed', protoName: 'isSeatBeltUsed')
-    ..hasRequiredFields = false
-  ;
-
-  BooleanDataReply._() : super();
-  factory BooleanDataReply({
-    $core.bool? isEngineGood,
-    $core.bool? isBreakGood,
-    $core.bool? isSeatBeltUsed,
-  }) {
-    final _result = create();
-    if (isEngineGood != null) {
-      _result.isEngineGood = isEngineGood;
-    }
-    if (isBreakGood != null) {
-      _result.isBreakGood = isBreakGood;
-    }
-    if (isSeatBeltUsed != null) {
-      _result.isSeatBeltUsed = isSeatBeltUsed;
-    }
-    return _result;
-  }
-  factory BooleanDataReply.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory BooleanDataReply.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  BooleanDataReply clone() => BooleanDataReply()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  BooleanDataReply copyWith(void Function(BooleanDataReply) updates) => super.copyWith((message) => updates(message as BooleanDataReply)) as BooleanDataReply; // ignore: deprecated_member_use
-  $pb.BuilderInfo get info_ => _i;
-  @$core.pragma('dart2js:noInline')
-  static BooleanDataReply create() => BooleanDataReply._();
-  BooleanDataReply createEmptyInstance() => create();
-  static $pb.PbList<BooleanDataReply> createRepeated() => $pb.PbList<BooleanDataReply>();
-  @$core.pragma('dart2js:noInline')
-  static BooleanDataReply getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BooleanDataReply>(create);
-  static BooleanDataReply? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.bool get isEngineGood => $_getBF(0);
-  @$pb.TagNumber(1)
-  set isEngineGood($core.bool v) { $_setBool(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasIsEngineGood() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearIsEngineGood() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.bool get isBreakGood => $_getBF(1);
-  @$pb.TagNumber(2)
-  set isBreakGood($core.bool v) { $_setBool(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasIsBreakGood() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearIsBreakGood() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.bool get isSeatBeltUsed => $_getBF(2);
-  @$pb.TagNumber(3)
-  set isSeatBeltUsed($core.bool v) { $_setBool(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasIsSeatBeltUsed() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearIsSeatBeltUsed() => clearField(3);
-}
-
-class SeatBeltUsage extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SeatBeltUsage', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'vehicle'), createEmptyInstance: create)
-    ..aOB(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'IsSeatBeltUsed', protoName: 'IsSeatBeltUsed')
-    ..hasRequiredFields = false
-  ;
-
-  SeatBeltUsage._() : super();
-  factory SeatBeltUsage({
-    $core.bool? isSeatBeltUsed,
-  }) {
-    final _result = create();
-    if (isSeatBeltUsed != null) {
-      _result.isSeatBeltUsed = isSeatBeltUsed;
-    }
-    return _result;
-  }
-  factory SeatBeltUsage.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory SeatBeltUsage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  SeatBeltUsage clone() => SeatBeltUsage()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  SeatBeltUsage copyWith(void Function(SeatBeltUsage) updates) => super.copyWith((message) => updates(message as SeatBeltUsage)) as SeatBeltUsage; // ignore: deprecated_member_use
-  $pb.BuilderInfo get info_ => _i;
-  @$core.pragma('dart2js:noInline')
-  static SeatBeltUsage create() => SeatBeltUsage._();
-  SeatBeltUsage createEmptyInstance() => create();
-  static $pb.PbList<SeatBeltUsage> createRepeated() => $pb.PbList<SeatBeltUsage>();
-  @$core.pragma('dart2js:noInline')
-  static SeatBeltUsage getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SeatBeltUsage>(create);
-  static SeatBeltUsage? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.bool get isSeatBeltUsed => $_getBF(0);
-  @$pb.TagNumber(1)
-  set isSeatBeltUsed($core.bool v) { $_setBool(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasIsSeatBeltUsed() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearIsSeatBeltUsed() => clearField(1);
+  @$pb.TagNumber(5)
+  $core.double get distance => $_getN(4);
+  @$pb.TagNumber(5)
+  set distance($core.double v) { $_setDouble(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasDistance() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearDistance() => clearField(5);
 }
 

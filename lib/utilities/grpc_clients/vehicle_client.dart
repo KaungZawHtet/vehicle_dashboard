@@ -17,22 +17,42 @@ class VehicleClient {
     );
     stub = DataExchangerClient(channel);
   }
-// TODO: bug here. Need to fix the function;
-  Stream<int> watchNumberDataFlow() async* {
+
+  Stream<NumberDataReply> watchNumberDataFlow(SpeedType action) async* {
     try {
-      DisplayDataRequest request = DisplayDataRequest()..request = true;
+      SpeedAction request = SpeedAction()..speedType = action;
 
+      final response = await stub.getNumberData(
+        request,
+        options: CallOptions(compression: const GzipCodec()),
+      );
+        print(response.distance);
+      print(response.fuel);
+      print(response.rpm);
+      print(response.speed);
+      print(response.temperature);
+      print("==============");
 
+      yield response;
 
-       await for (var numberDataReply in stub.getNumberDataFlow(request)) {
-        yield numberDataReply.temperature;
-      }
+     /*  await for (var numberDataReply in stub.getNumberDataFlow(request)) {
+        print(numberDataReply.distance);
+        print(numberDataReply.fuel);
+        print(numberDataReply.rpm);
+        print(numberDataReply.speed);
+        print(numberDataReply.temperature);
+        print("==============");
+
+        yield numberDataReply; */
+
     } catch (e) {
       print('Caught error: $e');
+
+
     }
   }
 
-  Future<int> getTemperature(String name) async {
+/*   Future<int> getTemperature(String name) async {
     try {
       final response = await stub.getNumberData(
         DisplayDataRequest()..request = true,
@@ -40,8 +60,8 @@ class VehicleClient {
       );
       return response.temperature;
     } catch (e) {
-       print('Caught error: $e');
+      print('Caught error: $e');
       return -1;
     }
-  }
+  } */
 }

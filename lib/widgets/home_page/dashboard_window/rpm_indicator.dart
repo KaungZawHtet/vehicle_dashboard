@@ -2,15 +2,14 @@ import 'package:at_gauges/at_gauges.dart';
 import 'package:flutter/material.dart';
 
 class RpmIndicator extends StatelessWidget {
-  const RpmIndicator({
-    Key? key,
-  }) : super(key: key);
+  final double rpm;
+  const RpmIndicator({Key? key,required this.rpm}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const ScaleRadialGauge(
+    return  ScaleRadialGauge(
       maxValue: 8,
-      actualValue: 1,
+      actualValue: rpm,
       // Optional Parameters
       minValue: 0,
       size: 220,

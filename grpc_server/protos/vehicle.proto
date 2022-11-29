@@ -7,32 +7,41 @@ package vehicle;
 
 service DataExchanger {
 
-  rpc GetNumberDataFlow (DisplayDataRequest) returns (stream NumberDataReply) {}
-  rpc GetNumberData (DisplayDataRequest) returns ( NumberDataReply) {}
-  rpc GetBooleanData (DisplayDataRequest) returns (BooleanDataReply) {}
-  rpc InformSeatBeltIsUsed (SeatBeltUsage) returns (SeatBeltUsage) {}
+  rpc GetNumberDataFlow (SpeedAction) returns (stream NumberDataReply) {}
+  rpc GetNumberData (SpeedAction) returns ( NumberDataReply) {}
+  rpc FillFuel (FuelAmount) returns ( FuelAmount) {}
+  rpc GetTotalFuel (Ping) returns ( FuelAmount) {}
+
 }
 
-message DisplayDataRequest {
-    bool request = 1;
+
+message Ping {
+    bool binary=1;
 }
 
+message FuelAmount {
+
+     double fuel = 1;
+}
+enum SpeedType {
+  LEVER_UP = 0;
+  PRESERVE = 1;
+  SLOW = 2;
+  STOP = 3;
+}
+
+message SpeedAction {
+
+     SpeedType speedType = 1;
+}
 
 
 message NumberDataReply {
-    int32 rpm = 1;
-    int32 speed = 2;
-    int32 fuel = 3;
-    int32 temperature = 4;
+    double rpm = 1;
+    double speed = 2;
+    double fuel = 3;
+    double temperature = 4;
+    double distance = 5;
 }
 
 
-message BooleanDataReply {
-    bool isEngineGood = 1;
-    bool isBreakGood = 2;
-    bool isSeatBeltUsed =3;
-}
-
-message SeatBeltUsage {
-    bool IsSeatBeltUsed = 1;
-}

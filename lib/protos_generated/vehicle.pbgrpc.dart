@@ -15,28 +15,25 @@ export 'vehicle.pb.dart';
 
 class DataExchangerClient extends $grpc.Client {
   static final _$getNumberDataFlow =
-      $grpc.ClientMethod<$0.DisplayDataRequest, $0.NumberDataReply>(
+      $grpc.ClientMethod<$0.SpeedAction, $0.NumberDataReply>(
           '/vehicle.DataExchanger/GetNumberDataFlow',
-          ($0.DisplayDataRequest value) => value.writeToBuffer(),
+          ($0.SpeedAction value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.NumberDataReply.fromBuffer(value));
   static final _$getNumberData =
-      $grpc.ClientMethod<$0.DisplayDataRequest, $0.NumberDataReply>(
+      $grpc.ClientMethod<$0.SpeedAction, $0.NumberDataReply>(
           '/vehicle.DataExchanger/GetNumberData',
-          ($0.DisplayDataRequest value) => value.writeToBuffer(),
+          ($0.SpeedAction value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.NumberDataReply.fromBuffer(value));
-  static final _$getBooleanData =
-      $grpc.ClientMethod<$0.DisplayDataRequest, $0.BooleanDataReply>(
-          '/vehicle.DataExchanger/GetBooleanData',
-          ($0.DisplayDataRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) =>
-              $0.BooleanDataReply.fromBuffer(value));
-  static final _$informSeatBeltIsUsed =
-      $grpc.ClientMethod<$0.SeatBeltUsage, $0.SeatBeltUsage>(
-          '/vehicle.DataExchanger/InformSeatBeltIsUsed',
-          ($0.SeatBeltUsage value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.SeatBeltUsage.fromBuffer(value));
+  static final _$fillFuel = $grpc.ClientMethod<$0.FuelAmount, $0.FuelAmount>(
+      '/vehicle.DataExchanger/FillFuel',
+      ($0.FuelAmount value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.FuelAmount.fromBuffer(value));
+  static final _$getTotalFuel = $grpc.ClientMethod<$0.Ping, $0.FuelAmount>(
+      '/vehicle.DataExchanger/GetTotalFuel',
+      ($0.Ping value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.FuelAmount.fromBuffer(value));
 
   DataExchangerClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -44,29 +41,26 @@ class DataExchangerClient extends $grpc.Client {
       : super(channel, options: options, interceptors: interceptors);
 
   $grpc.ResponseStream<$0.NumberDataReply> getNumberDataFlow(
-      $0.DisplayDataRequest request,
+      $0.SpeedAction request,
       {$grpc.CallOptions? options}) {
     return $createStreamingCall(
         _$getNumberDataFlow, $async.Stream.fromIterable([request]),
         options: options);
   }
 
-  $grpc.ResponseFuture<$0.NumberDataReply> getNumberData(
-      $0.DisplayDataRequest request,
+  $grpc.ResponseFuture<$0.NumberDataReply> getNumberData($0.SpeedAction request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getNumberData, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.BooleanDataReply> getBooleanData(
-      $0.DisplayDataRequest request,
+  $grpc.ResponseFuture<$0.FuelAmount> fillFuel($0.FuelAmount request,
       {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$getBooleanData, request, options: options);
+    return $createUnaryCall(_$fillFuel, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.SeatBeltUsage> informSeatBeltIsUsed(
-      $0.SeatBeltUsage request,
+  $grpc.ResponseFuture<$0.FuelAmount> getTotalFuel($0.Ping request,
       {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$informSeatBeltIsUsed, request, options: options);
+    return $createUnaryCall(_$getTotalFuel, request, options: options);
   }
 }
 
@@ -74,66 +68,62 @@ abstract class DataExchangerServiceBase extends $grpc.Service {
   $core.String get $name => 'vehicle.DataExchanger';
 
   DataExchangerServiceBase() {
-    $addMethod($grpc.ServiceMethod<$0.DisplayDataRequest, $0.NumberDataReply>(
+    $addMethod($grpc.ServiceMethod<$0.SpeedAction, $0.NumberDataReply>(
         'GetNumberDataFlow',
         getNumberDataFlow_Pre,
         false,
         true,
-        ($core.List<$core.int> value) =>
-            $0.DisplayDataRequest.fromBuffer(value),
+        ($core.List<$core.int> value) => $0.SpeedAction.fromBuffer(value),
         ($0.NumberDataReply value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.DisplayDataRequest, $0.NumberDataReply>(
+    $addMethod($grpc.ServiceMethod<$0.SpeedAction, $0.NumberDataReply>(
         'GetNumberData',
         getNumberData_Pre,
         false,
         false,
-        ($core.List<$core.int> value) =>
-            $0.DisplayDataRequest.fromBuffer(value),
+        ($core.List<$core.int> value) => $0.SpeedAction.fromBuffer(value),
         ($0.NumberDataReply value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.DisplayDataRequest, $0.BooleanDataReply>(
-        'GetBooleanData',
-        getBooleanData_Pre,
+    $addMethod($grpc.ServiceMethod<$0.FuelAmount, $0.FuelAmount>(
+        'FillFuel',
+        fillFuel_Pre,
         false,
         false,
-        ($core.List<$core.int> value) =>
-            $0.DisplayDataRequest.fromBuffer(value),
-        ($0.BooleanDataReply value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.SeatBeltUsage, $0.SeatBeltUsage>(
-        'InformSeatBeltIsUsed',
-        informSeatBeltIsUsed_Pre,
+        ($core.List<$core.int> value) => $0.FuelAmount.fromBuffer(value),
+        ($0.FuelAmount value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.Ping, $0.FuelAmount>(
+        'GetTotalFuel',
+        getTotalFuel_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $0.SeatBeltUsage.fromBuffer(value),
-        ($0.SeatBeltUsage value) => value.writeToBuffer()));
+        ($core.List<$core.int> value) => $0.Ping.fromBuffer(value),
+        ($0.FuelAmount value) => value.writeToBuffer()));
   }
 
   $async.Stream<$0.NumberDataReply> getNumberDataFlow_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.DisplayDataRequest> request) async* {
+      $grpc.ServiceCall call, $async.Future<$0.SpeedAction> request) async* {
     yield* getNumberDataFlow(call, await request);
   }
 
-  $async.Future<$0.NumberDataReply> getNumberData_Pre($grpc.ServiceCall call,
-      $async.Future<$0.DisplayDataRequest> request) async {
+  $async.Future<$0.NumberDataReply> getNumberData_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.SpeedAction> request) async {
     return getNumberData(call, await request);
   }
 
-  $async.Future<$0.BooleanDataReply> getBooleanData_Pre($grpc.ServiceCall call,
-      $async.Future<$0.DisplayDataRequest> request) async {
-    return getBooleanData(call, await request);
+  $async.Future<$0.FuelAmount> fillFuel_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.FuelAmount> request) async {
+    return fillFuel(call, await request);
   }
 
-  $async.Future<$0.SeatBeltUsage> informSeatBeltIsUsed_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.SeatBeltUsage> request) async {
-    return informSeatBeltIsUsed(call, await request);
+  $async.Future<$0.FuelAmount> getTotalFuel_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.Ping> request) async {
+    return getTotalFuel(call, await request);
   }
 
   $async.Stream<$0.NumberDataReply> getNumberDataFlow(
-      $grpc.ServiceCall call, $0.DisplayDataRequest request);
+      $grpc.ServiceCall call, $0.SpeedAction request);
   $async.Future<$0.NumberDataReply> getNumberData(
-      $grpc.ServiceCall call, $0.DisplayDataRequest request);
-  $async.Future<$0.BooleanDataReply> getBooleanData(
-      $grpc.ServiceCall call, $0.DisplayDataRequest request);
-  $async.Future<$0.SeatBeltUsage> informSeatBeltIsUsed(
-      $grpc.ServiceCall call, $0.SeatBeltUsage request);
+      $grpc.ServiceCall call, $0.SpeedAction request);
+  $async.Future<$0.FuelAmount> fillFuel(
+      $grpc.ServiceCall call, $0.FuelAmount request);
+  $async.Future<$0.FuelAmount> getTotalFuel(
+      $grpc.ServiceCall call, $0.Ping request);
 }

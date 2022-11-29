@@ -21,25 +21,52 @@ namespace _pb = ::PROTOBUF_NAMESPACE_ID;
 namespace _pbi = _pb::internal;
 
 namespace vehicle {
-PROTOBUF_CONSTEXPR DisplayDataRequest::DisplayDataRequest(
+PROTOBUF_CONSTEXPR Ping::Ping(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.request_)*/false
+    /*decltype(_impl_.binary_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct DisplayDataRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DisplayDataRequestDefaultTypeInternal()
+struct PingDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PingDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DisplayDataRequestDefaultTypeInternal() {}
+  ~PingDefaultTypeInternal() {}
   union {
-    DisplayDataRequest _instance;
+    Ping _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DisplayDataRequestDefaultTypeInternal _DisplayDataRequest_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PingDefaultTypeInternal _Ping_default_instance_;
+PROTOBUF_CONSTEXPR FuelAmount::FuelAmount(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.fuel_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct FuelAmountDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FuelAmountDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~FuelAmountDefaultTypeInternal() {}
+  union {
+    FuelAmount _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FuelAmountDefaultTypeInternal _FuelAmount_default_instance_;
+PROTOBUF_CONSTEXPR SpeedAction::SpeedAction(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.speedtype_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SpeedActionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SpeedActionDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SpeedActionDefaultTypeInternal() {}
+  union {
+    SpeedAction _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SpeedActionDefaultTypeInternal _SpeedAction_default_instance_;
 PROTOBUF_CONSTEXPR NumberDataReply::NumberDataReply(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.rpm_)*/0
   , /*decltype(_impl_.speed_)*/0
   , /*decltype(_impl_.fuel_)*/0
   , /*decltype(_impl_.temperature_)*/0
+  , /*decltype(_impl_.distance_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct NumberDataReplyDefaultTypeInternal {
   PROTOBUF_CONSTEXPR NumberDataReplyDefaultTypeInternal()
@@ -50,47 +77,33 @@ struct NumberDataReplyDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NumberDataReplyDefaultTypeInternal _NumberDataReply_default_instance_;
-PROTOBUF_CONSTEXPR BooleanDataReply::BooleanDataReply(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.isenginegood_)*/false
-  , /*decltype(_impl_.isbreakgood_)*/false
-  , /*decltype(_impl_.isseatbeltused_)*/false
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct BooleanDataReplyDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR BooleanDataReplyDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~BooleanDataReplyDefaultTypeInternal() {}
-  union {
-    BooleanDataReply _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BooleanDataReplyDefaultTypeInternal _BooleanDataReply_default_instance_;
-PROTOBUF_CONSTEXPR SeatBeltUsage::SeatBeltUsage(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.isseatbeltused_)*/false
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct SeatBeltUsageDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SeatBeltUsageDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SeatBeltUsageDefaultTypeInternal() {}
-  union {
-    SeatBeltUsage _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SeatBeltUsageDefaultTypeInternal _SeatBeltUsage_default_instance_;
 }  // namespace vehicle
 static ::_pb::Metadata file_level_metadata_vehicle_2eproto[4];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_vehicle_2eproto = nullptr;
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_vehicle_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_vehicle_2eproto = nullptr;
 
 const uint32_t TableStruct_vehicle_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::vehicle::DisplayDataRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::vehicle::Ping, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::vehicle::DisplayDataRequest, _impl_.request_),
+  PROTOBUF_FIELD_OFFSET(::vehicle::Ping, _impl_.binary_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::vehicle::FuelAmount, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::vehicle::FuelAmount, _impl_.fuel_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::vehicle::SpeedAction, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::vehicle::SpeedAction, _impl_.speedtype_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::vehicle::NumberDataReply, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -101,58 +114,42 @@ const uint32_t TableStruct_vehicle_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
   PROTOBUF_FIELD_OFFSET(::vehicle::NumberDataReply, _impl_.speed_),
   PROTOBUF_FIELD_OFFSET(::vehicle::NumberDataReply, _impl_.fuel_),
   PROTOBUF_FIELD_OFFSET(::vehicle::NumberDataReply, _impl_.temperature_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::vehicle::BooleanDataReply, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::vehicle::BooleanDataReply, _impl_.isenginegood_),
-  PROTOBUF_FIELD_OFFSET(::vehicle::BooleanDataReply, _impl_.isbreakgood_),
-  PROTOBUF_FIELD_OFFSET(::vehicle::BooleanDataReply, _impl_.isseatbeltused_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::vehicle::SeatBeltUsage, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::vehicle::SeatBeltUsage, _impl_.isseatbeltused_),
+  PROTOBUF_FIELD_OFFSET(::vehicle::NumberDataReply, _impl_.distance_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::vehicle::DisplayDataRequest)},
-  { 7, -1, -1, sizeof(::vehicle::NumberDataReply)},
-  { 17, -1, -1, sizeof(::vehicle::BooleanDataReply)},
-  { 26, -1, -1, sizeof(::vehicle::SeatBeltUsage)},
+  { 0, -1, -1, sizeof(::vehicle::Ping)},
+  { 7, -1, -1, sizeof(::vehicle::FuelAmount)},
+  { 14, -1, -1, sizeof(::vehicle::SpeedAction)},
+  { 21, -1, -1, sizeof(::vehicle::NumberDataReply)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::vehicle::_DisplayDataRequest_default_instance_._instance,
+  &::vehicle::_Ping_default_instance_._instance,
+  &::vehicle::_FuelAmount_default_instance_._instance,
+  &::vehicle::_SpeedAction_default_instance_._instance,
   &::vehicle::_NumberDataReply_default_instance_._instance,
-  &::vehicle::_BooleanDataReply_default_instance_._instance,
-  &::vehicle::_SeatBeltUsage_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_vehicle_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\rvehicle.proto\022\007vehicle\"%\n\022DisplayDataR"
-  "equest\022\017\n\007request\030\001 \001(\010\"P\n\017NumberDataRep"
-  "ly\022\013\n\003rpm\030\001 \001(\005\022\r\n\005speed\030\002 \001(\005\022\014\n\004fuel\030\003"
-  " \001(\005\022\023\n\013temperature\030\004 \001(\005\"U\n\020BooleanData"
-  "Reply\022\024\n\014isEngineGood\030\001 \001(\010\022\023\n\013isBreakGo"
-  "od\030\002 \001(\010\022\026\n\016isSeatBeltUsed\030\003 \001(\010\"\'\n\rSeat"
-  "BeltUsage\022\026\n\016IsSeatBeltUsed\030\001 \001(\0102\277\002\n\rDa"
-  "taExchanger\022N\n\021GetNumberDataFlow\022\033.vehic"
-  "le.DisplayDataRequest\032\030.vehicle.NumberDa"
-  "taReply\"\0000\001\022H\n\rGetNumberData\022\033.vehicle.D"
-  "isplayDataRequest\032\030.vehicle.NumberDataRe"
-  "ply\"\000\022J\n\016GetBooleanData\022\033.vehicle.Displa"
-  "yDataRequest\032\031.vehicle.BooleanDataReply\""
-  "\000\022H\n\024InformSeatBeltIsUsed\022\026.vehicle.Seat"
-  "BeltUsage\032\026.vehicle.SeatBeltUsage\"\000B\006\242\002\003"
-  "HLWb\006proto3"
+  "\n\rvehicle.proto\022\007vehicle\"\026\n\004Ping\022\016\n\006bina"
+  "ry\030\001 \001(\010\"\032\n\nFuelAmount\022\014\n\004fuel\030\001 \001(\001\"4\n\013"
+  "SpeedAction\022%\n\tspeedType\030\001 \001(\0162\022.vehicle"
+  ".SpeedType\"b\n\017NumberDataReply\022\013\n\003rpm\030\001 \001"
+  "(\001\022\r\n\005speed\030\002 \001(\001\022\014\n\004fuel\030\003 \001(\001\022\023\n\013tempe"
+  "rature\030\004 \001(\001\022\020\n\010distance\030\005 \001(\001*;\n\tSpeedT"
+  "ype\022\014\n\010LEVER_UP\020\000\022\014\n\010PRESERVE\020\001\022\010\n\004SLOW\020"
+  "\002\022\010\n\004STOP\020\0032\211\002\n\rDataExchanger\022G\n\021GetNumb"
+  "erDataFlow\022\024.vehicle.SpeedAction\032\030.vehic"
+  "le.NumberDataReply\"\0000\001\022A\n\rGetNumberData\022"
+  "\024.vehicle.SpeedAction\032\030.vehicle.NumberDa"
+  "taReply\"\000\0226\n\010FillFuel\022\023.vehicle.FuelAmou"
+  "nt\032\023.vehicle.FuelAmount\"\000\0224\n\014GetTotalFue"
+  "l\022\r.vehicle.Ping\032\023.vehicle.FuelAmount\"\000B"
+  "\006\242\002\003HLWb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_vehicle_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_vehicle_2eproto = {
-    false, false, 611, descriptor_table_protodef_vehicle_2eproto,
+    false, false, 575, descriptor_table_protodef_vehicle_2eproto,
     "vehicle.proto",
     &descriptor_table_vehicle_2eproto_once, nullptr, 0, 4,
     schemas, file_default_instances, TableStruct_vehicle_2eproto::offsets,
@@ -166,43 +163,59 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_vehicle_
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_vehicle_2eproto(&descriptor_table_vehicle_2eproto);
 namespace vehicle {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* SpeedType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_vehicle_2eproto);
+  return file_level_enum_descriptors_vehicle_2eproto[0];
+}
+bool SpeedType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 
-class DisplayDataRequest::_Internal {
+class Ping::_Internal {
  public:
 };
 
-DisplayDataRequest::DisplayDataRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+Ping::Ping(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:vehicle.DisplayDataRequest)
+  // @@protoc_insertion_point(arena_constructor:vehicle.Ping)
 }
-DisplayDataRequest::DisplayDataRequest(const DisplayDataRequest& from)
+Ping::Ping(const Ping& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  DisplayDataRequest* const _this = this; (void)_this;
+  Ping* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.request_){}
+      decltype(_impl_.binary_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.request_ = from._impl_.request_;
-  // @@protoc_insertion_point(copy_constructor:vehicle.DisplayDataRequest)
+  _this->_impl_.binary_ = from._impl_.binary_;
+  // @@protoc_insertion_point(copy_constructor:vehicle.Ping)
 }
 
-inline void DisplayDataRequest::SharedCtor(
+inline void Ping::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.request_){false}
+      decltype(_impl_.binary_){false}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
 
-DisplayDataRequest::~DisplayDataRequest() {
-  // @@protoc_insertion_point(destructor:vehicle.DisplayDataRequest)
+Ping::~Ping() {
+  // @@protoc_insertion_point(destructor:vehicle.Ping)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -210,34 +223,34 @@ DisplayDataRequest::~DisplayDataRequest() {
   SharedDtor();
 }
 
-inline void DisplayDataRequest::SharedDtor() {
+inline void Ping::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
-void DisplayDataRequest::SetCachedSize(int size) const {
+void Ping::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void DisplayDataRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:vehicle.DisplayDataRequest)
+void Ping::Clear() {
+// @@protoc_insertion_point(message_clear_start:vehicle.Ping)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.request_ = false;
+  _impl_.binary_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* DisplayDataRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* Ping::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // bool request = 1;
+      // bool binary = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.request_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.binary_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -265,84 +278,455 @@ failure:
 #undef CHK_
 }
 
-uint8_t* DisplayDataRequest::_InternalSerialize(
+uint8_t* Ping::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:vehicle.DisplayDataRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:vehicle.Ping)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // bool request = 1;
-  if (this->_internal_request() != 0) {
+  // bool binary = 1;
+  if (this->_internal_binary() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_request(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_binary(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:vehicle.DisplayDataRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:vehicle.Ping)
   return target;
 }
 
-size_t DisplayDataRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:vehicle.DisplayDataRequest)
+size_t Ping::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:vehicle.Ping)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bool request = 1;
-  if (this->_internal_request() != 0) {
+  // bool binary = 1;
+  if (this->_internal_binary() != 0) {
     total_size += 1 + 1;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DisplayDataRequest::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Ping::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    DisplayDataRequest::MergeImpl
+    Ping::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DisplayDataRequest::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Ping::GetClassData() const { return &_class_data_; }
 
 
-void DisplayDataRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<DisplayDataRequest*>(&to_msg);
-  auto& from = static_cast<const DisplayDataRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:vehicle.DisplayDataRequest)
+void Ping::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Ping*>(&to_msg);
+  auto& from = static_cast<const Ping&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:vehicle.Ping)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_request() != 0) {
-    _this->_internal_set_request(from._internal_request());
+  if (from._internal_binary() != 0) {
+    _this->_internal_set_binary(from._internal_binary());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void DisplayDataRequest::CopyFrom(const DisplayDataRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:vehicle.DisplayDataRequest)
+void Ping::CopyFrom(const Ping& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:vehicle.Ping)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool DisplayDataRequest::IsInitialized() const {
+bool Ping::IsInitialized() const {
   return true;
 }
 
-void DisplayDataRequest::InternalSwap(DisplayDataRequest* other) {
+void Ping::InternalSwap(Ping* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.request_, other->_impl_.request_);
+  swap(_impl_.binary_, other->_impl_.binary_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata DisplayDataRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata Ping::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_vehicle_2eproto_getter, &descriptor_table_vehicle_2eproto_once,
       file_level_metadata_vehicle_2eproto[0]);
+}
+
+// ===================================================================
+
+class FuelAmount::_Internal {
+ public:
+};
+
+FuelAmount::FuelAmount(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:vehicle.FuelAmount)
+}
+FuelAmount::FuelAmount(const FuelAmount& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FuelAmount* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.fuel_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.fuel_ = from._impl_.fuel_;
+  // @@protoc_insertion_point(copy_constructor:vehicle.FuelAmount)
+}
+
+inline void FuelAmount::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.fuel_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+FuelAmount::~FuelAmount() {
+  // @@protoc_insertion_point(destructor:vehicle.FuelAmount)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void FuelAmount::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void FuelAmount::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void FuelAmount::Clear() {
+// @@protoc_insertion_point(message_clear_start:vehicle.FuelAmount)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.fuel_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* FuelAmount::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // double fuel = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
+          _impl_.fuel_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* FuelAmount::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:vehicle.FuelAmount)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // double fuel = 1;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_fuel = this->_internal_fuel();
+  uint64_t raw_fuel;
+  memcpy(&raw_fuel, &tmp_fuel, sizeof(tmp_fuel));
+  if (raw_fuel != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_fuel(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:vehicle.FuelAmount)
+  return target;
+}
+
+size_t FuelAmount::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:vehicle.FuelAmount)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // double fuel = 1;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_fuel = this->_internal_fuel();
+  uint64_t raw_fuel;
+  memcpy(&raw_fuel, &tmp_fuel, sizeof(tmp_fuel));
+  if (raw_fuel != 0) {
+    total_size += 1 + 8;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FuelAmount::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    FuelAmount::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FuelAmount::GetClassData() const { return &_class_data_; }
+
+
+void FuelAmount::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FuelAmount*>(&to_msg);
+  auto& from = static_cast<const FuelAmount&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:vehicle.FuelAmount)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_fuel = from._internal_fuel();
+  uint64_t raw_fuel;
+  memcpy(&raw_fuel, &tmp_fuel, sizeof(tmp_fuel));
+  if (raw_fuel != 0) {
+    _this->_internal_set_fuel(from._internal_fuel());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void FuelAmount::CopyFrom(const FuelAmount& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:vehicle.FuelAmount)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool FuelAmount::IsInitialized() const {
+  return true;
+}
+
+void FuelAmount::InternalSwap(FuelAmount* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.fuel_, other->_impl_.fuel_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata FuelAmount::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_vehicle_2eproto_getter, &descriptor_table_vehicle_2eproto_once,
+      file_level_metadata_vehicle_2eproto[1]);
+}
+
+// ===================================================================
+
+class SpeedAction::_Internal {
+ public:
+};
+
+SpeedAction::SpeedAction(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:vehicle.SpeedAction)
+}
+SpeedAction::SpeedAction(const SpeedAction& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SpeedAction* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.speedtype_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.speedtype_ = from._impl_.speedtype_;
+  // @@protoc_insertion_point(copy_constructor:vehicle.SpeedAction)
+}
+
+inline void SpeedAction::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.speedtype_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+SpeedAction::~SpeedAction() {
+  // @@protoc_insertion_point(destructor:vehicle.SpeedAction)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SpeedAction::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void SpeedAction::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SpeedAction::Clear() {
+// @@protoc_insertion_point(message_clear_start:vehicle.SpeedAction)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.speedtype_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SpeedAction::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .vehicle.SpeedType speedType = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_speedtype(static_cast<::vehicle::SpeedType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SpeedAction::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:vehicle.SpeedAction)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .vehicle.SpeedType speedType = 1;
+  if (this->_internal_speedtype() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_speedtype(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:vehicle.SpeedAction)
+  return target;
+}
+
+size_t SpeedAction::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:vehicle.SpeedAction)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .vehicle.SpeedType speedType = 1;
+  if (this->_internal_speedtype() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_speedtype());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SpeedAction::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SpeedAction::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SpeedAction::GetClassData() const { return &_class_data_; }
+
+
+void SpeedAction::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SpeedAction*>(&to_msg);
+  auto& from = static_cast<const SpeedAction&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:vehicle.SpeedAction)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_speedtype() != 0) {
+    _this->_internal_set_speedtype(from._internal_speedtype());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SpeedAction::CopyFrom(const SpeedAction& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:vehicle.SpeedAction)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SpeedAction::IsInitialized() const {
+  return true;
+}
+
+void SpeedAction::InternalSwap(SpeedAction* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.speedtype_, other->_impl_.speedtype_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SpeedAction::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_vehicle_2eproto_getter, &descriptor_table_vehicle_2eproto_once,
+      file_level_metadata_vehicle_2eproto[2]);
 }
 
 // ===================================================================
@@ -365,12 +749,13 @@ NumberDataReply::NumberDataReply(const NumberDataReply& from)
     , decltype(_impl_.speed_){}
     , decltype(_impl_.fuel_){}
     , decltype(_impl_.temperature_){}
+    , decltype(_impl_.distance_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&_impl_.rpm_, &from._impl_.rpm_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.temperature_) -
-    reinterpret_cast<char*>(&_impl_.rpm_)) + sizeof(_impl_.temperature_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.distance_) -
+    reinterpret_cast<char*>(&_impl_.rpm_)) + sizeof(_impl_.distance_));
   // @@protoc_insertion_point(copy_constructor:vehicle.NumberDataReply)
 }
 
@@ -383,6 +768,7 @@ inline void NumberDataReply::SharedCtor(
     , decltype(_impl_.speed_){0}
     , decltype(_impl_.fuel_){0}
     , decltype(_impl_.temperature_){0}
+    , decltype(_impl_.distance_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -411,8 +797,8 @@ void NumberDataReply::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.rpm_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.temperature_) -
-      reinterpret_cast<char*>(&_impl_.rpm_)) + sizeof(_impl_.temperature_));
+      reinterpret_cast<char*>(&_impl_.distance_) -
+      reinterpret_cast<char*>(&_impl_.rpm_)) + sizeof(_impl_.distance_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -422,35 +808,43 @@ const char* NumberDataReply::_InternalParse(const char* ptr, ::_pbi::ParseContex
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // int32 rpm = 1;
+      // double rpm = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.rpm_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
+          _impl_.rpm_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
         } else
           goto handle_unusual;
         continue;
-      // int32 speed = 2;
+      // double speed = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.speed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
+          _impl_.speed_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
         } else
           goto handle_unusual;
         continue;
-      // int32 fuel = 3;
+      // double fuel = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.fuel_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 25)) {
+          _impl_.fuel_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
         } else
           goto handle_unusual;
         continue;
-      // int32 temperature = 4;
+      // double temperature = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.temperature_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 33)) {
+          _impl_.temperature_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double distance = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 41)) {
+          _impl_.distance_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
         } else
           goto handle_unusual;
         continue;
@@ -483,28 +877,54 @@ uint8_t* NumberDataReply::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 rpm = 1;
-  if (this->_internal_rpm() != 0) {
+  // double rpm = 1;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_rpm = this->_internal_rpm();
+  uint64_t raw_rpm;
+  memcpy(&raw_rpm, &tmp_rpm, sizeof(tmp_rpm));
+  if (raw_rpm != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_rpm(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_rpm(), target);
   }
 
-  // int32 speed = 2;
-  if (this->_internal_speed() != 0) {
+  // double speed = 2;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_speed = this->_internal_speed();
+  uint64_t raw_speed;
+  memcpy(&raw_speed, &tmp_speed, sizeof(tmp_speed));
+  if (raw_speed != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_speed(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_speed(), target);
   }
 
-  // int32 fuel = 3;
-  if (this->_internal_fuel() != 0) {
+  // double fuel = 3;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_fuel = this->_internal_fuel();
+  uint64_t raw_fuel;
+  memcpy(&raw_fuel, &tmp_fuel, sizeof(tmp_fuel));
+  if (raw_fuel != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_fuel(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(3, this->_internal_fuel(), target);
   }
 
-  // int32 temperature = 4;
-  if (this->_internal_temperature() != 0) {
+  // double temperature = 4;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_temperature = this->_internal_temperature();
+  uint64_t raw_temperature;
+  memcpy(&raw_temperature, &tmp_temperature, sizeof(tmp_temperature));
+  if (raw_temperature != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_temperature(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(4, this->_internal_temperature(), target);
+  }
+
+  // double distance = 5;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_distance = this->_internal_distance();
+  uint64_t raw_distance;
+  memcpy(&raw_distance, &tmp_distance, sizeof(tmp_distance));
+  if (raw_distance != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(5, this->_internal_distance(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -523,24 +943,49 @@ size_t NumberDataReply::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // int32 rpm = 1;
-  if (this->_internal_rpm() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_rpm());
+  // double rpm = 1;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_rpm = this->_internal_rpm();
+  uint64_t raw_rpm;
+  memcpy(&raw_rpm, &tmp_rpm, sizeof(tmp_rpm));
+  if (raw_rpm != 0) {
+    total_size += 1 + 8;
   }
 
-  // int32 speed = 2;
-  if (this->_internal_speed() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_speed());
+  // double speed = 2;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_speed = this->_internal_speed();
+  uint64_t raw_speed;
+  memcpy(&raw_speed, &tmp_speed, sizeof(tmp_speed));
+  if (raw_speed != 0) {
+    total_size += 1 + 8;
   }
 
-  // int32 fuel = 3;
-  if (this->_internal_fuel() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_fuel());
+  // double fuel = 3;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_fuel = this->_internal_fuel();
+  uint64_t raw_fuel;
+  memcpy(&raw_fuel, &tmp_fuel, sizeof(tmp_fuel));
+  if (raw_fuel != 0) {
+    total_size += 1 + 8;
   }
 
-  // int32 temperature = 4;
-  if (this->_internal_temperature() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_temperature());
+  // double temperature = 4;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_temperature = this->_internal_temperature();
+  uint64_t raw_temperature;
+  memcpy(&raw_temperature, &tmp_temperature, sizeof(tmp_temperature));
+  if (raw_temperature != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double distance = 5;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_distance = this->_internal_distance();
+  uint64_t raw_distance;
+  memcpy(&raw_distance, &tmp_distance, sizeof(tmp_distance));
+  if (raw_distance != 0) {
+    total_size += 1 + 8;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -561,17 +1006,40 @@ void NumberDataReply::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const 
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_rpm() != 0) {
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_rpm = from._internal_rpm();
+  uint64_t raw_rpm;
+  memcpy(&raw_rpm, &tmp_rpm, sizeof(tmp_rpm));
+  if (raw_rpm != 0) {
     _this->_internal_set_rpm(from._internal_rpm());
   }
-  if (from._internal_speed() != 0) {
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_speed = from._internal_speed();
+  uint64_t raw_speed;
+  memcpy(&raw_speed, &tmp_speed, sizeof(tmp_speed));
+  if (raw_speed != 0) {
     _this->_internal_set_speed(from._internal_speed());
   }
-  if (from._internal_fuel() != 0) {
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_fuel = from._internal_fuel();
+  uint64_t raw_fuel;
+  memcpy(&raw_fuel, &tmp_fuel, sizeof(tmp_fuel));
+  if (raw_fuel != 0) {
     _this->_internal_set_fuel(from._internal_fuel());
   }
-  if (from._internal_temperature() != 0) {
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_temperature = from._internal_temperature();
+  uint64_t raw_temperature;
+  memcpy(&raw_temperature, &tmp_temperature, sizeof(tmp_temperature));
+  if (raw_temperature != 0) {
     _this->_internal_set_temperature(from._internal_temperature());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_distance = from._internal_distance();
+  uint64_t raw_distance;
+  memcpy(&raw_distance, &tmp_distance, sizeof(tmp_distance));
+  if (raw_distance != 0) {
+    _this->_internal_set_distance(from._internal_distance());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -591,8 +1059,8 @@ void NumberDataReply::InternalSwap(NumberDataReply* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(NumberDataReply, _impl_.temperature_)
-      + sizeof(NumberDataReply::_impl_.temperature_)
+      PROTOBUF_FIELD_OFFSET(NumberDataReply, _impl_.distance_)
+      + sizeof(NumberDataReply::_impl_.distance_)
       - PROTOBUF_FIELD_OFFSET(NumberDataReply, _impl_.rpm_)>(
           reinterpret_cast<char*>(&_impl_.rpm_),
           reinterpret_cast<char*>(&other->_impl_.rpm_));
@@ -601,440 +1069,27 @@ void NumberDataReply::InternalSwap(NumberDataReply* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata NumberDataReply::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_vehicle_2eproto_getter, &descriptor_table_vehicle_2eproto_once,
-      file_level_metadata_vehicle_2eproto[1]);
-}
-
-// ===================================================================
-
-class BooleanDataReply::_Internal {
- public:
-};
-
-BooleanDataReply::BooleanDataReply(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:vehicle.BooleanDataReply)
-}
-BooleanDataReply::BooleanDataReply(const BooleanDataReply& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  BooleanDataReply* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.isenginegood_){}
-    , decltype(_impl_.isbreakgood_){}
-    , decltype(_impl_.isseatbeltused_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.isenginegood_, &from._impl_.isenginegood_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.isseatbeltused_) -
-    reinterpret_cast<char*>(&_impl_.isenginegood_)) + sizeof(_impl_.isseatbeltused_));
-  // @@protoc_insertion_point(copy_constructor:vehicle.BooleanDataReply)
-}
-
-inline void BooleanDataReply::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.isenginegood_){false}
-    , decltype(_impl_.isbreakgood_){false}
-    , decltype(_impl_.isseatbeltused_){false}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-}
-
-BooleanDataReply::~BooleanDataReply() {
-  // @@protoc_insertion_point(destructor:vehicle.BooleanDataReply)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void BooleanDataReply::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-}
-
-void BooleanDataReply::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void BooleanDataReply::Clear() {
-// @@protoc_insertion_point(message_clear_start:vehicle.BooleanDataReply)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  ::memset(&_impl_.isenginegood_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.isseatbeltused_) -
-      reinterpret_cast<char*>(&_impl_.isenginegood_)) + sizeof(_impl_.isseatbeltused_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* BooleanDataReply::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // bool isEngineGood = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.isenginegood_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool isBreakGood = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.isbreakgood_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool isSeatBeltUsed = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.isseatbeltused_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* BooleanDataReply::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:vehicle.BooleanDataReply)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // bool isEngineGood = 1;
-  if (this->_internal_isenginegood() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_isenginegood(), target);
-  }
-
-  // bool isBreakGood = 2;
-  if (this->_internal_isbreakgood() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_isbreakgood(), target);
-  }
-
-  // bool isSeatBeltUsed = 3;
-  if (this->_internal_isseatbeltused() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_isseatbeltused(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:vehicle.BooleanDataReply)
-  return target;
-}
-
-size_t BooleanDataReply::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:vehicle.BooleanDataReply)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // bool isEngineGood = 1;
-  if (this->_internal_isenginegood() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // bool isBreakGood = 2;
-  if (this->_internal_isbreakgood() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // bool isSeatBeltUsed = 3;
-  if (this->_internal_isseatbeltused() != 0) {
-    total_size += 1 + 1;
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData BooleanDataReply::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    BooleanDataReply::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*BooleanDataReply::GetClassData() const { return &_class_data_; }
-
-
-void BooleanDataReply::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<BooleanDataReply*>(&to_msg);
-  auto& from = static_cast<const BooleanDataReply&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:vehicle.BooleanDataReply)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from._internal_isenginegood() != 0) {
-    _this->_internal_set_isenginegood(from._internal_isenginegood());
-  }
-  if (from._internal_isbreakgood() != 0) {
-    _this->_internal_set_isbreakgood(from._internal_isbreakgood());
-  }
-  if (from._internal_isseatbeltused() != 0) {
-    _this->_internal_set_isseatbeltused(from._internal_isseatbeltused());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void BooleanDataReply::CopyFrom(const BooleanDataReply& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:vehicle.BooleanDataReply)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool BooleanDataReply::IsInitialized() const {
-  return true;
-}
-
-void BooleanDataReply::InternalSwap(BooleanDataReply* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(BooleanDataReply, _impl_.isseatbeltused_)
-      + sizeof(BooleanDataReply::_impl_.isseatbeltused_)
-      - PROTOBUF_FIELD_OFFSET(BooleanDataReply, _impl_.isenginegood_)>(
-          reinterpret_cast<char*>(&_impl_.isenginegood_),
-          reinterpret_cast<char*>(&other->_impl_.isenginegood_));
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata BooleanDataReply::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_vehicle_2eproto_getter, &descriptor_table_vehicle_2eproto_once,
-      file_level_metadata_vehicle_2eproto[2]);
-}
-
-// ===================================================================
-
-class SeatBeltUsage::_Internal {
- public:
-};
-
-SeatBeltUsage::SeatBeltUsage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:vehicle.SeatBeltUsage)
-}
-SeatBeltUsage::SeatBeltUsage(const SeatBeltUsage& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  SeatBeltUsage* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.isseatbeltused_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.isseatbeltused_ = from._impl_.isseatbeltused_;
-  // @@protoc_insertion_point(copy_constructor:vehicle.SeatBeltUsage)
-}
-
-inline void SeatBeltUsage::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.isseatbeltused_){false}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-}
-
-SeatBeltUsage::~SeatBeltUsage() {
-  // @@protoc_insertion_point(destructor:vehicle.SeatBeltUsage)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void SeatBeltUsage::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-}
-
-void SeatBeltUsage::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void SeatBeltUsage::Clear() {
-// @@protoc_insertion_point(message_clear_start:vehicle.SeatBeltUsage)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.isseatbeltused_ = false;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* SeatBeltUsage::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // bool IsSeatBeltUsed = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.isseatbeltused_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* SeatBeltUsage::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:vehicle.SeatBeltUsage)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // bool IsSeatBeltUsed = 1;
-  if (this->_internal_isseatbeltused() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_isseatbeltused(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:vehicle.SeatBeltUsage)
-  return target;
-}
-
-size_t SeatBeltUsage::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:vehicle.SeatBeltUsage)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // bool IsSeatBeltUsed = 1;
-  if (this->_internal_isseatbeltused() != 0) {
-    total_size += 1 + 1;
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SeatBeltUsage::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    SeatBeltUsage::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SeatBeltUsage::GetClassData() const { return &_class_data_; }
-
-
-void SeatBeltUsage::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<SeatBeltUsage*>(&to_msg);
-  auto& from = static_cast<const SeatBeltUsage&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:vehicle.SeatBeltUsage)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from._internal_isseatbeltused() != 0) {
-    _this->_internal_set_isseatbeltused(from._internal_isseatbeltused());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void SeatBeltUsage::CopyFrom(const SeatBeltUsage& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:vehicle.SeatBeltUsage)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool SeatBeltUsage::IsInitialized() const {
-  return true;
-}
-
-void SeatBeltUsage::InternalSwap(SeatBeltUsage* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.isseatbeltused_, other->_impl_.isseatbeltused_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata SeatBeltUsage::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_vehicle_2eproto_getter, &descriptor_table_vehicle_2eproto_once,
       file_level_metadata_vehicle_2eproto[3]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace vehicle
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::vehicle::DisplayDataRequest*
-Arena::CreateMaybeMessage< ::vehicle::DisplayDataRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::vehicle::DisplayDataRequest >(arena);
+template<> PROTOBUF_NOINLINE ::vehicle::Ping*
+Arena::CreateMaybeMessage< ::vehicle::Ping >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::vehicle::Ping >(arena);
+}
+template<> PROTOBUF_NOINLINE ::vehicle::FuelAmount*
+Arena::CreateMaybeMessage< ::vehicle::FuelAmount >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::vehicle::FuelAmount >(arena);
+}
+template<> PROTOBUF_NOINLINE ::vehicle::SpeedAction*
+Arena::CreateMaybeMessage< ::vehicle::SpeedAction >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::vehicle::SpeedAction >(arena);
 }
 template<> PROTOBUF_NOINLINE ::vehicle::NumberDataReply*
 Arena::CreateMaybeMessage< ::vehicle::NumberDataReply >(Arena* arena) {
   return Arena::CreateMessageInternal< ::vehicle::NumberDataReply >(arena);
-}
-template<> PROTOBUF_NOINLINE ::vehicle::BooleanDataReply*
-Arena::CreateMaybeMessage< ::vehicle::BooleanDataReply >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::vehicle::BooleanDataReply >(arena);
-}
-template<> PROTOBUF_NOINLINE ::vehicle::SeatBeltUsage*
-Arena::CreateMaybeMessage< ::vehicle::SeatBeltUsage >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::vehicle::SeatBeltUsage >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

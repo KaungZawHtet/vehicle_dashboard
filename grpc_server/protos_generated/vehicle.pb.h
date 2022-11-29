@@ -29,6 +29,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -45,47 +46,74 @@ struct TableStruct_vehicle_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_vehicle_2eproto;
 namespace vehicle {
-class BooleanDataReply;
-struct BooleanDataReplyDefaultTypeInternal;
-extern BooleanDataReplyDefaultTypeInternal _BooleanDataReply_default_instance_;
-class DisplayDataRequest;
-struct DisplayDataRequestDefaultTypeInternal;
-extern DisplayDataRequestDefaultTypeInternal _DisplayDataRequest_default_instance_;
+class FuelAmount;
+struct FuelAmountDefaultTypeInternal;
+extern FuelAmountDefaultTypeInternal _FuelAmount_default_instance_;
 class NumberDataReply;
 struct NumberDataReplyDefaultTypeInternal;
 extern NumberDataReplyDefaultTypeInternal _NumberDataReply_default_instance_;
-class SeatBeltUsage;
-struct SeatBeltUsageDefaultTypeInternal;
-extern SeatBeltUsageDefaultTypeInternal _SeatBeltUsage_default_instance_;
+class Ping;
+struct PingDefaultTypeInternal;
+extern PingDefaultTypeInternal _Ping_default_instance_;
+class SpeedAction;
+struct SpeedActionDefaultTypeInternal;
+extern SpeedActionDefaultTypeInternal _SpeedAction_default_instance_;
 }  // namespace vehicle
 PROTOBUF_NAMESPACE_OPEN
-template<> ::vehicle::BooleanDataReply* Arena::CreateMaybeMessage<::vehicle::BooleanDataReply>(Arena*);
-template<> ::vehicle::DisplayDataRequest* Arena::CreateMaybeMessage<::vehicle::DisplayDataRequest>(Arena*);
+template<> ::vehicle::FuelAmount* Arena::CreateMaybeMessage<::vehicle::FuelAmount>(Arena*);
 template<> ::vehicle::NumberDataReply* Arena::CreateMaybeMessage<::vehicle::NumberDataReply>(Arena*);
-template<> ::vehicle::SeatBeltUsage* Arena::CreateMaybeMessage<::vehicle::SeatBeltUsage>(Arena*);
+template<> ::vehicle::Ping* Arena::CreateMaybeMessage<::vehicle::Ping>(Arena*);
+template<> ::vehicle::SpeedAction* Arena::CreateMaybeMessage<::vehicle::SpeedAction>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace vehicle {
 
+enum SpeedType : int {
+  LEVER_UP = 0,
+  PRESERVE = 1,
+  SLOW = 2,
+  STOP = 3,
+  SpeedType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  SpeedType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool SpeedType_IsValid(int value);
+constexpr SpeedType SpeedType_MIN = LEVER_UP;
+constexpr SpeedType SpeedType_MAX = STOP;
+constexpr int SpeedType_ARRAYSIZE = SpeedType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* SpeedType_descriptor();
+template<typename T>
+inline const std::string& SpeedType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, SpeedType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function SpeedType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    SpeedType_descriptor(), enum_t_value);
+}
+inline bool SpeedType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, SpeedType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<SpeedType>(
+    SpeedType_descriptor(), name, value);
+}
 // ===================================================================
 
-class DisplayDataRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:vehicle.DisplayDataRequest) */ {
+class Ping final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:vehicle.Ping) */ {
  public:
-  inline DisplayDataRequest() : DisplayDataRequest(nullptr) {}
-  ~DisplayDataRequest() override;
-  explicit PROTOBUF_CONSTEXPR DisplayDataRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline Ping() : Ping(nullptr) {}
+  ~Ping() override;
+  explicit PROTOBUF_CONSTEXPR Ping(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  DisplayDataRequest(const DisplayDataRequest& from);
-  DisplayDataRequest(DisplayDataRequest&& from) noexcept
-    : DisplayDataRequest() {
+  Ping(const Ping& from);
+  Ping(Ping&& from) noexcept
+    : Ping() {
     *this = ::std::move(from);
   }
 
-  inline DisplayDataRequest& operator=(const DisplayDataRequest& from) {
+  inline Ping& operator=(const Ping& from) {
     CopyFrom(from);
     return *this;
   }
-  inline DisplayDataRequest& operator=(DisplayDataRequest&& from) noexcept {
+  inline Ping& operator=(Ping&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -108,20 +136,20 @@ class DisplayDataRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const DisplayDataRequest& default_instance() {
+  static const Ping& default_instance() {
     return *internal_default_instance();
   }
-  static inline const DisplayDataRequest* internal_default_instance() {
-    return reinterpret_cast<const DisplayDataRequest*>(
-               &_DisplayDataRequest_default_instance_);
+  static inline const Ping* internal_default_instance() {
+    return reinterpret_cast<const Ping*>(
+               &_Ping_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(DisplayDataRequest& a, DisplayDataRequest& b) {
+  friend void swap(Ping& a, Ping& b) {
     a.Swap(&b);
   }
-  inline void Swap(DisplayDataRequest* other) {
+  inline void Swap(Ping* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -134,7 +162,7 @@ class DisplayDataRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(DisplayDataRequest* other) {
+  void UnsafeArenaSwap(Ping* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -142,14 +170,14 @@ class DisplayDataRequest final :
 
   // implements Message ----------------------------------------------
 
-  DisplayDataRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<DisplayDataRequest>(arena);
+  Ping* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Ping>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const DisplayDataRequest& from);
+  void CopyFrom(const Ping& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const DisplayDataRequest& from) {
-    DisplayDataRequest::MergeImpl(*this, from);
+  void MergeFrom( const Ping& from) {
+    Ping::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -167,15 +195,15 @@ class DisplayDataRequest final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(DisplayDataRequest* other);
+  void InternalSwap(Ping* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "vehicle.DisplayDataRequest";
+    return "vehicle.Ping";
   }
   protected:
-  explicit DisplayDataRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit Ping(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -189,18 +217,18 @@ class DisplayDataRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kRequestFieldNumber = 1,
+    kBinaryFieldNumber = 1,
   };
-  // bool request = 1;
-  void clear_request();
-  bool request() const;
-  void set_request(bool value);
+  // bool binary = 1;
+  void clear_binary();
+  bool binary() const;
+  void set_binary(bool value);
   private:
-  bool _internal_request() const;
-  void _internal_set_request(bool value);
+  bool _internal_binary() const;
+  void _internal_set_binary(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:vehicle.DisplayDataRequest)
+  // @@protoc_insertion_point(class_scope:vehicle.Ping)
  private:
   class _Internal;
 
@@ -208,7 +236,303 @@ class DisplayDataRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    bool request_;
+    bool binary_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_vehicle_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FuelAmount final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:vehicle.FuelAmount) */ {
+ public:
+  inline FuelAmount() : FuelAmount(nullptr) {}
+  ~FuelAmount() override;
+  explicit PROTOBUF_CONSTEXPR FuelAmount(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FuelAmount(const FuelAmount& from);
+  FuelAmount(FuelAmount&& from) noexcept
+    : FuelAmount() {
+    *this = ::std::move(from);
+  }
+
+  inline FuelAmount& operator=(const FuelAmount& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FuelAmount& operator=(FuelAmount&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FuelAmount& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FuelAmount* internal_default_instance() {
+    return reinterpret_cast<const FuelAmount*>(
+               &_FuelAmount_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(FuelAmount& a, FuelAmount& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FuelAmount* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FuelAmount* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FuelAmount* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FuelAmount>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FuelAmount& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const FuelAmount& from) {
+    FuelAmount::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FuelAmount* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "vehicle.FuelAmount";
+  }
+  protected:
+  explicit FuelAmount(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFuelFieldNumber = 1,
+  };
+  // double fuel = 1;
+  void clear_fuel();
+  double fuel() const;
+  void set_fuel(double value);
+  private:
+  double _internal_fuel() const;
+  void _internal_set_fuel(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:vehicle.FuelAmount)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    double fuel_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_vehicle_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SpeedAction final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:vehicle.SpeedAction) */ {
+ public:
+  inline SpeedAction() : SpeedAction(nullptr) {}
+  ~SpeedAction() override;
+  explicit PROTOBUF_CONSTEXPR SpeedAction(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SpeedAction(const SpeedAction& from);
+  SpeedAction(SpeedAction&& from) noexcept
+    : SpeedAction() {
+    *this = ::std::move(from);
+  }
+
+  inline SpeedAction& operator=(const SpeedAction& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SpeedAction& operator=(SpeedAction&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SpeedAction& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SpeedAction* internal_default_instance() {
+    return reinterpret_cast<const SpeedAction*>(
+               &_SpeedAction_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(SpeedAction& a, SpeedAction& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SpeedAction* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SpeedAction* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SpeedAction* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SpeedAction>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SpeedAction& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const SpeedAction& from) {
+    SpeedAction::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SpeedAction* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "vehicle.SpeedAction";
+  }
+  protected:
+  explicit SpeedAction(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSpeedTypeFieldNumber = 1,
+  };
+  // .vehicle.SpeedType speedType = 1;
+  void clear_speedtype();
+  ::vehicle::SpeedType speedtype() const;
+  void set_speedtype(::vehicle::SpeedType value);
+  private:
+  ::vehicle::SpeedType _internal_speedtype() const;
+  void _internal_set_speedtype(::vehicle::SpeedType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:vehicle.SpeedAction)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int speedtype_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -264,7 +588,7 @@ class NumberDataReply final :
                &_NumberDataReply_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    3;
 
   friend void swap(NumberDataReply& a, NumberDataReply& b) {
     a.Swap(&b);
@@ -341,41 +665,51 @@ class NumberDataReply final :
     kSpeedFieldNumber = 2,
     kFuelFieldNumber = 3,
     kTemperatureFieldNumber = 4,
+    kDistanceFieldNumber = 5,
   };
-  // int32 rpm = 1;
+  // double rpm = 1;
   void clear_rpm();
-  int32_t rpm() const;
-  void set_rpm(int32_t value);
+  double rpm() const;
+  void set_rpm(double value);
   private:
-  int32_t _internal_rpm() const;
-  void _internal_set_rpm(int32_t value);
+  double _internal_rpm() const;
+  void _internal_set_rpm(double value);
   public:
 
-  // int32 speed = 2;
+  // double speed = 2;
   void clear_speed();
-  int32_t speed() const;
-  void set_speed(int32_t value);
+  double speed() const;
+  void set_speed(double value);
   private:
-  int32_t _internal_speed() const;
-  void _internal_set_speed(int32_t value);
+  double _internal_speed() const;
+  void _internal_set_speed(double value);
   public:
 
-  // int32 fuel = 3;
+  // double fuel = 3;
   void clear_fuel();
-  int32_t fuel() const;
-  void set_fuel(int32_t value);
+  double fuel() const;
+  void set_fuel(double value);
   private:
-  int32_t _internal_fuel() const;
-  void _internal_set_fuel(int32_t value);
+  double _internal_fuel() const;
+  void _internal_set_fuel(double value);
   public:
 
-  // int32 temperature = 4;
+  // double temperature = 4;
   void clear_temperature();
-  int32_t temperature() const;
-  void set_temperature(int32_t value);
+  double temperature() const;
+  void set_temperature(double value);
   private:
-  int32_t _internal_temperature() const;
-  void _internal_set_temperature(int32_t value);
+  double _internal_temperature() const;
+  void _internal_set_temperature(double value);
+  public:
+
+  // double distance = 5;
+  void clear_distance();
+  double distance() const;
+  void set_distance(double value);
+  private:
+  double _internal_distance() const;
+  void _internal_set_distance(double value);
   public:
 
   // @@protoc_insertion_point(class_scope:vehicle.NumberDataReply)
@@ -386,328 +720,11 @@ class NumberDataReply final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    int32_t rpm_;
-    int32_t speed_;
-    int32_t fuel_;
-    int32_t temperature_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_vehicle_2eproto;
-};
-// -------------------------------------------------------------------
-
-class BooleanDataReply final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:vehicle.BooleanDataReply) */ {
- public:
-  inline BooleanDataReply() : BooleanDataReply(nullptr) {}
-  ~BooleanDataReply() override;
-  explicit PROTOBUF_CONSTEXPR BooleanDataReply(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  BooleanDataReply(const BooleanDataReply& from);
-  BooleanDataReply(BooleanDataReply&& from) noexcept
-    : BooleanDataReply() {
-    *this = ::std::move(from);
-  }
-
-  inline BooleanDataReply& operator=(const BooleanDataReply& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline BooleanDataReply& operator=(BooleanDataReply&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const BooleanDataReply& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const BooleanDataReply* internal_default_instance() {
-    return reinterpret_cast<const BooleanDataReply*>(
-               &_BooleanDataReply_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    2;
-
-  friend void swap(BooleanDataReply& a, BooleanDataReply& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(BooleanDataReply* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(BooleanDataReply* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  BooleanDataReply* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<BooleanDataReply>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const BooleanDataReply& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const BooleanDataReply& from) {
-    BooleanDataReply::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(BooleanDataReply* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "vehicle.BooleanDataReply";
-  }
-  protected:
-  explicit BooleanDataReply(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kIsEngineGoodFieldNumber = 1,
-    kIsBreakGoodFieldNumber = 2,
-    kIsSeatBeltUsedFieldNumber = 3,
-  };
-  // bool isEngineGood = 1;
-  void clear_isenginegood();
-  bool isenginegood() const;
-  void set_isenginegood(bool value);
-  private:
-  bool _internal_isenginegood() const;
-  void _internal_set_isenginegood(bool value);
-  public:
-
-  // bool isBreakGood = 2;
-  void clear_isbreakgood();
-  bool isbreakgood() const;
-  void set_isbreakgood(bool value);
-  private:
-  bool _internal_isbreakgood() const;
-  void _internal_set_isbreakgood(bool value);
-  public:
-
-  // bool isSeatBeltUsed = 3;
-  void clear_isseatbeltused();
-  bool isseatbeltused() const;
-  void set_isseatbeltused(bool value);
-  private:
-  bool _internal_isseatbeltused() const;
-  void _internal_set_isseatbeltused(bool value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:vehicle.BooleanDataReply)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    bool isenginegood_;
-    bool isbreakgood_;
-    bool isseatbeltused_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_vehicle_2eproto;
-};
-// -------------------------------------------------------------------
-
-class SeatBeltUsage final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:vehicle.SeatBeltUsage) */ {
- public:
-  inline SeatBeltUsage() : SeatBeltUsage(nullptr) {}
-  ~SeatBeltUsage() override;
-  explicit PROTOBUF_CONSTEXPR SeatBeltUsage(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  SeatBeltUsage(const SeatBeltUsage& from);
-  SeatBeltUsage(SeatBeltUsage&& from) noexcept
-    : SeatBeltUsage() {
-    *this = ::std::move(from);
-  }
-
-  inline SeatBeltUsage& operator=(const SeatBeltUsage& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline SeatBeltUsage& operator=(SeatBeltUsage&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const SeatBeltUsage& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const SeatBeltUsage* internal_default_instance() {
-    return reinterpret_cast<const SeatBeltUsage*>(
-               &_SeatBeltUsage_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    3;
-
-  friend void swap(SeatBeltUsage& a, SeatBeltUsage& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(SeatBeltUsage* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(SeatBeltUsage* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  SeatBeltUsage* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SeatBeltUsage>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const SeatBeltUsage& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const SeatBeltUsage& from) {
-    SeatBeltUsage::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(SeatBeltUsage* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "vehicle.SeatBeltUsage";
-  }
-  protected:
-  explicit SeatBeltUsage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kIsSeatBeltUsedFieldNumber = 1,
-  };
-  // bool IsSeatBeltUsed = 1;
-  void clear_isseatbeltused();
-  bool isseatbeltused() const;
-  void set_isseatbeltused(bool value);
-  private:
-  bool _internal_isseatbeltused() const;
-  void _internal_set_isseatbeltused(bool value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:vehicle.SeatBeltUsage)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    bool isseatbeltused_;
+    double rpm_;
+    double speed_;
+    double fuel_;
+    double temperature_;
+    double distance_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -722,198 +739,178 @@ class SeatBeltUsage final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// DisplayDataRequest
+// Ping
 
-// bool request = 1;
-inline void DisplayDataRequest::clear_request() {
-  _impl_.request_ = false;
+// bool binary = 1;
+inline void Ping::clear_binary() {
+  _impl_.binary_ = false;
 }
-inline bool DisplayDataRequest::_internal_request() const {
-  return _impl_.request_;
+inline bool Ping::_internal_binary() const {
+  return _impl_.binary_;
 }
-inline bool DisplayDataRequest::request() const {
-  // @@protoc_insertion_point(field_get:vehicle.DisplayDataRequest.request)
-  return _internal_request();
+inline bool Ping::binary() const {
+  // @@protoc_insertion_point(field_get:vehicle.Ping.binary)
+  return _internal_binary();
 }
-inline void DisplayDataRequest::_internal_set_request(bool value) {
+inline void Ping::_internal_set_binary(bool value) {
   
-  _impl_.request_ = value;
+  _impl_.binary_ = value;
 }
-inline void DisplayDataRequest::set_request(bool value) {
-  _internal_set_request(value);
-  // @@protoc_insertion_point(field_set:vehicle.DisplayDataRequest.request)
+inline void Ping::set_binary(bool value) {
+  _internal_set_binary(value);
+  // @@protoc_insertion_point(field_set:vehicle.Ping.binary)
+}
+
+// -------------------------------------------------------------------
+
+// FuelAmount
+
+// double fuel = 1;
+inline void FuelAmount::clear_fuel() {
+  _impl_.fuel_ = 0;
+}
+inline double FuelAmount::_internal_fuel() const {
+  return _impl_.fuel_;
+}
+inline double FuelAmount::fuel() const {
+  // @@protoc_insertion_point(field_get:vehicle.FuelAmount.fuel)
+  return _internal_fuel();
+}
+inline void FuelAmount::_internal_set_fuel(double value) {
+  
+  _impl_.fuel_ = value;
+}
+inline void FuelAmount::set_fuel(double value) {
+  _internal_set_fuel(value);
+  // @@protoc_insertion_point(field_set:vehicle.FuelAmount.fuel)
+}
+
+// -------------------------------------------------------------------
+
+// SpeedAction
+
+// .vehicle.SpeedType speedType = 1;
+inline void SpeedAction::clear_speedtype() {
+  _impl_.speedtype_ = 0;
+}
+inline ::vehicle::SpeedType SpeedAction::_internal_speedtype() const {
+  return static_cast< ::vehicle::SpeedType >(_impl_.speedtype_);
+}
+inline ::vehicle::SpeedType SpeedAction::speedtype() const {
+  // @@protoc_insertion_point(field_get:vehicle.SpeedAction.speedType)
+  return _internal_speedtype();
+}
+inline void SpeedAction::_internal_set_speedtype(::vehicle::SpeedType value) {
+  
+  _impl_.speedtype_ = value;
+}
+inline void SpeedAction::set_speedtype(::vehicle::SpeedType value) {
+  _internal_set_speedtype(value);
+  // @@protoc_insertion_point(field_set:vehicle.SpeedAction.speedType)
 }
 
 // -------------------------------------------------------------------
 
 // NumberDataReply
 
-// int32 rpm = 1;
+// double rpm = 1;
 inline void NumberDataReply::clear_rpm() {
   _impl_.rpm_ = 0;
 }
-inline int32_t NumberDataReply::_internal_rpm() const {
+inline double NumberDataReply::_internal_rpm() const {
   return _impl_.rpm_;
 }
-inline int32_t NumberDataReply::rpm() const {
+inline double NumberDataReply::rpm() const {
   // @@protoc_insertion_point(field_get:vehicle.NumberDataReply.rpm)
   return _internal_rpm();
 }
-inline void NumberDataReply::_internal_set_rpm(int32_t value) {
+inline void NumberDataReply::_internal_set_rpm(double value) {
   
   _impl_.rpm_ = value;
 }
-inline void NumberDataReply::set_rpm(int32_t value) {
+inline void NumberDataReply::set_rpm(double value) {
   _internal_set_rpm(value);
   // @@protoc_insertion_point(field_set:vehicle.NumberDataReply.rpm)
 }
 
-// int32 speed = 2;
+// double speed = 2;
 inline void NumberDataReply::clear_speed() {
   _impl_.speed_ = 0;
 }
-inline int32_t NumberDataReply::_internal_speed() const {
+inline double NumberDataReply::_internal_speed() const {
   return _impl_.speed_;
 }
-inline int32_t NumberDataReply::speed() const {
+inline double NumberDataReply::speed() const {
   // @@protoc_insertion_point(field_get:vehicle.NumberDataReply.speed)
   return _internal_speed();
 }
-inline void NumberDataReply::_internal_set_speed(int32_t value) {
+inline void NumberDataReply::_internal_set_speed(double value) {
   
   _impl_.speed_ = value;
 }
-inline void NumberDataReply::set_speed(int32_t value) {
+inline void NumberDataReply::set_speed(double value) {
   _internal_set_speed(value);
   // @@protoc_insertion_point(field_set:vehicle.NumberDataReply.speed)
 }
 
-// int32 fuel = 3;
+// double fuel = 3;
 inline void NumberDataReply::clear_fuel() {
   _impl_.fuel_ = 0;
 }
-inline int32_t NumberDataReply::_internal_fuel() const {
+inline double NumberDataReply::_internal_fuel() const {
   return _impl_.fuel_;
 }
-inline int32_t NumberDataReply::fuel() const {
+inline double NumberDataReply::fuel() const {
   // @@protoc_insertion_point(field_get:vehicle.NumberDataReply.fuel)
   return _internal_fuel();
 }
-inline void NumberDataReply::_internal_set_fuel(int32_t value) {
+inline void NumberDataReply::_internal_set_fuel(double value) {
   
   _impl_.fuel_ = value;
 }
-inline void NumberDataReply::set_fuel(int32_t value) {
+inline void NumberDataReply::set_fuel(double value) {
   _internal_set_fuel(value);
   // @@protoc_insertion_point(field_set:vehicle.NumberDataReply.fuel)
 }
 
-// int32 temperature = 4;
+// double temperature = 4;
 inline void NumberDataReply::clear_temperature() {
   _impl_.temperature_ = 0;
 }
-inline int32_t NumberDataReply::_internal_temperature() const {
+inline double NumberDataReply::_internal_temperature() const {
   return _impl_.temperature_;
 }
-inline int32_t NumberDataReply::temperature() const {
+inline double NumberDataReply::temperature() const {
   // @@protoc_insertion_point(field_get:vehicle.NumberDataReply.temperature)
   return _internal_temperature();
 }
-inline void NumberDataReply::_internal_set_temperature(int32_t value) {
+inline void NumberDataReply::_internal_set_temperature(double value) {
   
   _impl_.temperature_ = value;
 }
-inline void NumberDataReply::set_temperature(int32_t value) {
+inline void NumberDataReply::set_temperature(double value) {
   _internal_set_temperature(value);
   // @@protoc_insertion_point(field_set:vehicle.NumberDataReply.temperature)
 }
 
-// -------------------------------------------------------------------
-
-// BooleanDataReply
-
-// bool isEngineGood = 1;
-inline void BooleanDataReply::clear_isenginegood() {
-  _impl_.isenginegood_ = false;
+// double distance = 5;
+inline void NumberDataReply::clear_distance() {
+  _impl_.distance_ = 0;
 }
-inline bool BooleanDataReply::_internal_isenginegood() const {
-  return _impl_.isenginegood_;
+inline double NumberDataReply::_internal_distance() const {
+  return _impl_.distance_;
 }
-inline bool BooleanDataReply::isenginegood() const {
-  // @@protoc_insertion_point(field_get:vehicle.BooleanDataReply.isEngineGood)
-  return _internal_isenginegood();
+inline double NumberDataReply::distance() const {
+  // @@protoc_insertion_point(field_get:vehicle.NumberDataReply.distance)
+  return _internal_distance();
 }
-inline void BooleanDataReply::_internal_set_isenginegood(bool value) {
+inline void NumberDataReply::_internal_set_distance(double value) {
   
-  _impl_.isenginegood_ = value;
+  _impl_.distance_ = value;
 }
-inline void BooleanDataReply::set_isenginegood(bool value) {
-  _internal_set_isenginegood(value);
-  // @@protoc_insertion_point(field_set:vehicle.BooleanDataReply.isEngineGood)
-}
-
-// bool isBreakGood = 2;
-inline void BooleanDataReply::clear_isbreakgood() {
-  _impl_.isbreakgood_ = false;
-}
-inline bool BooleanDataReply::_internal_isbreakgood() const {
-  return _impl_.isbreakgood_;
-}
-inline bool BooleanDataReply::isbreakgood() const {
-  // @@protoc_insertion_point(field_get:vehicle.BooleanDataReply.isBreakGood)
-  return _internal_isbreakgood();
-}
-inline void BooleanDataReply::_internal_set_isbreakgood(bool value) {
-  
-  _impl_.isbreakgood_ = value;
-}
-inline void BooleanDataReply::set_isbreakgood(bool value) {
-  _internal_set_isbreakgood(value);
-  // @@protoc_insertion_point(field_set:vehicle.BooleanDataReply.isBreakGood)
-}
-
-// bool isSeatBeltUsed = 3;
-inline void BooleanDataReply::clear_isseatbeltused() {
-  _impl_.isseatbeltused_ = false;
-}
-inline bool BooleanDataReply::_internal_isseatbeltused() const {
-  return _impl_.isseatbeltused_;
-}
-inline bool BooleanDataReply::isseatbeltused() const {
-  // @@protoc_insertion_point(field_get:vehicle.BooleanDataReply.isSeatBeltUsed)
-  return _internal_isseatbeltused();
-}
-inline void BooleanDataReply::_internal_set_isseatbeltused(bool value) {
-  
-  _impl_.isseatbeltused_ = value;
-}
-inline void BooleanDataReply::set_isseatbeltused(bool value) {
-  _internal_set_isseatbeltused(value);
-  // @@protoc_insertion_point(field_set:vehicle.BooleanDataReply.isSeatBeltUsed)
-}
-
-// -------------------------------------------------------------------
-
-// SeatBeltUsage
-
-// bool IsSeatBeltUsed = 1;
-inline void SeatBeltUsage::clear_isseatbeltused() {
-  _impl_.isseatbeltused_ = false;
-}
-inline bool SeatBeltUsage::_internal_isseatbeltused() const {
-  return _impl_.isseatbeltused_;
-}
-inline bool SeatBeltUsage::isseatbeltused() const {
-  // @@protoc_insertion_point(field_get:vehicle.SeatBeltUsage.IsSeatBeltUsed)
-  return _internal_isseatbeltused();
-}
-inline void SeatBeltUsage::_internal_set_isseatbeltused(bool value) {
-  
-  _impl_.isseatbeltused_ = value;
-}
-inline void SeatBeltUsage::set_isseatbeltused(bool value) {
-  _internal_set_isseatbeltused(value);
-  // @@protoc_insertion_point(field_set:vehicle.SeatBeltUsage.IsSeatBeltUsed)
+inline void NumberDataReply::set_distance(double value) {
+  _internal_set_distance(value);
+  // @@protoc_insertion_point(field_set:vehicle.NumberDataReply.distance)
 }
 
 #ifdef __GNUC__
@@ -929,6 +926,16 @@ inline void SeatBeltUsage::set_isseatbeltused(bool value) {
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace vehicle
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::vehicle::SpeedType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::vehicle::SpeedType>() {
+  return ::vehicle::SpeedType_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

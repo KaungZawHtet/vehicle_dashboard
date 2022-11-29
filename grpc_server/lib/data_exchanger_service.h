@@ -13,20 +13,22 @@ using grpc::ServerContext;
 using grpc::ServerWriter;
 using grpc::Status;
 
-using vehicle::BooleanDataReply;
+using vehicle::SpeedAction;
 using vehicle::DataExchanger;
-using vehicle::DisplayDataRequest;
+using vehicle::Ping;
+using vehicle::SpeedType;
+using vehicle::FuelAmount;
 using vehicle::NumberDataReply;
 
-using vehicle::SeatBeltUsage;
+
 
 class DataExchangerServiceImpl final : public DataExchanger::Service
 {
 
-    Status GetNumberDataFlow(ServerContext *context, const DisplayDataRequest *request, ServerWriter<NumberDataReply> *writer) override;
-    Status GetNumberData(ServerContext *context, const DisplayDataRequest *request, NumberDataReply *response) override;
-    Status GetBooleanData(ServerContext *context, const DisplayDataRequest *request, BooleanDataReply *response) override;
-    Status InformSeatBeltIsUsed(ServerContext *context, const SeatBeltUsage *request, SeatBeltUsage *response) override;
+    Status GetNumberDataFlow(ServerContext *context, const SpeedAction *request, ServerWriter<NumberDataReply> *writer) override;
+    Status GetNumberData(ServerContext *context, const SpeedAction *request, NumberDataReply *response) override;
+    Status FillFuel(ServerContext *context, const FuelAmount *request, FuelAmount *response) override;
+    Status GetTotalFuel(ServerContext *context, const Ping *request, FuelAmount *response) override;
 };
 
 #endif /* CC92F405_9FE0_4A48_9A96_10BC7D305BC6 */
