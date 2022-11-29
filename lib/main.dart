@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vehicle_dashboard/db/db_client.dart';
 import 'package:vehicle_dashboard/my_app.dart';
 import 'package:vehicle_dashboard/protos_generated/vehicle.pbgrpc.dart';
 
@@ -31,7 +32,9 @@ void main() async {
 
   runApp( MultiProvider(providers: [
     Provider<VehicleClient>.value(value: VehicleClient()),
-      Provider<StreamController<SpeedType>>.value(value: StreamController<SpeedType>.broadcast()),
+    Provider<StreamController<SpeedType>>.value(value: StreamController<SpeedType>.broadcast()),
+    Provider<AppDb>.value(
+        value: AppDb()),
 
 
   ],

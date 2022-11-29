@@ -5,17 +5,17 @@ part of 'db_client.dart';
 // ignore_for_file: type=lint
 class DriveRecord extends DataClass implements Insertable<DriveRecord> {
   final int id;
+  final String? speedAction;
   final double? distance;
-  final double? distanceChanged;
   final double? rpm;
   final double? speed;
   final double? fuel;
   final double? temperature;
-  final double? timeCreated;
+  final DateTime? timeCreated;
   const DriveRecord(
       {required this.id,
+      this.speedAction,
       this.distance,
-      this.distanceChanged,
       this.rpm,
       this.speed,
       this.fuel,
@@ -25,11 +25,11 @@ class DriveRecord extends DataClass implements Insertable<DriveRecord> {
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
+    if (!nullToAbsent || speedAction != null) {
+      map['speed_action'] = Variable<String>(speedAction);
+    }
     if (!nullToAbsent || distance != null) {
       map['distance'] = Variable<double>(distance);
-    }
-    if (!nullToAbsent || distanceChanged != null) {
-      map['distance_changed'] = Variable<double>(distanceChanged);
     }
     if (!nullToAbsent || rpm != null) {
       map['rpm'] = Variable<double>(rpm);
@@ -44,7 +44,7 @@ class DriveRecord extends DataClass implements Insertable<DriveRecord> {
       map['temperature'] = Variable<double>(temperature);
     }
     if (!nullToAbsent || timeCreated != null) {
-      map['time_created'] = Variable<double>(timeCreated);
+      map['time_created'] = Variable<DateTime>(timeCreated);
     }
     return map;
   }
@@ -52,12 +52,12 @@ class DriveRecord extends DataClass implements Insertable<DriveRecord> {
   DriveRecordsCompanion toCompanion(bool nullToAbsent) {
     return DriveRecordsCompanion(
       id: Value(id),
+      speedAction: speedAction == null && nullToAbsent
+          ? const Value.absent()
+          : Value(speedAction),
       distance: distance == null && nullToAbsent
           ? const Value.absent()
           : Value(distance),
-      distanceChanged: distanceChanged == null && nullToAbsent
-          ? const Value.absent()
-          : Value(distanceChanged),
       rpm: rpm == null && nullToAbsent ? const Value.absent() : Value(rpm),
       speed:
           speed == null && nullToAbsent ? const Value.absent() : Value(speed),
@@ -76,13 +76,13 @@ class DriveRecord extends DataClass implements Insertable<DriveRecord> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return DriveRecord(
       id: serializer.fromJson<int>(json['id']),
+      speedAction: serializer.fromJson<String?>(json['speed_action']),
       distance: serializer.fromJson<double?>(json['distance']),
-      distanceChanged: serializer.fromJson<double?>(json['distance_changed']),
       rpm: serializer.fromJson<double?>(json['rpm']),
       speed: serializer.fromJson<double?>(json['speed']),
       fuel: serializer.fromJson<double?>(json['fuel']),
       temperature: serializer.fromJson<double?>(json['temperature']),
-      timeCreated: serializer.fromJson<double?>(json['time_created']),
+      timeCreated: serializer.fromJson<DateTime?>(json['time_created']),
     );
   }
   @override
@@ -90,31 +90,29 @@ class DriveRecord extends DataClass implements Insertable<DriveRecord> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
+      'speed_action': serializer.toJson<String?>(speedAction),
       'distance': serializer.toJson<double?>(distance),
-      'distance_changed': serializer.toJson<double?>(distanceChanged),
       'rpm': serializer.toJson<double?>(rpm),
       'speed': serializer.toJson<double?>(speed),
       'fuel': serializer.toJson<double?>(fuel),
       'temperature': serializer.toJson<double?>(temperature),
-      'time_created': serializer.toJson<double?>(timeCreated),
+      'time_created': serializer.toJson<DateTime?>(timeCreated),
     };
   }
 
   DriveRecord copyWith(
           {int? id,
+          Value<String?> speedAction = const Value.absent(),
           Value<double?> distance = const Value.absent(),
-          Value<double?> distanceChanged = const Value.absent(),
           Value<double?> rpm = const Value.absent(),
           Value<double?> speed = const Value.absent(),
           Value<double?> fuel = const Value.absent(),
           Value<double?> temperature = const Value.absent(),
-          Value<double?> timeCreated = const Value.absent()}) =>
+          Value<DateTime?> timeCreated = const Value.absent()}) =>
       DriveRecord(
         id: id ?? this.id,
+        speedAction: speedAction.present ? speedAction.value : this.speedAction,
         distance: distance.present ? distance.value : this.distance,
-        distanceChanged: distanceChanged.present
-            ? distanceChanged.value
-            : this.distanceChanged,
         rpm: rpm.present ? rpm.value : this.rpm,
         speed: speed.present ? speed.value : this.speed,
         fuel: fuel.present ? fuel.value : this.fuel,
@@ -125,8 +123,8 @@ class DriveRecord extends DataClass implements Insertable<DriveRecord> {
   String toString() {
     return (StringBuffer('DriveRecord(')
           ..write('id: $id, ')
+          ..write('speedAction: $speedAction, ')
           ..write('distance: $distance, ')
-          ..write('distanceChanged: $distanceChanged, ')
           ..write('rpm: $rpm, ')
           ..write('speed: $speed, ')
           ..write('fuel: $fuel, ')
@@ -137,15 +135,15 @@ class DriveRecord extends DataClass implements Insertable<DriveRecord> {
   }
 
   @override
-  int get hashCode => Object.hash(id, distance, distanceChanged, rpm, speed,
-      fuel, temperature, timeCreated);
+  int get hashCode => Object.hash(
+      id, speedAction, distance, rpm, speed, fuel, temperature, timeCreated);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is DriveRecord &&
           other.id == this.id &&
+          other.speedAction == this.speedAction &&
           other.distance == this.distance &&
-          other.distanceChanged == this.distanceChanged &&
           other.rpm == this.rpm &&
           other.speed == this.speed &&
           other.fuel == this.fuel &&
@@ -155,17 +153,17 @@ class DriveRecord extends DataClass implements Insertable<DriveRecord> {
 
 class DriveRecordsCompanion extends UpdateCompanion<DriveRecord> {
   final Value<int> id;
+  final Value<String?> speedAction;
   final Value<double?> distance;
-  final Value<double?> distanceChanged;
   final Value<double?> rpm;
   final Value<double?> speed;
   final Value<double?> fuel;
   final Value<double?> temperature;
-  final Value<double?> timeCreated;
+  final Value<DateTime?> timeCreated;
   const DriveRecordsCompanion({
     this.id = const Value.absent(),
+    this.speedAction = const Value.absent(),
     this.distance = const Value.absent(),
-    this.distanceChanged = const Value.absent(),
     this.rpm = const Value.absent(),
     this.speed = const Value.absent(),
     this.fuel = const Value.absent(),
@@ -174,8 +172,8 @@ class DriveRecordsCompanion extends UpdateCompanion<DriveRecord> {
   });
   DriveRecordsCompanion.insert({
     this.id = const Value.absent(),
+    this.speedAction = const Value.absent(),
     this.distance = const Value.absent(),
-    this.distanceChanged = const Value.absent(),
     this.rpm = const Value.absent(),
     this.speed = const Value.absent(),
     this.fuel = const Value.absent(),
@@ -184,18 +182,18 @@ class DriveRecordsCompanion extends UpdateCompanion<DriveRecord> {
   });
   static Insertable<DriveRecord> custom({
     Expression<int>? id,
+    Expression<String>? speedAction,
     Expression<double>? distance,
-    Expression<double>? distanceChanged,
     Expression<double>? rpm,
     Expression<double>? speed,
     Expression<double>? fuel,
     Expression<double>? temperature,
-    Expression<double>? timeCreated,
+    Expression<DateTime>? timeCreated,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
+      if (speedAction != null) 'speed_action': speedAction,
       if (distance != null) 'distance': distance,
-      if (distanceChanged != null) 'distance_changed': distanceChanged,
       if (rpm != null) 'rpm': rpm,
       if (speed != null) 'speed': speed,
       if (fuel != null) 'fuel': fuel,
@@ -206,17 +204,17 @@ class DriveRecordsCompanion extends UpdateCompanion<DriveRecord> {
 
   DriveRecordsCompanion copyWith(
       {Value<int>? id,
+      Value<String?>? speedAction,
       Value<double?>? distance,
-      Value<double?>? distanceChanged,
       Value<double?>? rpm,
       Value<double?>? speed,
       Value<double?>? fuel,
       Value<double?>? temperature,
-      Value<double?>? timeCreated}) {
+      Value<DateTime?>? timeCreated}) {
     return DriveRecordsCompanion(
       id: id ?? this.id,
+      speedAction: speedAction ?? this.speedAction,
       distance: distance ?? this.distance,
-      distanceChanged: distanceChanged ?? this.distanceChanged,
       rpm: rpm ?? this.rpm,
       speed: speed ?? this.speed,
       fuel: fuel ?? this.fuel,
@@ -231,11 +229,11 @@ class DriveRecordsCompanion extends UpdateCompanion<DriveRecord> {
     if (id.present) {
       map['id'] = Variable<int>(id.value);
     }
+    if (speedAction.present) {
+      map['speed_action'] = Variable<String>(speedAction.value);
+    }
     if (distance.present) {
       map['distance'] = Variable<double>(distance.value);
-    }
-    if (distanceChanged.present) {
-      map['distance_changed'] = Variable<double>(distanceChanged.value);
     }
     if (rpm.present) {
       map['rpm'] = Variable<double>(rpm.value);
@@ -250,7 +248,7 @@ class DriveRecordsCompanion extends UpdateCompanion<DriveRecord> {
       map['temperature'] = Variable<double>(temperature.value);
     }
     if (timeCreated.present) {
-      map['time_created'] = Variable<double>(timeCreated.value);
+      map['time_created'] = Variable<DateTime>(timeCreated.value);
     }
     return map;
   }
@@ -259,8 +257,8 @@ class DriveRecordsCompanion extends UpdateCompanion<DriveRecord> {
   String toString() {
     return (StringBuffer('DriveRecordsCompanion(')
           ..write('id: $id, ')
+          ..write('speedAction: $speedAction, ')
           ..write('distance: $distance, ')
-          ..write('distanceChanged: $distanceChanged, ')
           ..write('rpm: $rpm, ')
           ..write('speed: $speed, ')
           ..write('fuel: $fuel, ')
@@ -283,17 +281,17 @@ class DriveRecords extends Table with TableInfo<DriveRecords, DriveRecord> {
       type: DriftSqlType.int,
       requiredDuringInsert: false,
       $customConstraints: 'PRIMARY KEY AUTOINCREMENT NOT NULL');
+  static const VerificationMeta _speedActionMeta =
+      const VerificationMeta('speedAction');
+  late final GeneratedColumn<String> speedAction = GeneratedColumn<String>(
+      'speed_action', aliasedName, true,
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      $customConstraints: '');
   static const VerificationMeta _distanceMeta =
       const VerificationMeta('distance');
   late final GeneratedColumn<double> distance = GeneratedColumn<double>(
       'distance', aliasedName, true,
-      type: DriftSqlType.double,
-      requiredDuringInsert: false,
-      $customConstraints: '');
-  static const VerificationMeta _distanceChangedMeta =
-      const VerificationMeta('distanceChanged');
-  late final GeneratedColumn<double> distanceChanged = GeneratedColumn<double>(
-      'distance_changed', aliasedName, true,
       type: DriftSqlType.double,
       requiredDuringInsert: false,
       $customConstraints: '');
@@ -324,22 +322,14 @@ class DriveRecords extends Table with TableInfo<DriveRecords, DriveRecord> {
       $customConstraints: '');
   static const VerificationMeta _timeCreatedMeta =
       const VerificationMeta('timeCreated');
-  late final GeneratedColumn<double> timeCreated = GeneratedColumn<double>(
+  late final GeneratedColumn<DateTime> timeCreated = GeneratedColumn<DateTime>(
       'time_created', aliasedName, true,
-      type: DriftSqlType.double,
+      type: DriftSqlType.dateTime,
       requiredDuringInsert: false,
       $customConstraints: '');
   @override
-  List<GeneratedColumn> get $columns => [
-        id,
-        distance,
-        distanceChanged,
-        rpm,
-        speed,
-        fuel,
-        temperature,
-        timeCreated
-      ];
+  List<GeneratedColumn> get $columns =>
+      [id, speedAction, distance, rpm, speed, fuel, temperature, timeCreated];
   @override
   String get aliasedName => _alias ?? 'drive_records';
   @override
@@ -352,15 +342,15 @@ class DriveRecords extends Table with TableInfo<DriveRecords, DriveRecord> {
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
+    if (data.containsKey('speed_action')) {
+      context.handle(
+          _speedActionMeta,
+          speedAction.isAcceptableOrUnknown(
+              data['speed_action']!, _speedActionMeta));
+    }
     if (data.containsKey('distance')) {
       context.handle(_distanceMeta,
           distance.isAcceptableOrUnknown(data['distance']!, _distanceMeta));
-    }
-    if (data.containsKey('distance_changed')) {
-      context.handle(
-          _distanceChangedMeta,
-          distanceChanged.isAcceptableOrUnknown(
-              data['distance_changed']!, _distanceChangedMeta));
     }
     if (data.containsKey('rpm')) {
       context.handle(
@@ -397,10 +387,10 @@ class DriveRecords extends Table with TableInfo<DriveRecords, DriveRecord> {
     return DriveRecord(
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      speedAction: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}speed_action']),
       distance: attachedDatabase.typeMapping
           .read(DriftSqlType.double, data['${effectivePrefix}distance']),
-      distanceChanged: attachedDatabase.typeMapping.read(
-          DriftSqlType.double, data['${effectivePrefix}distance_changed']),
       rpm: attachedDatabase.typeMapping
           .read(DriftSqlType.double, data['${effectivePrefix}rpm']),
       speed: attachedDatabase.typeMapping
@@ -410,7 +400,7 @@ class DriveRecords extends Table with TableInfo<DriveRecords, DriveRecord> {
       temperature: attachedDatabase.typeMapping
           .read(DriftSqlType.double, data['${effectivePrefix}temperature']),
       timeCreated: attachedDatabase.typeMapping
-          .read(DriftSqlType.double, data['${effectivePrefix}time_created']),
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}time_created']),
     );
   }
 
@@ -428,7 +418,7 @@ class DriveRecords extends Table with TableInfo<DriveRecords, DriveRecord> {
 abstract class _$AppDb extends GeneratedDatabase {
   _$AppDb(QueryExecutor e) : super(e);
   late final DriveRecords driveRecords = DriveRecords(this);
-  Selectable<DriveRecord> getAllRecords() {
+  Selectable<DriveRecord> _getAllRecords() {
     return customSelect('SELECT * FROM drive_records',
         variables: [],
         readsFrom: {
@@ -436,7 +426,7 @@ abstract class _$AppDb extends GeneratedDatabase {
         }).asyncMap(driveRecords.mapFromRow);
   }
 
-  Selectable<DriveRecord> getRecordById(int id) {
+  Selectable<DriveRecord> _getRecordById(int id) {
     return customSelect('SELECT * FROM drive_records WHERE id = ?1',
         variables: [
           Variable<int>(id)
@@ -446,30 +436,24 @@ abstract class _$AppDb extends GeneratedDatabase {
         }).asyncMap(driveRecords.mapFromRow);
   }
 
-  Future<int> insertRecord(
-      double? distance,
-      double? distanceChanged,
-      double? rpm,
-      double? speed,
-      double? fuel,
-      double? temperature,
-      double? timeCreated) {
+  Future<int> insertRecord(String? speedAction, double? distance, double? rpm,
+      double? speed, double? fuel, double? temperature, DateTime? timeCreated) {
     return customInsert(
-      'INSERT INTO drive_records (distance, distance_changed, rpm, speed, fuel, temperature, time_created) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)',
+      'INSERT INTO drive_records (speed_action, distance, rpm, speed, fuel, temperature, time_created) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)',
       variables: [
+        Variable<String>(speedAction),
         Variable<double>(distance),
-        Variable<double>(distanceChanged),
         Variable<double>(rpm),
         Variable<double>(speed),
         Variable<double>(fuel),
         Variable<double>(temperature),
-        Variable<double>(timeCreated)
+        Variable<DateTime>(timeCreated)
       ],
       updates: {driveRecords},
     );
   }
 
-  Future<int> deleteRecord(int id) {
+  Future<int> deleteRecordById(int id) {
     return customUpdate(
       'DELETE FROM drive_records WHERE id = ?1',
       variables: [Variable<int>(id)],
@@ -479,28 +463,37 @@ abstract class _$AppDb extends GeneratedDatabase {
   }
 
   Future<int> updateRecord(
+      String? speedAction,
       double? distance,
-      double? distanceChanged,
       double? rpm,
       double? speed,
       double? fuel,
       double? temperature,
-      double? timeCreated,
+      DateTime? timeCreated,
       int id) {
     return customUpdate(
-      'UPDATE drive_records SET distance = ?1, distance_changed = ?2, rpm = ?3, speed = ?4, fuel = ?5, temperature = ?6, time_created = ?7 WHERE id = ?8',
+      'UPDATE drive_records SET speed_action = ?1, distance = ?2, rpm = ?3, speed = ?4, fuel = ?5, temperature = ?6, time_created = ?7 WHERE id = ?8',
       variables: [
+        Variable<String>(speedAction),
         Variable<double>(distance),
-        Variable<double>(distanceChanged),
         Variable<double>(rpm),
         Variable<double>(speed),
         Variable<double>(fuel),
         Variable<double>(temperature),
-        Variable<double>(timeCreated),
+        Variable<DateTime>(timeCreated),
         Variable<int>(id)
       ],
       updates: {driveRecords},
       updateKind: UpdateKind.update,
+    );
+  }
+
+  Future<int> deleteAllRecords() {
+    return customUpdate(
+      'DELETE FROM drive_records',
+      variables: [],
+      updates: {driveRecords},
+      updateKind: UpdateKind.delete,
     );
   }
 

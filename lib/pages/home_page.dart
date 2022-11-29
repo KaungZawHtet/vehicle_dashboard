@@ -17,9 +17,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget>[
-     DashboardWindow(),
-     FuelWindow(),
-     RecordsWindow(),
+    DashboardWindow(),
+    FuelWindow(),
+    RecordsWindow(),
   ];
 
   void _onItemTapped(int index) {
@@ -35,13 +35,7 @@ class _HomePageState extends State<HomePage> {
           title: Text(widget.title),
         ),
         body: SafeArea(child: _widgetOptions.elementAt(_selectedIndex)),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            //! print(await widget.grpcClient.getMessage("Kzh"));
-          },
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
-        ),
+        floatingActionButton: getFloatingActionButton(),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -60,5 +54,20 @@ class _HomePageState extends State<HomePage> {
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
         ));
+  }
+
+  Widget? getFloatingActionButton() {
+    switch (_selectedIndex) {
+      case 2:
+        return FloatingActionButton(
+          onPressed: () async {
+
+          },
+          tooltip: 'Delete',
+          child: const Icon(Icons.delete),
+        );
+      default:
+        return null;
+    }
   }
 }

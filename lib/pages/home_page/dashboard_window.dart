@@ -4,6 +4,7 @@ import 'package:at_gauges/at_gauges.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:vehicle_dashboard/db/db_client.dart';
 import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
 import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/distance_indicator.dart';
 
@@ -19,10 +20,12 @@ class DashboardWindow extends StatelessWidget {
   DashboardWindow({super.key});
 
   late VehicleClient grpcClient;
+  late AppDb db;
 
   @override
   Widget build(BuildContext context) {
     grpcClient = Provider.of<VehicleClient>(context);
+    var db = Provider.of<AppDb>(context);
 
     return SingleChildScrollView(
       child: Column(
@@ -34,7 +37,7 @@ class DashboardWindow extends StatelessWidget {
               stream: Provider.of<StreamController<SpeedType>>(context)
                   .stream
                   .asyncExpand(
-                      (event) => grpcClient.watchNumberDataFlow(event)),
+                      (event) => grpcClient.watchNumberDataFlow(event, db)),
               builder: (context, snapshot) {
                 double temperature = 0;
                 double fuel = 0;

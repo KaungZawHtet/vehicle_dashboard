@@ -1,27 +1,28 @@
 
 CREATE TABLE drive_records (
   id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+  speed_action varchar(128),
   distance double(128),
-  distance_changed double(128),
   rpm double(128),
   speed double(128),
   fuel double(128),
   temperature double(128),
-  time_created double(128),
-
+  time_created DateTime(128)
 );
 
-getAllRecords :   SELECT * FROM drive_records;
+_getAllRecords :   SELECT * FROM drive_records;
 
-getRecordById:   SELECT * FROM drive_records WHERE id = :id;
+_getRecordById:   SELECT * FROM drive_records WHERE id = :id;
 
 insertRecord : INSERT INTO drive_records
-(distance, distance_changed,rpm,speed, fuel,temperature ,time_created)
-VALUES (:distance, :distance_changed, :rpm,:speed, :fuel, :temperature , :time_created );
+(speed_action,distance,rpm,speed, fuel,temperature ,time_created)
+VALUES (:speed_action,:distance, :rpm,:speed, :fuel, :temperature , :time_created );
 
-deleteRecord : DELETE FROM drive_records WHERE id = :id;
+deleteRecordById : DELETE FROM drive_records WHERE id = :id;
 
 updateRecord : UPDATE drive_records SET
-distance = :distance, distance_changed=  :distance_changed,
+speed_action = :speed_action ,distance = :distance,
 rpm = :rpm, speed = :speed, fuel = :fuel, temperature = :temperature , time_created = :time_created
 WHERE id = :id;
+
+deleteAllRecords : DELETE FROM drive_records;

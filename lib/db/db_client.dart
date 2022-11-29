@@ -18,6 +18,10 @@ class AppDb extends _$AppDb {
 
   @override
   int get schemaVersion => 1;
+
+  Stream<List<DriveRecord>> watchAllRecords() => select(driveRecords).watch();
+  Stream<DriveRecord> watchEntriesInCategory(int id) =>
+      (select(driveRecords)..where((tbl) => tbl.id.equals(id))).watchSingle();
 }
 
 LazyDatabase _openConnection() {
@@ -27,6 +31,7 @@ LazyDatabase _openConnection() {
     // for your app.
     final dbFolder = await getApplicationDocumentsDirectory();
     final file = File(p.join(dbFolder.path, 'db.sqlite'));
+    print(dbFolder.path);
 
     return NativeDatabase.createInBackground(file);
   });

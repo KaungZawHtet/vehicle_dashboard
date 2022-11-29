@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:grpc/grpc.dart';
+import 'package:vehicle_dashboard/db/db_client.dart';
 
 import 'package:vehicle_dashboard/protos_generated/vehicle.pbgrpc.dart';
 
@@ -18,7 +19,8 @@ class VehicleClient {
     stub = DataExchangerClient(channel);
   }
 
-  Stream<NumberDataReply> watchNumberDataFlow(SpeedType action) async* {
+  Stream<NumberDataReply> watchNumberDataFlow(
+      SpeedType action, AppDb db) async* {
     try {
       SpeedAction request = SpeedAction()..speedType = action;
 
@@ -26,7 +28,13 @@ class VehicleClient {
         request,
         options: CallOptions(compression: const GzipCodec()),
       );
-        print('distance : ${response.distance}');
+      db.insertRecord
+      (action.toString(),response.distance,
+      response.rpm,
+      response.speed,response.fuel,
+      response.temperature, DateTime.now());
+
+      print('distance : ${response.distance}');
       print('fuel : ${response.fuel}');
       print('rpm : ${response.rpm}');
       print('speed : ${response.speed}');
@@ -35,7 +43,7 @@ class VehicleClient {
 
       yield response;
 
-     /*  await for (var numberDataReply in stub.getNumberDataFlow(request)) {
+      /*  await for (var numberDataReply in stub.getNumberDataFlow(request)) {
         print(numberDataReply.distance);
         print(numberDataReply.fuel);
         print(numberDataReply.rpm);
@@ -47,8 +55,6 @@ class VehicleClient {
 
     } catch (e) {
       print('Caught error: $e');
-
-
     }
   }
 
