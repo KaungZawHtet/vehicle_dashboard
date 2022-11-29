@@ -6,11 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
 import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/distance_indicator.dart';
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/drive_panel.dart';
+
 import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/fuel_indicator.dart';
 import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/rpm_indicator.dart';
 import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/speed_indicator.dart';
 import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/temperature_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_page/drive_panel/drive_panel.dart';
 
 import '../../protos_generated/vehicle.pb.dart';
 
