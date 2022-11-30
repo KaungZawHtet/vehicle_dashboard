@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vehicle_dashboard/db/db_client.dart';
 import 'package:vehicle_dashboard/pages/home_page/dashboard_window.dart';
 import 'package:vehicle_dashboard/pages/home_page/fuel_window.dart';
 import 'package:vehicle_dashboard/pages/home_page/records_window.dart';
@@ -35,7 +37,7 @@ class _HomePageState extends State<HomePage> {
           title: Text(widget.title),
         ),
         body: SafeArea(child: _widgetOptions.elementAt(_selectedIndex)),
-        floatingActionButton: getFloatingActionButton(),
+        floatingActionButton: getFloatingActionButton(context),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -56,12 +58,13 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
-  Widget? getFloatingActionButton() {
+  Widget? getFloatingActionButton(BuildContext context) {
     switch (_selectedIndex) {
       case 2:
+        final db = Provider.of<AppDb>(context);
         return FloatingActionButton(
           onPressed: () async {
-
+            showDeleteConfirmationForRecord(context,db);
           },
           tooltip: 'Delete',
           child: const Icon(Icons.delete),

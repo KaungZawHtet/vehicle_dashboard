@@ -34,12 +34,6 @@ class VehicleClient {
       response.speed,response.fuel,
       response.temperature, DateTime.now());
 
-      print('distance : ${response.distance}');
-      print('fuel : ${response.fuel}');
-      print('rpm : ${response.rpm}');
-      print('speed : ${response.speed}');
-      print('temperatuure : ${response.temperature}');
-      print("==============");
 
       yield response;
 
@@ -56,6 +50,21 @@ class VehicleClient {
     } catch (e) {
       print('Caught error: $e');
     }
+  }
+  Stream<double> watchFillFuel ({double amount = 0}) async*
+  {
+    try {
+      final response = await stub.fillFuel(
+        FuelAmount()..fuel = amount,
+        options: CallOptions(compression: const GzipCodec()),
+      );
+      yield response.fuel;
+    } catch (e) {
+      print('Caught error: $e');
+
+    }
+
+
   }
 
 /*   Future<int> getTemperature(String name) async {

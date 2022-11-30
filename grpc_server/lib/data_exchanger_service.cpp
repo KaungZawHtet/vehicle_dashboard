@@ -8,7 +8,7 @@ using namespace std;
 
 Status DataExchangerServiceImpl::GetNumberDataFlow(ServerContext *context, const SpeedAction *request, ServerWriter<NumberDataReply> *writer)
 {
-
+//TODO: there can be some bug here
     Engine engine;
     FuelStorage fuelStoreage;
 
@@ -109,11 +109,18 @@ Status DataExchangerServiceImpl::GetNumberData(ServerContext *context, const Spe
 
 Status DataExchangerServiceImpl::FillFuel(ServerContext * context, const FuelAmount * request, FuelAmount * response)
 {
-return Status();
+    engine.fuelStorage.fillFuel(request->fuel());
+
+    response->set_fuel(engine.getFuel());
+
+    return Status::OK;
 }
 
 Status DataExchangerServiceImpl::GetTotalFuel(ServerContext * context, const Ping * request, FuelAmount * response)
 {
-return Status();
+
+response->set_fuel(engine.getFuel());
+
+return Status::OK;
 }
 

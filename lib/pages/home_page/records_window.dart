@@ -34,14 +34,15 @@ class RecordsWindow extends StatelessWidget {
                   ),
                   child: ListTile(
                     onTap: () {
-                      _showMyDialog( context, snapshot.data![index]) ;
+                      _showDetailDialog(context, snapshot.data![index]);
                     },
                     leading: const CircleAvatar(
                         backgroundColor: Colors.indigo,
                         foregroundColor: Colors.white,
                         child: Icon(MdiIcons.road)),
                     title: Text(snapshot.data![index].speedAction.toString()),
-                    subtitle: Text("Total Distance : ${snapshot.data![index].distance}"),
+                    subtitle: Text(
+                        "Total Distance : ${snapshot.data![index].distance}"),
                   ),
                 );
               },
@@ -54,7 +55,8 @@ class RecordsWindow extends StatelessWidget {
         }));
   }
 
-  Future<void> _showMyDialog(BuildContext context,DriveRecord record) async {
+  Future<void> _showDetailDialog(
+      BuildContext context, DriveRecord record) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -85,4 +87,34 @@ class RecordsWindow extends StatelessWidget {
       },
     );
   }
+}
+
+Future<void> showDeleteConfirmationForRecord(BuildContext context,AppDb db) async {
+
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Detail'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: const <Widget>[
+              Text("Are you sure you want to delete?"),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Ok'),
+            onPressed: () {
+
+              db.deleteAllRecords();
+               Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
