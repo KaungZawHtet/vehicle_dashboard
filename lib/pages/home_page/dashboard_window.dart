@@ -18,27 +18,26 @@ import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/drive_panel
 import '../../protos_generated/vehicle.pb.dart';
 
 class DashboardWindow extends StatelessWidget {
-   DashboardWindow({super.key});
-
-   late  VehicleClient grpcClient;
-   late  AppDb db;
+  const DashboardWindow({super.key});
 
   @override
   Widget build(BuildContext context) {
-    grpcClient = Provider.of<VehicleClient>(context);
-    var db = Provider.of<AppDb>(context);
+    final grpcClient = Provider.of<VehicleClient>(context);
 
+    final db = Provider.of<AppDb>(context);
+    final fuelInside = Provider.of<double>(context);
+    final screamController = Provider.of<StreamController<SpeedType>>(context);
+     screamController.add(SpeedType.SLOW);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 10),
           StreamBuilder<NumberDataReply>(
-              initialData: NumberDataReply(fuel: 40),
-              stream: Provider.of<StreamController<SpeedType>>(context)
-                  .stream
-                  .asyncExpand(
-                      (event) => grpcClient.watchNumberDataFlow(event, db)),
+              //  initialData: NumberDataReply(fuel: fuelInside),
+
+              stream: screamController.stream.asyncExpand(
+                  (event) => grpcClient.watchNumberDataFlow(event, db)),
               builder: (context, snapshot) {
                 double temperature = 0;
                 double fuel = 0;

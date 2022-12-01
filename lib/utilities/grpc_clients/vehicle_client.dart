@@ -62,7 +62,7 @@ class VehicleClient {
     }
   }
 
-    Future<void> fillFuel({double amount = 0}) async {
+  Future<void> fillFuel({double amount = 0}) async {
     print(amount);
     try {
       final response = await stub.fillFuel(
@@ -70,9 +70,23 @@ class VehicleClient {
         options: CallOptions(compression: const GzipCodec()),
       );
       print(response.fuel);
-
     } catch (e) {
       print('Caught error: $e');
+    }
+  }
+
+  Future<double> getFuelLeft() async {
+    var ping = Ping(binary: true);
+
+    try {
+      final response = await stub.getTotalFuel(
+        ping,
+        options: CallOptions(compression: const GzipCodec()),
+      );
+      return response.fuel;
+    } catch (e) {
+      print('Caught error: $e');
+      return -1;
     }
   }
 
