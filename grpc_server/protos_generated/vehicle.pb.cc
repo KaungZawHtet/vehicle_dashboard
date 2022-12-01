@@ -138,18 +138,17 @@ const char descriptor_table_protodef_vehicle_2eproto[] PROTOBUF_SECTION_VARIABLE
   "(\001\022\r\n\005speed\030\002 \001(\001\022\014\n\004fuel\030\003 \001(\001\022\023\n\013tempe"
   "rature\030\004 \001(\001\022\020\n\010distance\030\005 \001(\001*;\n\tSpeedT"
   "ype\022\014\n\010LEVER_UP\020\000\022\014\n\010PRESERVE\020\001\022\010\n\004SLOW\020"
-  "\002\022\010\n\004STOP\020\0032\211\002\n\rDataExchanger\022G\n\021GetNumb"
-  "erDataFlow\022\024.vehicle.SpeedAction\032\030.vehic"
-  "le.NumberDataReply\"\0000\001\022A\n\rGetNumberData\022"
-  "\024.vehicle.SpeedAction\032\030.vehicle.NumberDa"
-  "taReply\"\000\0226\n\010FillFuel\022\023.vehicle.FuelAmou"
-  "nt\032\023.vehicle.FuelAmount\"\000\0224\n\014GetTotalFue"
-  "l\022\r.vehicle.Ping\032\023.vehicle.FuelAmount\"\000B"
-  "\006\242\002\003HLWb\006proto3"
+  "\002\022\010\n\004STOP\020\0032\372\001\n\rDataExchanger\022\?\n\013ManageS"
+  "peed\022\024.vehicle.SpeedAction\032\030.vehicle.Num"
+  "berDataReply\"\000\022:\n\rGetNumberData\022\r.vehicl"
+  "e.Ping\032\030.vehicle.NumberDataReply\"\000\0226\n\010Fi"
+  "llFuel\022\023.vehicle.FuelAmount\032\023.vehicle.Fu"
+  "elAmount\"\000\0224\n\014GetTotalFuel\022\r.vehicle.Pin"
+  "g\032\023.vehicle.FuelAmount\"\000B\006\242\002\003HLWb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_vehicle_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_vehicle_2eproto = {
-    false, false, 575, descriptor_table_protodef_vehicle_2eproto,
+    false, false, 560, descriptor_table_protodef_vehicle_2eproto,
     "vehicle.proto",
     &descriptor_table_vehicle_2eproto_once, nullptr, 0, 4,
     schemas, file_default_instances, TableStruct_vehicle_2eproto::offsets,

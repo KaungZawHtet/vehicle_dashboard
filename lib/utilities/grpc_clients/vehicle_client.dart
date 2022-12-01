@@ -19,12 +19,12 @@ class VehicleClient {
     stub = DataExchangerClient(channel);
   }
 
-  Stream<NumberDataReply> watchNumberDataFlow(
+  Stream<NumberDataReply> manageSpeed(
       SpeedType action, AppDb db) async* {
     try {
       SpeedAction request = SpeedAction()..speedType = action;
 
-      final response = await stub.getNumberData(
+      final response = await stub.manageSpeed(
         request,
         options: CallOptions(compression: const GzipCodec()),
       );
@@ -32,30 +32,36 @@ class VehicleClient {
           response.speed, response.fuel, response.temperature, DateTime.now());
 
       yield response;
-
-      /*  await for (var numberDataReply in stub.getNumberDataFlow(request)) {
-        print(numberDataReply.distance);
-        print(numberDataReply.fuel);
-        print(numberDataReply.rpm);
-        print(numberDataReply.speed);
-        print(numberDataReply.temperature);
-        print("==============");
-
-        yield numberDataReply; */
-
     } catch (e) {
       print('Caught error: $e');
     }
   }
 
+
+  Future<NumberDataReply> getNumberData( ) async {
+
+    Ping request = Ping()..binary = true;
+
+      final response = await stub.getNumberData(
+        request,
+        options: CallOptions(compression: const GzipCodec()),
+      );
+
+
+      return response;
+  }
+
+
+
+
+
   Stream<double> watchFillFuel({double amount = 0}) async* {
-    print(amount);
     try {
       final response = await stub.fillFuel(
         FuelAmount()..fuel = amount,
         options: CallOptions(compression: const GzipCodec()),
       );
-      print(response.fuel);
+
       yield response.fuel;
     } catch (e) {
       print('Caught error: $e');
@@ -78,11 +84,15 @@ class VehicleClient {
   Future<double> getFuelLeft() async {
     var ping = Ping(binary: true);
 
+
+
     try {
       final response = await stub.getTotalFuel(
         ping,
         options: CallOptions(compression: const GzipCodec()),
       );
+
+
       return response.fuel;
     } catch (e) {
       print('Caught error: $e');

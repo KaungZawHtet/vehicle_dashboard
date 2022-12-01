@@ -19,7 +19,7 @@ class RpmIndicator extends StatelessWidget {
       needleColor: Colors.blue,
       decimalPlaces: 0,
       isAnimate: true,
-      animationDuration: 2000,
+      animationDuration: 500,
       unit: const TextSpan(text: 'x1000rpm', style: TextStyle(fontSize: 10)),
     );
   }

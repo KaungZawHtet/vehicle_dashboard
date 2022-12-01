@@ -21,40 +21,48 @@ class _FuelWindowState extends State<FuelWindow> {
   @override
   Widget build(BuildContext context) {
     final grpcClient = Provider.of<VehicleClient>(context);
-    grpcClient.watchFillFuel();
-    final streamController = Provider.of<StreamController<double>>(context);
-    final fuelInside = Provider.of<double>(context);
-    return Center(
-        child: StreamBuilder<double>(
-            stream: streamController.stream.asyncExpand(
-                (fuelToFill) => grpcClient.watchFillFuel(amount: fuelToFill)),
-           // initialData: fuelInside,
-            builder: (context, snapshot) {
-              double fuelToFill = 0;
-              double fuelLeft = 0;
-              if (snapshot.hasData) {
-                fuelToFill = TOTAL_FUEL - snapshot.data!;
-                fuelLeft = snapshot.data!;
-              }
 
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FuelDisplayCard(
-                    fuelLeft: fuelLeft,
-                  ),
-                  AnimatedButton(
-                    height: 80,
-                    width: 200,
-                    color: Colors.indigo,
-                    child: const DriveButtonSign(
-                        text: "Fill", icon: MdiIcons.gasStation),
-                    onPressed: () {
-                      streamController.add(fuelToFill);
-                    },
-                  )
-                ],
-              );
-            }));
+    final streamController = Provider.of<StreamController<double>>(context);
+
+    return FutureBuilder<double>(
+        future: grpcClient.getFuelLeft(),
+        builder: (context, futureSnapshot) {
+          if (futureSnapshot.hasData) {
+            return Center(
+                child: StreamBuilder<double>(
+                    stream: streamController.stream.asyncExpand((fuelToFill) =>
+                        grpcClient.watchFillFuel(amount: fuelToFill)),
+                     initialData: futureSnapshot.data,
+                    builder: (context, streamSnapshot) {
+                      double fuelToFill = 0;
+                      double fuelLeft = 0;
+                      if (streamSnapshot.hasData) {
+                        fuelToFill = TOTAL_FUEL - streamSnapshot.data!;
+                        fuelLeft = streamSnapshot.data!;
+                      }
+
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FuelDisplayCard(
+                            fuelLeft: fuelLeft,
+                          ),
+                          AnimatedButton(
+                            height: 80,
+                            width: 200,
+                            color: Colors.indigo,
+                            child: const DriveButtonSign(
+                                text: "Fill", icon: MdiIcons.gasStation),
+                            onPressed: () {
+                              streamController.add(fuelToFill);
+                            },
+                          )
+                        ],
+                      );
+                    }));
+          } else {
+            return Container();
+          }
+        });
   }
 }

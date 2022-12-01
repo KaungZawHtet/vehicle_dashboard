@@ -14,16 +14,16 @@ import 'vehicle.pb.dart' as $0;
 export 'vehicle.pb.dart';
 
 class DataExchangerClient extends $grpc.Client {
-  static final _$getNumberDataFlow =
+  static final _$manageSpeed =
       $grpc.ClientMethod<$0.SpeedAction, $0.NumberDataReply>(
-          '/vehicle.DataExchanger/GetNumberDataFlow',
+          '/vehicle.DataExchanger/ManageSpeed',
           ($0.SpeedAction value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.NumberDataReply.fromBuffer(value));
   static final _$getNumberData =
-      $grpc.ClientMethod<$0.SpeedAction, $0.NumberDataReply>(
+      $grpc.ClientMethod<$0.Ping, $0.NumberDataReply>(
           '/vehicle.DataExchanger/GetNumberData',
-          ($0.SpeedAction value) => value.writeToBuffer(),
+          ($0.Ping value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.NumberDataReply.fromBuffer(value));
   static final _$fillFuel = $grpc.ClientMethod<$0.FuelAmount, $0.FuelAmount>(
@@ -40,15 +40,12 @@ class DataExchangerClient extends $grpc.Client {
       $core.Iterable<$grpc.ClientInterceptor>? interceptors})
       : super(channel, options: options, interceptors: interceptors);
 
-  $grpc.ResponseStream<$0.NumberDataReply> getNumberDataFlow(
-      $0.SpeedAction request,
+  $grpc.ResponseFuture<$0.NumberDataReply> manageSpeed($0.SpeedAction request,
       {$grpc.CallOptions? options}) {
-    return $createStreamingCall(
-        _$getNumberDataFlow, $async.Stream.fromIterable([request]),
-        options: options);
+    return $createUnaryCall(_$manageSpeed, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.NumberDataReply> getNumberData($0.SpeedAction request,
+  $grpc.ResponseFuture<$0.NumberDataReply> getNumberData($0.Ping request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getNumberData, request, options: options);
   }
@@ -69,18 +66,18 @@ abstract class DataExchangerServiceBase extends $grpc.Service {
 
   DataExchangerServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.SpeedAction, $0.NumberDataReply>(
-        'GetNumberDataFlow',
-        getNumberDataFlow_Pre,
+        'ManageSpeed',
+        manageSpeed_Pre,
         false,
-        true,
+        false,
         ($core.List<$core.int> value) => $0.SpeedAction.fromBuffer(value),
         ($0.NumberDataReply value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.SpeedAction, $0.NumberDataReply>(
+    $addMethod($grpc.ServiceMethod<$0.Ping, $0.NumberDataReply>(
         'GetNumberData',
         getNumberData_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $0.SpeedAction.fromBuffer(value),
+        ($core.List<$core.int> value) => $0.Ping.fromBuffer(value),
         ($0.NumberDataReply value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.FuelAmount, $0.FuelAmount>(
         'FillFuel',
@@ -98,13 +95,13 @@ abstract class DataExchangerServiceBase extends $grpc.Service {
         ($0.FuelAmount value) => value.writeToBuffer()));
   }
 
-  $async.Stream<$0.NumberDataReply> getNumberDataFlow_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.SpeedAction> request) async* {
-    yield* getNumberDataFlow(call, await request);
+  $async.Future<$0.NumberDataReply> manageSpeed_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.SpeedAction> request) async {
+    return manageSpeed(call, await request);
   }
 
   $async.Future<$0.NumberDataReply> getNumberData_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.SpeedAction> request) async {
+      $grpc.ServiceCall call, $async.Future<$0.Ping> request) async {
     return getNumberData(call, await request);
   }
 
@@ -118,10 +115,10 @@ abstract class DataExchangerServiceBase extends $grpc.Service {
     return getTotalFuel(call, await request);
   }
 
-  $async.Stream<$0.NumberDataReply> getNumberDataFlow(
+  $async.Future<$0.NumberDataReply> manageSpeed(
       $grpc.ServiceCall call, $0.SpeedAction request);
   $async.Future<$0.NumberDataReply> getNumberData(
-      $grpc.ServiceCall call, $0.SpeedAction request);
+      $grpc.ServiceCall call, $0.Ping request);
   $async.Future<$0.FuelAmount> fillFuel(
       $grpc.ServiceCall call, $0.FuelAmount request);
   $async.Future<$0.FuelAmount> getTotalFuel(

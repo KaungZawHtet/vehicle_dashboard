@@ -7,8 +7,8 @@ package vehicle;
 
 service DataExchanger {
 
-  rpc GetNumberDataFlow (SpeedAction) returns (stream NumberDataReply) {}
-  rpc GetNumberData (SpeedAction) returns ( NumberDataReply) {}
+  rpc ManageSpeed (SpeedAction) returns ( NumberDataReply) {}
+  rpc GetNumberData (Ping) returns ( NumberDataReply) {}
   rpc FillFuel (FuelAmount) returns ( FuelAmount) {}
   rpc GetTotalFuel (Ping) returns ( FuelAmount) {}
 

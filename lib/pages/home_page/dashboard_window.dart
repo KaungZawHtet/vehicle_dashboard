@@ -25,56 +25,67 @@ class DashboardWindow extends StatelessWidget {
     final grpcClient = Provider.of<VehicleClient>(context);
 
     final db = Provider.of<AppDb>(context);
-    final fuelInside = Provider.of<double>(context);
     final screamController = Provider.of<StreamController<SpeedType>>(context);
-     screamController.add(SpeedType.SLOW);
+    screamController.add(SpeedType.SLOW);
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 10),
-          StreamBuilder<NumberDataReply>(
-              //  initialData: NumberDataReply(fuel: fuelInside),
+          FutureBuilder<NumberDataReply>(
+            future: grpcClient.getNumberData(),
+            builder: (context, futureSnapshot) {
 
-              stream: screamController.stream.asyncExpand(
-                  (event) => grpcClient.watchNumberDataFlow(event, db)),
-              builder: (context, snapshot) {
-                double temperature = 0;
-                double fuel = 0;
-                double rpm = 0;
-                double speed = 0;
-                double distance = 0;
 
-                if (snapshot.hasData) {
-                  temperature = snapshot.data!.temperature;
-                  fuel = snapshot.data!.fuel;
-                  rpm = snapshot.data!.rpm;
-                  speed = snapshot.data!.speed;
-                  distance = snapshot.data!.distance;
-                } else {
-                  temperature = 0;
-                  fuel = 0;
-                  rpm = 0;
-                  speed = 0;
-                }
+              if (futureSnapshot.hasData) {
 
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    RpmIndicator(rpm: rpm),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        FuelIndicator(fuel: fuel),
-                        TemperatureIndicator(temperature: temperature),
-                        const SizedBox(height: 20),
-                        DistanceIndicator(distance: distance)
-                      ],
-                    ),
-                    SpeedIndicator(speed: speed),
-                  ],
-                );
-              }),
+                return StreamBuilder<NumberDataReply>(
+                    initialData: futureSnapshot.data!,
+                    stream: screamController.stream.asyncExpand(
+                        (event) => grpcClient.manageSpeed(event, db)),
+                    builder: (context, streamSnapshot) {
+                      double temperature = 0;
+                      double fuel = 0;
+                      double rpm = 0;
+                      double speed = 0;
+                      double distance = 0;
+
+                      if (streamSnapshot.hasData) {
+                        temperature = streamSnapshot.data!.temperature;
+                        fuel = streamSnapshot.data!.fuel;
+                        rpm = streamSnapshot.data!.rpm;
+                        speed = streamSnapshot.data!.speed;
+                        distance = streamSnapshot.data!.distance;
+                      } else {
+                        temperature = 0;
+                        fuel = 0;
+                        rpm = 0;
+                        speed = 0;
+                      }
+
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RpmIndicator(rpm: rpm),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              FuelIndicator(fuel: fuel),
+                              TemperatureIndicator(temperature: temperature),
+                              const SizedBox(height: 20),
+                              DistanceIndicator(distance: distance)
+                            ],
+                          ),
+                          SpeedIndicator(speed: speed),
+                        ],
+                      );
+                    });
+              } else {
+                return Container();
+              }
+            },
+          ),
           const Divider(),
           const DrivePanel()
         ],

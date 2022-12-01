@@ -22,7 +22,7 @@ class SpeedIndicator extends StatelessWidget {
       needleColor: Colors.blue,
       decimalPlaces: 0,
       isAnimate: true,
-      animationDuration: 2000,
+      animationDuration: 500,
       unit: const TextSpan(text: 'Km/h', style: TextStyle(fontSize: 10)),
     );
   }

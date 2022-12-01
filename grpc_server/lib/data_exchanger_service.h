@@ -25,8 +25,8 @@ using vehicle::NumberDataReply;
 class DataExchangerServiceImpl final : public DataExchanger::Service
 {
 
-    Status GetNumberDataFlow(ServerContext *context, const SpeedAction *request, ServerWriter<NumberDataReply> *writer) override;
-    Status GetNumberData(ServerContext *context, const SpeedAction *request, NumberDataReply *response) override;
+    Status GetNumberData(ServerContext *context, const Ping *request, NumberDataReply *response) override;
+    Status ManageSpeed(ServerContext *context, const SpeedAction *request, NumberDataReply *response) override;
     Status FillFuel(ServerContext *context, const FuelAmount *request, FuelAmount *response) override;
     Status GetTotalFuel(ServerContext *context, const Ping *request, FuelAmount *response) override;
 };

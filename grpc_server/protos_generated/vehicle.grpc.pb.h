@@ -35,20 +35,18 @@ class DataExchanger final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    std::unique_ptr< ::grpc::ClientReaderInterface< ::vehicle::NumberDataReply>> GetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request) {
-      return std::unique_ptr< ::grpc::ClientReaderInterface< ::vehicle::NumberDataReply>>(GetNumberDataFlowRaw(context, request));
+    virtual ::grpc::Status ManageSpeed(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::vehicle::NumberDataReply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>> AsyncManageSpeed(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>>(AsyncManageSpeedRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>> AsyncGetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>>(AsyncGetNumberDataFlowRaw(context, request, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>> PrepareAsyncManageSpeed(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>>(PrepareAsyncManageSpeedRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>> PrepareAsyncGetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>>(PrepareAsyncGetNumberDataFlowRaw(context, request, cq));
-    }
-    virtual ::grpc::Status GetNumberData(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::vehicle::NumberDataReply* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>> AsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status GetNumberData(::grpc::ClientContext* context, const ::vehicle::Ping& request, ::vehicle::NumberDataReply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>> AsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::Ping& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>>(AsyncGetNumberDataRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>> PrepareAsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>> PrepareAsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::Ping& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>>(PrepareAsyncGetNumberDataRaw(context, request, cq));
     }
     virtual ::grpc::Status FillFuel(::grpc::ClientContext* context, const ::vehicle::FuelAmount& request, ::vehicle::FuelAmount* response) = 0;
@@ -68,9 +66,10 @@ class DataExchanger final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void GetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::SpeedAction* request, ::grpc::ClientReadReactor< ::vehicle::NumberDataReply>* reactor) = 0;
-      virtual void GetNumberData(::grpc::ClientContext* context, const ::vehicle::SpeedAction* request, ::vehicle::NumberDataReply* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetNumberData(::grpc::ClientContext* context, const ::vehicle::SpeedAction* request, ::vehicle::NumberDataReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ManageSpeed(::grpc::ClientContext* context, const ::vehicle::SpeedAction* request, ::vehicle::NumberDataReply* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ManageSpeed(::grpc::ClientContext* context, const ::vehicle::SpeedAction* request, ::vehicle::NumberDataReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetNumberData(::grpc::ClientContext* context, const ::vehicle::Ping* request, ::vehicle::NumberDataReply* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetNumberData(::grpc::ClientContext* context, const ::vehicle::Ping* request, ::vehicle::NumberDataReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void FillFuel(::grpc::ClientContext* context, const ::vehicle::FuelAmount* request, ::vehicle::FuelAmount* response, std::function<void(::grpc::Status)>) = 0;
       virtual void FillFuel(::grpc::ClientContext* context, const ::vehicle::FuelAmount* request, ::vehicle::FuelAmount* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetTotalFuel(::grpc::ClientContext* context, const ::vehicle::Ping* request, ::vehicle::FuelAmount* response, std::function<void(::grpc::Status)>) = 0;
@@ -80,11 +79,10 @@ class DataExchanger final {
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientReaderInterface< ::vehicle::NumberDataReply>* GetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>* AsyncGetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::vehicle::NumberDataReply>* PrepareAsyncGetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>* AsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>* PrepareAsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>* AsyncManageSpeedRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>* PrepareAsyncManageSpeedRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>* AsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::Ping& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::NumberDataReply>* PrepareAsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::Ping& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::FuelAmount>* AsyncFillFuelRaw(::grpc::ClientContext* context, const ::vehicle::FuelAmount& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::FuelAmount>* PrepareAsyncFillFuelRaw(::grpc::ClientContext* context, const ::vehicle::FuelAmount& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vehicle::FuelAmount>* AsyncGetTotalFuelRaw(::grpc::ClientContext* context, const ::vehicle::Ping& request, ::grpc::CompletionQueue* cq) = 0;
@@ -93,20 +91,18 @@ class DataExchanger final {
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    std::unique_ptr< ::grpc::ClientReader< ::vehicle::NumberDataReply>> GetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request) {
-      return std::unique_ptr< ::grpc::ClientReader< ::vehicle::NumberDataReply>>(GetNumberDataFlowRaw(context, request));
+    ::grpc::Status ManageSpeed(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::vehicle::NumberDataReply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>> AsyncManageSpeed(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>>(AsyncManageSpeedRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>> AsyncGetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>>(AsyncGetNumberDataFlowRaw(context, request, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>> PrepareAsyncManageSpeed(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>>(PrepareAsyncManageSpeedRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>> PrepareAsyncGetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>>(PrepareAsyncGetNumberDataFlowRaw(context, request, cq));
-    }
-    ::grpc::Status GetNumberData(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::vehicle::NumberDataReply* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>> AsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status GetNumberData(::grpc::ClientContext* context, const ::vehicle::Ping& request, ::vehicle::NumberDataReply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>> AsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::Ping& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>>(AsyncGetNumberDataRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>> PrepareAsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>> PrepareAsyncGetNumberData(::grpc::ClientContext* context, const ::vehicle::Ping& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>>(PrepareAsyncGetNumberDataRaw(context, request, cq));
     }
     ::grpc::Status FillFuel(::grpc::ClientContext* context, const ::vehicle::FuelAmount& request, ::vehicle::FuelAmount* response) override;
@@ -126,9 +122,10 @@ class DataExchanger final {
     class async final :
       public StubInterface::async_interface {
      public:
-      void GetNumberDataFlow(::grpc::ClientContext* context, const ::vehicle::SpeedAction* request, ::grpc::ClientReadReactor< ::vehicle::NumberDataReply>* reactor) override;
-      void GetNumberData(::grpc::ClientContext* context, const ::vehicle::SpeedAction* request, ::vehicle::NumberDataReply* response, std::function<void(::grpc::Status)>) override;
-      void GetNumberData(::grpc::ClientContext* context, const ::vehicle::SpeedAction* request, ::vehicle::NumberDataReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ManageSpeed(::grpc::ClientContext* context, const ::vehicle::SpeedAction* request, ::vehicle::NumberDataReply* response, std::function<void(::grpc::Status)>) override;
+      void ManageSpeed(::grpc::ClientContext* context, const ::vehicle::SpeedAction* request, ::vehicle::NumberDataReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetNumberData(::grpc::ClientContext* context, const ::vehicle::Ping* request, ::vehicle::NumberDataReply* response, std::function<void(::grpc::Status)>) override;
+      void GetNumberData(::grpc::ClientContext* context, const ::vehicle::Ping* request, ::vehicle::NumberDataReply* response, ::grpc::ClientUnaryReactor* reactor) override;
       void FillFuel(::grpc::ClientContext* context, const ::vehicle::FuelAmount* request, ::vehicle::FuelAmount* response, std::function<void(::grpc::Status)>) override;
       void FillFuel(::grpc::ClientContext* context, const ::vehicle::FuelAmount* request, ::vehicle::FuelAmount* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetTotalFuel(::grpc::ClientContext* context, const ::vehicle::Ping* request, ::vehicle::FuelAmount* response, std::function<void(::grpc::Status)>) override;
@@ -144,16 +141,15 @@ class DataExchanger final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientReader< ::vehicle::NumberDataReply>* GetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request) override;
-    ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>* AsyncGetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq, void* tag) override;
-    ::grpc::ClientAsyncReader< ::vehicle::NumberDataReply>* PrepareAsyncGetNumberDataFlowRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>* AsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>* PrepareAsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>* AsyncManageSpeedRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>* PrepareAsyncManageSpeedRaw(::grpc::ClientContext* context, const ::vehicle::SpeedAction& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>* AsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::Ping& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::vehicle::NumberDataReply>* PrepareAsyncGetNumberDataRaw(::grpc::ClientContext* context, const ::vehicle::Ping& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vehicle::FuelAmount>* AsyncFillFuelRaw(::grpc::ClientContext* context, const ::vehicle::FuelAmount& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vehicle::FuelAmount>* PrepareAsyncFillFuelRaw(::grpc::ClientContext* context, const ::vehicle::FuelAmount& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vehicle::FuelAmount>* AsyncGetTotalFuelRaw(::grpc::ClientContext* context, const ::vehicle::Ping& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vehicle::FuelAmount>* PrepareAsyncGetTotalFuelRaw(::grpc::ClientContext* context, const ::vehicle::Ping& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_GetNumberDataFlow_;
+    const ::grpc::internal::RpcMethod rpcmethod_ManageSpeed_;
     const ::grpc::internal::RpcMethod rpcmethod_GetNumberData_;
     const ::grpc::internal::RpcMethod rpcmethod_FillFuel_;
     const ::grpc::internal::RpcMethod rpcmethod_GetTotalFuel_;
@@ -164,29 +160,29 @@ class DataExchanger final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* context, const ::vehicle::SpeedAction* request, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* writer);
-    virtual ::grpc::Status GetNumberData(::grpc::ServerContext* context, const ::vehicle::SpeedAction* request, ::vehicle::NumberDataReply* response);
+    virtual ::grpc::Status ManageSpeed(::grpc::ServerContext* context, const ::vehicle::SpeedAction* request, ::vehicle::NumberDataReply* response);
+    virtual ::grpc::Status GetNumberData(::grpc::ServerContext* context, const ::vehicle::Ping* request, ::vehicle::NumberDataReply* response);
     virtual ::grpc::Status FillFuel(::grpc::ServerContext* context, const ::vehicle::FuelAmount* request, ::vehicle::FuelAmount* response);
     virtual ::grpc::Status GetTotalFuel(::grpc::ServerContext* context, const ::vehicle::Ping* request, ::vehicle::FuelAmount* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetNumberDataFlow : public BaseClass {
+  class WithAsyncMethod_ManageSpeed : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_GetNumberDataFlow() {
+    WithAsyncMethod_ManageSpeed() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_GetNumberDataFlow() override {
+    ~WithAsyncMethod_ManageSpeed() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+    ::grpc::Status ManageSpeed(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetNumberDataFlow(::grpc::ServerContext* context, ::vehicle::SpeedAction* request, ::grpc::ServerAsyncWriter< ::vehicle::NumberDataReply>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
+    void RequestManageSpeed(::grpc::ServerContext* context, ::vehicle::SpeedAction* request, ::grpc::ServerAsyncResponseWriter< ::vehicle::NumberDataReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -201,11 +197,11 @@ class DataExchanger final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
+    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::Ping* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetNumberData(::grpc::ServerContext* context, ::vehicle::SpeedAction* request, ::grpc::ServerAsyncResponseWriter< ::vehicle::NumberDataReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetNumberData(::grpc::ServerContext* context, ::vehicle::Ping* request, ::grpc::ServerAsyncResponseWriter< ::vehicle::NumberDataReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -249,28 +245,33 @@ class DataExchanger final {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetNumberDataFlow<WithAsyncMethod_GetNumberData<WithAsyncMethod_FillFuel<WithAsyncMethod_GetTotalFuel<Service > > > > AsyncService;
+  typedef WithAsyncMethod_ManageSpeed<WithAsyncMethod_GetNumberData<WithAsyncMethod_FillFuel<WithAsyncMethod_GetTotalFuel<Service > > > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_GetNumberDataFlow : public BaseClass {
+  class WithCallbackMethod_ManageSpeed : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetNumberDataFlow() {
+    WithCallbackMethod_ManageSpeed() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackServerStreamingHandler< ::vehicle::SpeedAction, ::vehicle::NumberDataReply>(
+          new ::grpc::internal::CallbackUnaryHandler< ::vehicle::SpeedAction, ::vehicle::NumberDataReply>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::vehicle::SpeedAction* request) { return this->GetNumberDataFlow(context, request); }));
+                   ::grpc::CallbackServerContext* context, const ::vehicle::SpeedAction* request, ::vehicle::NumberDataReply* response) { return this->ManageSpeed(context, request, response); }));}
+    void SetMessageAllocatorFor_ManageSpeed(
+        ::grpc::MessageAllocator< ::vehicle::SpeedAction, ::vehicle::NumberDataReply>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::vehicle::SpeedAction, ::vehicle::NumberDataReply>*>(handler)
+              ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetNumberDataFlow() override {
+    ~WithCallbackMethod_ManageSpeed() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+    ::grpc::Status ManageSpeed(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerWriteReactor< ::vehicle::NumberDataReply>* GetNumberDataFlow(
-      ::grpc::CallbackServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* ManageSpeed(
+      ::grpc::CallbackServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_GetNumberData : public BaseClass {
@@ -279,25 +280,25 @@ class DataExchanger final {
    public:
     WithCallbackMethod_GetNumberData() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::vehicle::SpeedAction, ::vehicle::NumberDataReply>(
+          new ::grpc::internal::CallbackUnaryHandler< ::vehicle::Ping, ::vehicle::NumberDataReply>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::vehicle::SpeedAction* request, ::vehicle::NumberDataReply* response) { return this->GetNumberData(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::vehicle::Ping* request, ::vehicle::NumberDataReply* response) { return this->GetNumberData(context, request, response); }));}
     void SetMessageAllocatorFor_GetNumberData(
-        ::grpc::MessageAllocator< ::vehicle::SpeedAction, ::vehicle::NumberDataReply>* allocator) {
+        ::grpc::MessageAllocator< ::vehicle::Ping, ::vehicle::NumberDataReply>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::vehicle::SpeedAction, ::vehicle::NumberDataReply>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::vehicle::Ping, ::vehicle::NumberDataReply>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_GetNumberData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
+    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::Ping* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetNumberData(
-      ::grpc::CallbackServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::vehicle::Ping* /*request*/, ::vehicle::NumberDataReply* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_FillFuel : public BaseClass {
@@ -353,21 +354,21 @@ class DataExchanger final {
     virtual ::grpc::ServerUnaryReactor* GetTotalFuel(
       ::grpc::CallbackServerContext* /*context*/, const ::vehicle::Ping* /*request*/, ::vehicle::FuelAmount* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetNumberDataFlow<WithCallbackMethod_GetNumberData<WithCallbackMethod_FillFuel<WithCallbackMethod_GetTotalFuel<Service > > > > CallbackService;
+  typedef WithCallbackMethod_ManageSpeed<WithCallbackMethod_GetNumberData<WithCallbackMethod_FillFuel<WithCallbackMethod_GetTotalFuel<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_GetNumberDataFlow : public BaseClass {
+  class WithGenericMethod_ManageSpeed : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_GetNumberDataFlow() {
+    WithGenericMethod_ManageSpeed() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_GetNumberDataFlow() override {
+    ~WithGenericMethod_ManageSpeed() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+    ::grpc::Status ManageSpeed(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -384,7 +385,7 @@ class DataExchanger final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
+    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::Ping* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -424,23 +425,23 @@ class DataExchanger final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetNumberDataFlow : public BaseClass {
+  class WithRawMethod_ManageSpeed : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_GetNumberDataFlow() {
+    WithRawMethod_ManageSpeed() {
       ::grpc::Service::MarkMethodRaw(0);
     }
-    ~WithRawMethod_GetNumberDataFlow() override {
+    ~WithRawMethod_ManageSpeed() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+    ::grpc::Status ManageSpeed(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetNumberDataFlow(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
+    void RequestManageSpeed(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -455,7 +456,7 @@ class DataExchanger final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
+    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::Ping* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -504,26 +505,26 @@ class DataExchanger final {
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetNumberDataFlow : public BaseClass {
+  class WithRawCallbackMethod_ManageSpeed : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetNumberDataFlow() {
+    WithRawCallbackMethod_ManageSpeed() {
       ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->GetNumberDataFlow(context, request); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ManageSpeed(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetNumberDataFlow() override {
+    ~WithRawCallbackMethod_ManageSpeed() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
+    ::grpc::Status ManageSpeed(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* GetNumberDataFlow(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* ManageSpeed(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithRawCallbackMethod_GetNumberData : public BaseClass {
@@ -540,7 +541,7 @@ class DataExchanger final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
+    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::Ping* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -592,6 +593,33 @@ class DataExchanger final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_ManageSpeed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ManageSpeed() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::vehicle::SpeedAction, ::vehicle::NumberDataReply>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::vehicle::SpeedAction, ::vehicle::NumberDataReply>* streamer) {
+                       return this->StreamedManageSpeed(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ManageSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ManageSpeed(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedManageSpeed(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::vehicle::SpeedAction,::vehicle::NumberDataReply>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetNumberData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -599,10 +627,10 @@ class DataExchanger final {
     WithStreamedUnaryMethod_GetNumberData() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::vehicle::SpeedAction, ::vehicle::NumberDataReply>(
+          ::vehicle::Ping, ::vehicle::NumberDataReply>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::vehicle::SpeedAction, ::vehicle::NumberDataReply>* streamer) {
+                     ::vehicle::Ping, ::vehicle::NumberDataReply>* streamer) {
                        return this->StreamedGetNumberData(context,
                          streamer);
                   }));
@@ -611,12 +639,12 @@ class DataExchanger final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
+    ::grpc::Status GetNumberData(::grpc::ServerContext* /*context*/, const ::vehicle::Ping* /*request*/, ::vehicle::NumberDataReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetNumberData(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::vehicle::SpeedAction,::vehicle::NumberDataReply>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetNumberData(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::vehicle::Ping,::vehicle::NumberDataReply>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_FillFuel : public BaseClass {
@@ -672,36 +700,9 @@ class DataExchanger final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetTotalFuel(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::vehicle::Ping,::vehicle::FuelAmount>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetNumberData<WithStreamedUnaryMethod_FillFuel<WithStreamedUnaryMethod_GetTotalFuel<Service > > > StreamedUnaryService;
-  template <class BaseClass>
-  class WithSplitStreamingMethod_GetNumberDataFlow : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithSplitStreamingMethod_GetNumberDataFlow() {
-      ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::SplitServerStreamingHandler<
-          ::vehicle::SpeedAction, ::vehicle::NumberDataReply>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerSplitStreamer<
-                     ::vehicle::SpeedAction, ::vehicle::NumberDataReply>* streamer) {
-                       return this->StreamedGetNumberDataFlow(context,
-                         streamer);
-                  }));
-    }
-    ~WithSplitStreamingMethod_GetNumberDataFlow() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetNumberDataFlow(::grpc::ServerContext* /*context*/, const ::vehicle::SpeedAction* /*request*/, ::grpc::ServerWriter< ::vehicle::NumberDataReply>* /*writer*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with split streamed
-    virtual ::grpc::Status StreamedGetNumberDataFlow(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::vehicle::SpeedAction,::vehicle::NumberDataReply>* server_split_streamer) = 0;
-  };
-  typedef WithSplitStreamingMethod_GetNumberDataFlow<Service > SplitStreamedService;
-  typedef WithSplitStreamingMethod_GetNumberDataFlow<WithStreamedUnaryMethod_GetNumberData<WithStreamedUnaryMethod_FillFuel<WithStreamedUnaryMethod_GetTotalFuel<Service > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_ManageSpeed<WithStreamedUnaryMethod_GetNumberData<WithStreamedUnaryMethod_FillFuel<WithStreamedUnaryMethod_GetTotalFuel<Service > > > > StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef WithStreamedUnaryMethod_ManageSpeed<WithStreamedUnaryMethod_GetNumberData<WithStreamedUnaryMethod_FillFuel<WithStreamedUnaryMethod_GetTotalFuel<Service > > > > StreamedService;
 };
 
 }  // namespace vehicle
