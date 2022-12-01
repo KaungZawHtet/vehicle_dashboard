@@ -8,6 +8,9 @@ import 'package:vehicle_dashboard/protos_generated/vehicle.pbgrpc.dart';
 
 import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
 import 'package:window_manager/window_manager.dart';
+const double APP_WIDTH = 670;
+const double APP_HEIGHT = 600;
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,9 +18,9 @@ void main() async {
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = const WindowOptions(
-    size: Size(670, 660),
-    maximumSize: Size(670, 660),
-    minimumSize: Size(670, 660),
+    size: Size(APP_WIDTH, APP_HEIGHT),
+    maximumSize: Size(APP_WIDTH, APP_HEIGHT),
+    minimumSize: Size(APP_WIDTH, APP_HEIGHT),
     center: true,
   );
   windowManager.waitUntilReadyToShow(windowOptions, () async {
@@ -25,16 +28,12 @@ void main() async {
     await windowManager.focus();
   });
 
-  var vehicleClient = VehicleClient();
-
-  double fuelInside = await vehicleClient.getFuelLeft();
   runApp(MultiProvider(providers: [
-    Provider<VehicleClient>.value(value: vehicleClient),
+    Provider<VehicleClient>.value(value: VehicleClient()),
     Provider<StreamController<SpeedType>>.value(
         value: StreamController<SpeedType>.broadcast()),
     Provider<AppDb>.value(value: AppDb()),
     Provider<StreamController<double>>.value(
         value: StreamController<double>.broadcast()),
-        Provider<double>.value(value: fuelInside)
   ], child: const MyApp()));
 }

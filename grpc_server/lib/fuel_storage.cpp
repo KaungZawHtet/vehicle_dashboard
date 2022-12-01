@@ -9,7 +9,7 @@ return this->total_fuel;
 
 void FuelStorage::calculateFuel(double rpm)
 {
-    if ( rpm <= 1 )
+    if ( rpm >0 &&  rpm <= 1 )
         this->total_fuel -= 1;
 
     else if ( rpm > 2 && rpm <= 3 )

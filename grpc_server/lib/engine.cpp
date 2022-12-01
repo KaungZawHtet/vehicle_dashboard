@@ -35,6 +35,7 @@ bool Engine::canNotDrive()
         this->lever_count = 0;
         this->temperature = 0;
         this->fuelStorage.fillFuel(0);
+        this->distance = 0;
 
         return NO_MORE_DRIVE;
     }
@@ -82,7 +83,7 @@ void Engine::calculateLeverUp()
         if(this->speed > 240) this->speed = 240;
         if (this->rpm > 8) this->rpm = 8;
         }
-        else if (this->rpm  <=8.0)
+        else if (this->rpm  >=8.0)
         {
         this->rpm = 8.0;
         this->temperature += 10;
@@ -105,8 +106,7 @@ void Engine::calculateLeverUp()
 void Engine::calculateSlow()
 {
     // Calculation are just for demonstration. Don't use this in real world driving.
-        if (this->canNotDrive())
-        return;
+        if (this->canNotDrive())return;
 
 
         if (this->rpm - 0.6 < 0)

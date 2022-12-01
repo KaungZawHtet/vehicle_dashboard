@@ -1,3 +1,7 @@
 import 'package:flutter/material.dart';
 
-var themeColor = Colors.black;
+const themeColor = Colors.black;
+const driveHelp = "";
+const fuelHelp = "";
+const recordHelp = "";
+
