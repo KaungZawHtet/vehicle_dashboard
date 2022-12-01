@@ -6,21 +6,22 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vehicle_dashboard/db/db_client.dart';
 import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/distance_indicator.dart';
 
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/fuel_indicator.dart';
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/rpm_indicator.dart';
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/speed_indicator.dart';
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/temperature_indicator.dart';
-import 'package:vehicle_dashboard/widgets/home_page/drive_panel/drive_panel.dart';
+import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/indicator_panel/distance_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/indicator_panel/fuel_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/indicator_panel/rpm_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/indicator_panel/speed_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/indicator_panel/temperature_indicator.dart';
+
+import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/drive_panel/drive_panel.dart';
 
 import '../../protos_generated/vehicle.pb.dart';
 
 class DashboardWindow extends StatelessWidget {
-  DashboardWindow({super.key});
+   DashboardWindow({super.key});
 
-  late VehicleClient grpcClient;
-  late AppDb db;
+   late  VehicleClient grpcClient;
+   late  AppDb db;
 
   @override
   Widget build(BuildContext context) {

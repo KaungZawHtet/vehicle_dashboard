@@ -74,8 +74,8 @@ Status DataExchangerServiceImpl::GetNumberData(ServerContext *context, const Spe
     switch (type)
     {
     case vehicle::LEVER_UP:
-        engine.calculateLeverUp();
-        break;
+    engine.calculateLeverUp();
+    break;
 
     case vehicle::PRESERVE:
         engine.calculatePreserve();

@@ -28,12 +28,8 @@ class VehicleClient {
         request,
         options: CallOptions(compression: const GzipCodec()),
       );
-      db.insertRecord
-      (action.toString(),response.distance,
-      response.rpm,
-      response.speed,response.fuel,
-      response.temperature, DateTime.now());
-
+      db.insertRecord(action.toString(), response.distance, response.rpm,
+          response.speed, response.fuel, response.temperature, DateTime.now());
 
       yield response;
 
@@ -51,20 +47,33 @@ class VehicleClient {
       print('Caught error: $e');
     }
   }
-  Stream<double> watchFillFuel ({double amount = 0}) async*
-  {
+
+  Stream<double> watchFillFuel({double amount = 0}) async* {
+    print(amount);
     try {
       final response = await stub.fillFuel(
         FuelAmount()..fuel = amount,
         options: CallOptions(compression: const GzipCodec()),
       );
+      print(response.fuel);
       yield response.fuel;
     } catch (e) {
       print('Caught error: $e');
-
     }
+  }
 
+    Future<void> fillFuel({double amount = 0}) async {
+    print(amount);
+    try {
+      final response = await stub.fillFuel(
+        FuelAmount()..fuel = amount,
+        options: CallOptions(compression: const GzipCodec()),
+      );
+      print(response.fuel);
 
+    } catch (e) {
+      print('Caught error: $e');
+    }
   }
 
 /*   Future<int> getTemperature(String name) async {

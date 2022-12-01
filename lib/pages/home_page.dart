@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.oil_barrel),
-              label: 'Gasoline',
+              label: 'Fuel',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.book),
