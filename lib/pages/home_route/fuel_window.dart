@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:vehicle_dashboard/constants.dart';
 
 import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/drive_panel/drive_button_sign.dart';
+import 'package:vehicle_dashboard/widgets/home_page/drive_window/control_panel/drive_button_sign.dart';
 import 'package:vehicle_dashboard/widgets/home_page/fuel_window/fuel_display_card.dart';
 
 class FuelWindow extends StatefulWidget {

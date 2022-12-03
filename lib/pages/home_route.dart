@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vehicle_dashboard/db/db_client.dart';
-import 'package:vehicle_dashboard/pages/home_page/dashboard_window.dart';
-import 'package:vehicle_dashboard/pages/home_page/fuel_window.dart';
-import 'package:vehicle_dashboard/pages/home_page/records_window.dart';
+import 'package:vehicle_dashboard/app_drawer.dart';
+import 'package:vehicle_dashboard/pages/home_route/drive_window.dart';
+import 'package:vehicle_dashboard/pages/home_route/fuel_window.dart';
+import 'package:vehicle_dashboard/pages/home_route/records_window.dart';
 import 'package:vehicle_dashboard/utilities/grpc_clients/ping_client.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({super.key, required this.title});
+class HomeRoute extends StatefulWidget {
+  HomeRoute({super.key, required this.title});
 
   final String title;
   var grpcClient = PingClient();
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeRoute> createState() => _HomeRouteState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeRouteState extends State<HomeRoute> {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget>[
-    DashboardWindow(),
+    DriveWindow(),
     FuelWindow(),
     RecordsWindow(),
   ];
@@ -33,6 +34,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       drawer:  const AppDrawer(),
         appBar: AppBar(
           title: Text(widget.title),
         ),

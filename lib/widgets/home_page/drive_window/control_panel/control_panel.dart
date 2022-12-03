@@ -6,17 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:vehicle_dashboard/protos_generated/vehicle.pbgrpc.dart';
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/drive_panel/drive_button_sign.dart';
+import 'package:vehicle_dashboard/widgets/home_page/drive_window/control_panel/drive_button_sign.dart';
 
 
-class DrivePanel extends StatefulWidget {
-  const DrivePanel({super.key});
+class ControlPanel extends StatefulWidget {
+  const ControlPanel({super.key});
 
   @override
-  State<DrivePanel> createState() => _DrivePanelState();
+  State<ControlPanel> createState() => _ControlPanelState();
 }
 
-class _DrivePanelState extends State<DrivePanel> {
+class _ControlPanelState extends State<ControlPanel> {
   @override
   Widget build(BuildContext context) {
     var streamController = Provider.of<StreamController<SpeedType>>(context);

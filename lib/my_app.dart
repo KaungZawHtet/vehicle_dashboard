@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vehicle_dashboard/pages/home_page.dart';
+import 'package:vehicle_dashboard/config.dart';
+import 'package:vehicle_dashboard/pages/explanation_route.dart';
+import 'package:vehicle_dashboard/pages/home_route.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,11 +12,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Vehicle Dashboard',
+    routes: <String, WidgetBuilder>{
+              Routes.home: (BuildContext context) => HomeRoute(title: Routes.titleHome),
+
+              Routes.explanation: (BuildContext context) => ExplanationRoute(title: Routes.titleExplanation),
+
+            },
       theme: ThemeData(
         primarySwatch: Colors.indigo,
 
       ),
-      home: HomePage(title: 'Home'),
+      home: HomeRoute(title: 'Home'),
     );
   }
 }

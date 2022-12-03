@@ -2,7 +2,7 @@
 
 ![image info](diagram.png)
 
-This is the mini project that demostrates the networking betweeen flutter frontend and c++ backend by using GRPC and protobuf (the alternative solution of capnproto).
+This is the mini project that demostrates communication betweeen flutter frontend and c++ backend by using GRPC and protobuf (the alternative solution of capnproto).
 
 The targeted platform is for desktops and not for mobile OS. Mac is used on development time but it should work on ubuntu too.
 
@@ -31,25 +31,7 @@ At flutter frontend side,
 
 
 
-## FAQ
 
-#### How about rust server?
-
-Of course. Rust can be used to build the GRPC server too. But in the limited short time, I chose c++ for the solution. If there is some request to build a rust server, there will be rust server too.
-
-#### Can we make more secure communication between frontend and server?
-
-In the production of the real world project, sort of authentication should be considered to use in GRPC if needed. But for this demostration project, smoother and clearer communication is chosen to understand more easily.
-
-#### Can we make more beautiful UI for the frontend?
-
-Yes, we can. Beacuse the main purpose of this demostration project is to demostrate the full stack development that needs both of Flutter and C++, we prefer to make minimal UI compatible with the server side.
-
-#### Does this works on ubuntu ?
-
-In the development peroid, Mac was used to build the App but this should work on ubuntu too. But you can need to configure Firewall and some permission stuff for the first build time.
-
-#### Are the drive interface in frontend and calculations in backend the same with the real world vehicle ?
 
 
 

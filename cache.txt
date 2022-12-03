@@ -1,0 +1,22 @@
+This is the mini project that demostrates communication betweeen flutter frontend and c++ backend by using GRPC and protobuf (the alternative solution of capnproto). Check the link for more info.
+----------------------------------------------------------------
+
+Mechanistic Explanation
+
+In the drive window,There are 4 buttons  : Stop, Slow, Preserve and Speed Up and 4 indicators in the dashboard.
+
+1. At start, you need to lever up the vehicle. If not, rpm and speed won't go higher.
+2. When you click the lever up, speed, rpm and distance passed will go higher. And it consumes more fuel. Temperature increases too.
+3. More rpm means more fuel consumption.
+4. When you click the preserve button, speed and rpm will be preserved. Fuel Consumption keeps going. So does temperature.
+5. Slow down button can reduce rpm and speed. Less rpm means less fuel consumption.
+6. The stop button makes rpm and speed zero.
+7. At initial state, app gives you 40 litre fuel. Max is 47. In case of zero fuel litre in fuel indicator, you can't drive anymore. Then refill the fuel.
+
+----------------------------------------------------------------
+
+
+Nothing Special! There is only one button and when you want to fill fuel, just click it.
+
+----------------------------------------------------------------
+Whenever You click a button at drive panel, it save the data at frontend side and you can track your driving records. You can edit and delete too.

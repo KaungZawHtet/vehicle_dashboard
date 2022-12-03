@@ -7,18 +7,18 @@ import 'package:provider/provider.dart';
 import 'package:vehicle_dashboard/db/db_client.dart';
 import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
 
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/indicator_panel/distance_indicator.dart';
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/indicator_panel/fuel_indicator.dart';
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/indicator_panel/rpm_indicator.dart';
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/indicator_panel/speed_indicator.dart';
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/indicator_panel/temperature_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_page/drive_window/indicator_panel/distance_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_page/drive_window/indicator_panel/fuel_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_page/drive_window/indicator_panel/rpm_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_page/drive_window/indicator_panel/speed_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_page/drive_window/indicator_panel/temperature_indicator.dart';
 
-import 'package:vehicle_dashboard/widgets/home_page/dashboard_window/drive_panel/drive_panel.dart';
+import 'package:vehicle_dashboard/widgets/home_page/drive_window/control_panel/control_panel.dart';
 
 import '../../protos_generated/vehicle.pb.dart';
 
-class DashboardWindow extends StatelessWidget {
-  const DashboardWindow({super.key});
+class DriveWindow extends StatelessWidget {
+  const DriveWindow({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,7 @@ class DashboardWindow extends StatelessWidget {
             },
           ),
           const Divider(),
-          const DrivePanel()
+          const ControlPanel()
         ],
       ),
     );
