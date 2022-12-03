@@ -19,4 +19,3 @@ In the drive window,There are 4 buttons  : Stop, Slow, Preserve and Speed Up and
 Nothing Special! There is only one button and when you want to fill fuel, just click it.
 
 ----------------------------------------------------------------
-Whenever You click a button at drive panel, it save the data at frontend side and you can track your driving records. You can edit and delete too.

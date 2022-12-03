@@ -9,7 +9,7 @@ class Routes {
   static const String explanation ='/explanation';
   static const String titleExplanation = 'Explanation';
 
-    static const String editRecord ='/editRecord';
+  static const String editRecord ='/editRecord';
   static const String titleEditRecord = 'Edit Record';
 
 }

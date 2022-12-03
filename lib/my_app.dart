@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vehicle_dashboard/config.dart';
-import 'package:vehicle_dashboard/pages/explanation_route.dart';
-import 'package:vehicle_dashboard/pages/home_route.dart';
+import 'package:vehicle_dashboard/routes/explanation_route.dart';
+import 'package:vehicle_dashboard/routes/home_route.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

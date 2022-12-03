@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vehicle_dashboard/db/db_client.dart';
 import 'package:vehicle_dashboard/app_drawer.dart';
-import 'package:vehicle_dashboard/pages/home_route/drive_window.dart';
-import 'package:vehicle_dashboard/pages/home_route/fuel_window.dart';
-import 'package:vehicle_dashboard/pages/home_route/records_window.dart';
+import 'package:vehicle_dashboard/routes/home_route/drive_window.dart';
+import 'package:vehicle_dashboard/routes/home_route/fuel_window.dart';
+import 'package:vehicle_dashboard/routes/home_route/records_window.dart';
 import 'package:vehicle_dashboard/utilities/grpc_clients/ping_client.dart';
 
 class HomeRoute extends StatefulWidget {

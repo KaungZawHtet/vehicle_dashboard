@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vehicle_dashboard/app_drawer.dart';
-import 'package:vehicle_dashboard/pages/explanation_route/drive_explanation_window.dart';
-import 'package:vehicle_dashboard/pages/explanation_route/fuel_explanation_window.dart';
-import 'package:vehicle_dashboard/pages/explanation_route/record_explanation_window.dart';
+import 'package:vehicle_dashboard/routes/explanation_route/drive_explanation_window.dart';
+import 'package:vehicle_dashboard/routes/explanation_route/fuel_explanation_window.dart';
+import 'package:vehicle_dashboard/routes/explanation_route/record_explanation_window.dart';
 
 class ExplanationRoute extends StatefulWidget {
   const ExplanationRoute({super.key, required this.title});
@@ -30,7 +30,7 @@ class _ExplanationRouteState extends State<ExplanationRoute> {
                       ],
                     ),
                   ),
-         body:  const SafeArea(
+         body:   SafeArea(
            child: TabBarView(
                       children: <Widget>[
                         DriveExplanationWindow(),
