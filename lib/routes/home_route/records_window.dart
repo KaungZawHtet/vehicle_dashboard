@@ -3,6 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:vehicle_dashboard/db/db_client.dart';
+import 'package:vehicle_dashboard/routes/record_editing_route.dart';
 
 class RecordsWindow extends StatelessWidget {
   const RecordsWindow({super.key});
@@ -21,6 +22,22 @@ class RecordsWindow extends StatelessWidget {
                   endActionPane: ActionPane(
                     motion: const ScrollMotion(),
                     children: [
+                      SlidableAction(
+                        onPressed: (context) {
+                          var item = snapshot.data![index];
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    RecordEditingRoute(item: item)),
+                          );
+                        },
+                        backgroundColor: Colors.orange,
+                        foregroundColor: Colors.white,
+                        icon: Icons.edit,
+                        label: 'Edit',
+                      ),
                       SlidableAction(
                         onPressed: (context) {
                           db.deleteRecordById(snapshot.data![index].id);
@@ -89,8 +106,8 @@ class RecordsWindow extends StatelessWidget {
   }
 }
 
-Future<void> showDeleteConfirmationForRecord(BuildContext context,AppDb db) async {
-
+Future<void> showDeleteConfirmationForRecord(
+    BuildContext context, AppDb db) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
@@ -108,9 +125,8 @@ Future<void> showDeleteConfirmationForRecord(BuildContext context,AppDb db) asyn
           TextButton(
             child: const Text('Ok'),
             onPressed: () {
-
               db.deleteAllRecords();
-               Navigator.of(context).pop();
+              Navigator.of(context).pop();
             },
           ),
         ],

@@ -418,7 +418,7 @@ class DriveRecords extends Table with TableInfo<DriveRecords, DriveRecord> {
 abstract class _$AppDb extends GeneratedDatabase {
   _$AppDb(QueryExecutor e) : super(e);
   late final DriveRecords driveRecords = DriveRecords(this);
-  Selectable<DriveRecord> _getAllRecords() {
+  Selectable<DriveRecord> getAllRecords() {
     return customSelect('SELECT * FROM drive_records',
         variables: [],
         readsFrom: {
@@ -426,7 +426,7 @@ abstract class _$AppDb extends GeneratedDatabase {
         }).asyncMap(driveRecords.mapFromRow);
   }
 
-  Selectable<DriveRecord> _getRecordById(int id) {
+  Selectable<DriveRecord> getRecordById(int id) {
     return customSelect('SELECT * FROM drive_records WHERE id = ?1',
         variables: [
           Variable<int>(id)

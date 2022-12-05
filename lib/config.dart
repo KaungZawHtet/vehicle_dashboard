@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const themeColor = Colors.indigo;
-
+const double totalFuel = 47;
 class Routes {
   static const String home = '/home';
   static const String titleHome = 'Home';
@@ -11,6 +11,11 @@ class Routes {
 
   static const String editRecord ='/editRecord';
   static const String titleEditRecord = 'Edit Record';
+
+}
+
+class Keys {
+  static final editFormKey = GlobalKey<FormState>();
 
 }
 

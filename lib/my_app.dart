@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     routes: <String, WidgetBuilder>{
               Routes.home: (BuildContext context) => HomeRoute(title: Routes.titleHome),
 
-              Routes.explanation: (BuildContext context) => ExplanationRoute(title: Routes.titleExplanation),
+              Routes.explanation: (BuildContext context) => const ExplanationRoute(title: Routes.titleExplanation),
 
             },
       theme: ThemeData(

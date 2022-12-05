@@ -4,11 +4,12 @@ import 'package:animated_button/animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:vehicle_dashboard/constants.dart';
+import 'package:vehicle_dashboard/config.dart';
+
 
 import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
-import 'package:vehicle_dashboard/widgets/home_page/drive_window/control_panel/drive_button_sign.dart';
-import 'package:vehicle_dashboard/widgets/home_page/fuel_window/fuel_display_card.dart';
+import 'package:vehicle_dashboard/widgets/home_route/drive_window/control_panel/drive_button_sign.dart';
+import 'package:vehicle_dashboard/widgets/home_route/fuel_window/fuel_display_card.dart';
 
 class FuelWindow extends StatefulWidget {
   const FuelWindow({super.key});
@@ -37,7 +38,7 @@ class _FuelWindowState extends State<FuelWindow> {
                       double fuelToFill = 0;
                       double fuelLeft = 0;
                       if (streamSnapshot.hasData) {
-                        fuelToFill = TOTAL_FUEL - streamSnapshot.data!;
+                        fuelToFill = totalFuel - streamSnapshot.data!;
                         fuelLeft = streamSnapshot.data!;
                       }
 

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:vehicle_dashboard/constants.dart';
-import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
-import 'package:vehicle_dashboard/widgets/home_page/fuel_window/count_box.dart';
+import 'package:vehicle_dashboard/config.dart';
+import 'package:vehicle_dashboard/widgets/home_route/fuel_window/count_box.dart';
 
 class FuelDisplayCard extends StatelessWidget {
   const FuelDisplayCard({super.key, this.fuelLeft =0});
@@ -38,7 +36,7 @@ class FuelDisplayCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const CountBox(
-                      amount: '$TOTAL_FUEL',
+                      amount: '$totalFuel',
                       title: "Capacity",
                       icon: MdiIcons.fuel),
                   const SizedBox(width: 20),

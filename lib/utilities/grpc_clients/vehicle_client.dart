@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/foundation.dart';
 import 'package:grpc/grpc.dart';
 import 'package:vehicle_dashboard/db/db_client.dart';
 
@@ -33,7 +34,9 @@ class VehicleClient {
 
       yield response;
     } catch (e) {
-      print('Caught error: $e');
+      if (kDebugMode) {
+        print('Caught error: $e');
+      }
     }
   }
 
@@ -64,20 +67,28 @@ class VehicleClient {
 
       yield response.fuel;
     } catch (e) {
-      print('Caught error: $e');
+      if (kDebugMode) {
+        print('Caught error: $e');
+      }
     }
   }
 
   Future<void> fillFuel({double amount = 0}) async {
-    print(amount);
+    if (kDebugMode) {
+      print(amount);
+    }
     try {
       final response = await stub.fillFuel(
         FuelAmount()..fuel = amount,
         options: CallOptions(compression: const GzipCodec()),
       );
-      print(response.fuel);
+      if (kDebugMode) {
+        print(response.fuel);
+      }
     } catch (e) {
-      print('Caught error: $e');
+      if (kDebugMode) {
+        print('Caught error: $e');
+      }
     }
   }
 
@@ -95,7 +106,9 @@ class VehicleClient {
 
       return response.fuel;
     } catch (e) {
-      print('Caught error: $e');
+      if (kDebugMode) {
+        print('Caught error: $e');
+      }
       return -1;
     }
   }

@@ -8,8 +8,8 @@ import 'package:vehicle_dashboard/protos_generated/vehicle.pbgrpc.dart';
 
 import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
 import 'package:window_manager/window_manager.dart';
-const double APP_WIDTH = 670;
-const double APP_HEIGHT = 600;
+const double appWidth = 670;
+const double appHeight = 600;
 
 
 void main() async {
@@ -18,9 +18,9 @@ void main() async {
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = const WindowOptions(
-    size: Size(APP_WIDTH, APP_HEIGHT),
-    maximumSize: Size(APP_WIDTH, APP_HEIGHT),
-    minimumSize: Size(APP_WIDTH, APP_HEIGHT),
+    size: Size(appWidth, appHeight),
+    maximumSize: Size(appWidth, appHeight),
+    minimumSize: Size(appWidth, appHeight),
     center: true,
   );
   windowManager.waitUntilReadyToShow(windowOptions, () async {

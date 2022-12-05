@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:drift/drift.dart';
 // These imports are used to open the database
 import 'package:drift/native.dart';
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
@@ -31,7 +32,9 @@ LazyDatabase _openConnection() {
     // for your app.
     final dbFolder = await getApplicationDocumentsDirectory();
     final file = File(p.join(dbFolder.path, 'db.sqlite'));
-    print(dbFolder.path);
+    if (kDebugMode) {
+      print(dbFolder.path);
+    }
 
     return NativeDatabase.createInBackground(file);
   });

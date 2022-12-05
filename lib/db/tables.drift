@@ -10,9 +10,9 @@ CREATE TABLE drive_records (
   time_created DateTime(128)
 );
 
-_getAllRecords :   SELECT * FROM drive_records;
+getAllRecords :   SELECT * FROM drive_records;
 
-_getRecordById:   SELECT * FROM drive_records WHERE id = :id;
+getRecordById:   SELECT * FROM drive_records WHERE id = :id;
 
 insertRecord : INSERT INTO drive_records
 (speed_action,distance,rpm,speed, fuel,temperature ,time_created)

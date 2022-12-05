@@ -15,7 +15,7 @@ class CountBox extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment:  CrossAxisAlignment.center,
       children: [
-        Text(title, style: TextStyle(color: Colors.white)),
+        Text(title, style: const TextStyle(color: Colors.white)),
         const SizedBox(
           height: 4,
         ),
@@ -34,7 +34,7 @@ class CountBox extends StatelessWidget {
                     const SizedBox(
           height: 4,
         ),
-        Text(amount, style: TextStyle(color: Colors.white))
+        Text(amount, style: const TextStyle(color: Colors.white))
 
       ],
     );

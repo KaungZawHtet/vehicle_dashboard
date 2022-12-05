@@ -1,1 +1,0 @@
- const double TOTAL_FUEL =47;

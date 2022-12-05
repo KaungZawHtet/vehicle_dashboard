@@ -12,13 +12,13 @@ class FFIBridge {
             ? 'api.dll'
             : 'libapi.so')); // android and linux
 
-    final _add = nativeApiLib
+    final nativeAdd = nativeApiLib
         .lookup<NativeFunction<Int32 Function(Int32, Int32)>>('add');
-    add = _add.asFunction<int Function(int, int)>();
+    add = nativeAdd.asFunction<int Function(int, int)>();
 
-    final _cap = nativeApiLib.lookup<
+    final nativeCap = nativeApiLib.lookup<
         NativeFunction<Pointer<Utf8> Function(Pointer<Utf8>)>>('capitalize');
-    _capitalize = _cap.asFunction<Pointer<Utf8> Function(Pointer<Utf8>)>();
+    _capitalize = nativeCap.asFunction<Pointer<Utf8> Function(Pointer<Utf8>)>();
 
     return true;
   }

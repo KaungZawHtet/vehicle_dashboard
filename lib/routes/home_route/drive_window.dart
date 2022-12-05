@@ -1,19 +1,19 @@
 import 'dart:async';
 
-import 'package:at_gauges/at_gauges.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:vehicle_dashboard/db/db_client.dart';
 import 'package:vehicle_dashboard/utilities/grpc_clients/vehicle_client.dart';
 
-import 'package:vehicle_dashboard/widgets/home_page/drive_window/indicator_panel/distance_indicator.dart';
-import 'package:vehicle_dashboard/widgets/home_page/drive_window/indicator_panel/fuel_indicator.dart';
-import 'package:vehicle_dashboard/widgets/home_page/drive_window/indicator_panel/rpm_indicator.dart';
-import 'package:vehicle_dashboard/widgets/home_page/drive_window/indicator_panel/speed_indicator.dart';
-import 'package:vehicle_dashboard/widgets/home_page/drive_window/indicator_panel/temperature_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_route/drive_window/indicator_panel/distance_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_route/drive_window/indicator_panel/fuel_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_route/drive_window/indicator_panel/rpm_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_route/drive_window/indicator_panel/speed_indicator.dart';
+import 'package:vehicle_dashboard/widgets/home_route/drive_window/indicator_panel/temperature_indicator.dart';
 
-import 'package:vehicle_dashboard/widgets/home_page/drive_window/control_panel/control_panel.dart';
+import 'package:vehicle_dashboard/widgets/home_route/drive_window/control_panel/control_panel.dart';
 
 import '../../protos_generated/vehicle.pb.dart';
 

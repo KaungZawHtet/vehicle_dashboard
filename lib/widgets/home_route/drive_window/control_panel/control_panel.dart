@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:vehicle_dashboard/protos_generated/vehicle.pbgrpc.dart';
-import 'package:vehicle_dashboard/widgets/home_page/drive_window/control_panel/drive_button_sign.dart';
+import 'package:vehicle_dashboard/widgets/home_route/drive_window/control_panel/drive_button_sign.dart';
 
 
 class ControlPanel extends StatefulWidget {

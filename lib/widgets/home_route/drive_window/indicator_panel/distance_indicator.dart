@@ -11,7 +11,7 @@ class DistanceIndicator extends StatelessWidget {
       children: [
         const Icon(MdiIcons.road),
         const SizedBox(width:8),
-         Text('${distance}'),
+         Text('$distance'),
          const SizedBox(width: 8),
          const Text("km")],
     );

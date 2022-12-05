@@ -1,6 +1,7 @@
 import 'package:at_gauges/at_gauges.dart';
 import 'package:flutter/material.dart';
-import 'package:vehicle_dashboard/constants.dart';
+import 'package:vehicle_dashboard/config.dart';
+
 
 class FuelIndicator extends StatelessWidget {
   final double fuel;
@@ -12,7 +13,7 @@ class FuelIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaleRadialGauge(
-      maxValue: TOTAL_FUEL,
+      maxValue: totalFuel,
       actualValue: fuel,
       // Optional Parameters
       minValue: 0,

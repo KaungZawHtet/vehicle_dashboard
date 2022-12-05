@@ -7,6 +7,7 @@ import 'package:vehicle_dashboard/routes/home_route/fuel_window.dart';
 import 'package:vehicle_dashboard/routes/home_route/records_window.dart';
 import 'package:vehicle_dashboard/utilities/grpc_clients/ping_client.dart';
 
+// ignore: must_be_immutable
 class HomeRoute extends StatefulWidget {
   HomeRoute({super.key, required this.title});
 
@@ -20,9 +21,9 @@ class HomeRoute extends StatefulWidget {
 class _HomeRouteState extends State<HomeRoute> {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget>[
-    DriveWindow(),
-    FuelWindow(),
-    RecordsWindow(),
+    const DriveWindow(),
+    const FuelWindow(),
+    const RecordsWindow(),
   ];
 
   void _onItemTapped(int index) {
